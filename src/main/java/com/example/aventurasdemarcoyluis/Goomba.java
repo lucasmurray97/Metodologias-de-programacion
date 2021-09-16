@@ -1,8 +1,14 @@
 package com.example.aventurasdemarcoyluis;
 
-public class Goomba extends AbstractCharacter implements Enemies {
-    private String type = "Goomba";
-
+/**
+ * The type Goomba. It's an enemy character.
+ */
+public class Goomba extends AbstractCharacter implements Enemy {
+    /**
+     * Instantiates a new Goomba. Base points are set to 100 arbitrarily.
+     *
+     * @param lvl the lvl
+     */
     public Goomba(int lvl) {
         super(lvl, "Goomba", 100, 100, 100);
     }
