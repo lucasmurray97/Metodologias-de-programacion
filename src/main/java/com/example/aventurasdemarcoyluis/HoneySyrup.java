@@ -4,6 +4,9 @@ package com.example.aventurasdemarcoyluis;
  * The type Honey syrup. It's an item with the effect of increases a protagonist's fp by 3.
  */
 public class HoneySyrup extends AbstractItem implements Item{
+    /**
+     * Instantiates a new HoneySyrup Item
+     */
     public HoneySyrup() {
         super("HoneySyrup");
     }

@@ -4,14 +4,16 @@ package com.example.aventurasdemarcoyluis;
  * The type Red mushroom.
  */
 public class RedMushroom extends AbstractItem implements Item{
+    /**
+     * Instantiates a new RedMushroom.
+     */
     public RedMushroom() {
         super("RedMushroom");
     }
 
     /**
-     * Instantiates a new Boo.
-     *
-     * @param aPlayer the lvl
+     * Increments Hp by 10%
+     * @param aPlayer the player that uses the item.
      */
     @Override
     public void effect(Player aPlayer) {

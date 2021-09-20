@@ -6,7 +6,14 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * The type Test bag.
+ */
 public class TestBag {
+    /**
+     * The Test marcos.
+     */
     Marcos testMarcos;
     /**
      * The Test luigi.
@@ -26,6 +33,7 @@ public class TestBag {
      * The Test star.
      */
     Star testStar;
+
     /**
      * Sets up.
      */
@@ -37,6 +45,10 @@ public class TestBag {
         testMushroom = new RedMushroom();
         testHoneySyrup = new HoneySyrup();
     }
+
+    /**
+     * Equals test.
+     */
     @Test
     public void equalsTest(){
         BagPack bagPack = new BagPack(testMarcos);
@@ -45,6 +57,10 @@ public class TestBag {
         assertTrue(bagPack.equals(bagPack2));
         assertTrue(!bagPack.equals(bagPack3));
     }
+
+    /**
+     * Pick item bag test.
+     */
     @Test
     public void pickItemBagTest() {
         testMarcos.pickItem(testMushroom);
@@ -85,6 +101,10 @@ public class TestBag {
         assertEquals(2,marcosBagStar);
 
     }
+
+    /**
+     * Use item test.
+     */
     @Test
     public void useItemTest(){
         testMarcos.pickItem(testMushroom);

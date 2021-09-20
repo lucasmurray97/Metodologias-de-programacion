@@ -54,7 +54,7 @@ public class TestItems {
         assertTrue(!testStar.equals(testHoneySyrup));
     }
     /**
-     * Pick item mushroom test.
+     * Pick + Use item mushroom test.
      */
     @Test
     public void pickItemMushroomTest(){
@@ -73,7 +73,7 @@ public class TestItems {
     }
 
     /**
-     * Pick item honey syrup test.
+     * Pick + Use item honey syrup test.
      */
     @Test
     public void pickItemHoneySyrupTest(){
@@ -88,7 +88,7 @@ public class TestItems {
     }
 
     /**
-     * Pick star test.
+     * Pick + Use star test.
      */
     @Test
     public void pickStarTest(){

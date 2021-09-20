@@ -9,7 +9,7 @@ public interface Item {
      * Effect. Implementation of the item's effect over a protagonist character. Restricts it's
      * picking only to protagonists.
      *
-     * @param protagonist the protagonist that picked up the item.
+     * @param player the player that picked up the item.
      */
     void effect(Player player);
 

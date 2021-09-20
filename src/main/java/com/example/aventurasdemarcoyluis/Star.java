@@ -4,7 +4,9 @@ package com.example.aventurasdemarcoyluis;
  * The type Star.
  */
 public class Star extends AbstractItem implements Item{
-
+    /**
+     * Instantiates a new Star Item
+     */
     public Star() {
         super("Star");
     }

@@ -1,7 +1,5 @@
 package com.example.aventurasdemarcoyluis;
 
-import java.util.HashMap;
-
 /**
  * The type Protagonist. Abstract class meant for players: Luigi and Marcos. Incorporates
  * an additional variable in comparison with the abstract type Character: fp, which restrict
