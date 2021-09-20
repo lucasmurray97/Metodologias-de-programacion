@@ -42,6 +42,17 @@ public class TestItems {
         testHoneySyrup = new HoneySyrup();
     }
 
+    @Test
+    public void equalsTest(){
+        Star testStar2 = new Star();
+        RedMushroom testMushroom2 = new RedMushroom();
+        HoneySyrup testHoneySyrup2 = new HoneySyrup();
+        assertTrue(testMushroom.equals(testMushroom2));
+        assertTrue(testHoneySyrup.equals(testHoneySyrup2));
+        assertTrue(testStar.equals(testStar2));
+        assertTrue(!testMushroom.equals(testHoneySyrup));
+        assertTrue(!testStar.equals(testHoneySyrup));
+    }
     /**
      * Pick item mushroom test.
      */
@@ -53,6 +64,8 @@ public class TestItems {
         int luigiHpInit = testLuigi.getHp();
         testMarcos.pickItem(testMushroom);
         testLuigi.pickItem(testMushroom);
+        testMarcos.useItem("RedMushroom");
+        testLuigi.useItem("RedMushroom");
         int expectedMarcos = (int) (marcosHpInit*1.1);
         int expectedLuigi = (int) (luigiHpInit*1.1);
         assertEquals(expectedMarcos,testMarcos.getHp());
@@ -68,6 +81,8 @@ public class TestItems {
         int luigiFpInit = testLuigi.getFp();
         testMarcos.pickItem(testHoneySyrup);
         testLuigi.pickItem(testHoneySyrup);
+        testMarcos.useItem("HoneySyrup");
+        testLuigi.useItem("HoneySyrup");
         assertEquals(3,testMarcos.getFp()-marcosFpInit);
         assertEquals(3, testLuigi.getFp()-luigiFpInit);
     }
@@ -79,5 +94,7 @@ public class TestItems {
     public void pickStarTest(){
         testMarcos.pickItem(testStar);
         testLuigi.pickItem(testStar);
+        testMarcos.useItem("Star");
+        testLuigi.useItem("Star");
     }
 }

@@ -3,14 +3,19 @@ package com.example.aventurasdemarcoyluis;
 /**
  * The type Star.
  */
-public class Star implements Item{
+public class Star extends AbstractItem implements Item{
+
+    public Star() {
+        super("Star");
+    }
+
     @Override
-    public void effect(Protagonist protagonist) {
+    public void effect(Player aPlayer) {
         /** Set's the character's state to invincible.
          *
          *
-         * @param protagonist the level
+         * @param aPlayer the level
          */
-        protagonist.invincible();
+        aPlayer.invincible();
     }
 }

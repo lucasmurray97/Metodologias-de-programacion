@@ -18,4 +18,14 @@ public interface Player {
      * @return the type
      */
     String getType();
+
+    void setFp(int newFp);
+
+    int getFp();
+
+    int getHp();
+
+    void setHp(int newHp);
+
+    void invincible();
 }

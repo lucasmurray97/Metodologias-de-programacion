@@ -1,12 +1,15 @@
 package com.example.aventurasdemarcoyluis;
 
+import java.util.HashMap;
+
 /**
  * The type Protagonist. Abstract class meant for players: Luigi and Marcos. Incorporates
  * an additional variable in comparison with the abstract type Character: fp, which restrict
  * the use of items.
  */
-public abstract class Protagonist extends AbstractCharacter implements Player {
+public abstract class Protagonist extends AbstractCharacter implements Player, Character {
     private int fp;
+    private BagPack bag;
 
     /**
      * Instantiates a new Protagonist, setting it's fp to 0.
@@ -20,6 +23,7 @@ public abstract class Protagonist extends AbstractCharacter implements Player {
     public Protagonist(int lvl, String type, int baseHp, int baseAtk, int baseDef) {
         super(lvl, type, baseHp, baseAtk, baseDef);
         this.fp = 0;
+        this.bag = new BagPack(this);
     }
 
     /**
@@ -27,9 +31,13 @@ public abstract class Protagonist extends AbstractCharacter implements Player {
      * @param anItem the item that is picked up.
      */
     public void pickItem(Item anItem) {
-        anItem.effect(this);
+        bag.pickItem(anItem);
+
     }
 
+    public void useItem(String anItem){
+        bag.useItem(anItem);
+    }
     /**
      * Gets fp.
      *
@@ -53,4 +61,8 @@ public abstract class Protagonist extends AbstractCharacter implements Player {
      */
     public void invincible() {
     }
+    public int getQuantity(String anItem){
+        return bag.getQuantity(anItem);
+    }
+
 }

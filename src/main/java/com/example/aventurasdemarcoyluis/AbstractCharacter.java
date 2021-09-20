@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis;
 import java.lang.Math;
+import java.util.Objects;
 
 /**
  * The type Abstract character. It defines the general behavior for all subclasses: Luigi,
@@ -8,7 +9,7 @@ import java.lang.Math;
  * attack, maximum defense and type. Besides this, every character is either knocked out,
  * meaning that it can't attack, or not.
  */
-public abstract class AbstractCharacter {
+public abstract class AbstractCharacter implements Character{
     private int lvl;
     private int atk;
     private int def;
@@ -21,7 +22,6 @@ public abstract class AbstractCharacter {
     private int baseHp;
     private int baseAtk;
     private int baseDef;
-
 
     /**
      * Instantiates a new Abstract character.
@@ -196,5 +196,17 @@ public abstract class AbstractCharacter {
      */
     public boolean isKnockedOut() {
         return isKnockedOut;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Character)) return false;
+        Character aCharacter = (Character) o;
+        return this.type.equals(aCharacter.getType());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type);
     }
 }

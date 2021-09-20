@@ -35,6 +35,18 @@ public class TestPlayer {
     }
 
     /**
+     * Equals test.
+     */
+    @Test
+    public void equalsTest(){
+        Marcos testMarcos2= new Marcos(0);
+        Luigi testLuigi2 = new Luigi(0);
+        assertTrue(testLuigi.equals(testLuigi2));
+        assertTrue(testMarcos.equals(testMarcos2));
+        assertTrue(!testLuigi.equals(testMarcos));
+    }
+
+    /**
      * Set test.
      */
     @Test

@@ -11,5 +11,7 @@ public interface Item {
      *
      * @param protagonist the protagonist that picked up the item.
      */
-    void effect(Protagonist protagonist);
+    void effect(Player player);
+
+    String getName();
 }

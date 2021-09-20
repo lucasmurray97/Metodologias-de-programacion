@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis;
 /**
  * The type Luigi. It's a protagonist character, intended to be used by the user.
  */
-public class Luigi extends Protagonist implements Player {
+public class Luigi extends Protagonist implements Player, Character {
     /**
      * Instantiates a new Luigi. Base points are set to 100 arbitrarily.
      *
