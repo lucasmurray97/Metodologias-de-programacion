@@ -11,7 +11,7 @@ pruebas de lo implementado hasta la fecha.
 
 - Ejecutar el gradle build. Esto tirará error, pero no se preocupe.
 
-- Ejecutar en el terminal ./gradl ew --stop
+- Ejecutar en el terminal `./gradl ew --stop`
 
 - Ejecutar el build project.
 
