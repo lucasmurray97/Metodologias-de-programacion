@@ -59,6 +59,17 @@ public class TestBag {
     }
 
     /**
+     * To string test.
+     */
+    @Test
+    public void toStringTest(){
+        testLuigi.pickItem(testHoneySyrup);
+        testLuigi.pickItem(testStar);
+        testLuigi.pickItem(testMushroom);
+        assertEquals("Luigi's BagPack, it contains: 1 HoneySyrups, 1 Stars, 1 RedMushrooms",testLuigi.getBag().toString());
+    }
+
+    /**
      * Pick item bag test.
      */
     @Test
@@ -75,12 +86,14 @@ public class TestBag {
         int marcosBagSyrup = testMarcos.getQuantity("HoneySyrup");
         int luigiBagStar = testLuigi.getQuantity("Star");
         int marcosBagStar = testMarcos.getQuantity("Star");
+        int marcosBagAny = testMarcos.getQuantity("Any");
         assertEquals(1,luigiBagMushrooms);
         assertEquals(1,luigiBagSyrup);
         assertEquals(1,luigiBagStar);
         assertEquals(1,marcosBagMushrooms);
         assertEquals(1,marcosBagSyrup);
         assertEquals(1,marcosBagStar);
+        assertEquals(0,marcosBagAny);
         testMarcos.pickItem(testMushroom);
         testLuigi.pickItem(testMushroom);
         testMarcos.pickItem(testHoneySyrup);

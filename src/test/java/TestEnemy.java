@@ -35,6 +35,12 @@ public class TestEnemy {
         assertTrue(!testGoomba.equals(testBoo));
         assertTrue(!testBoo.equals(testSpiny));
     }
+    @Test
+    public void toStringTest(){
+        assertEquals("Goomba: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testGoomba.toString());
+        assertEquals("Boo: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testBoo.toString());
+        assertEquals("Spiny: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testSpiny.toString());
+    }
     /**
      * Constructor test.
      */

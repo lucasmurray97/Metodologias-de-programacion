@@ -168,6 +168,7 @@ public abstract class AbstractCharacter implements Character{
      *
      * @return the type
      */
+    @Override
     public String getType() {
         return type;
     }
@@ -203,6 +204,16 @@ public abstract class AbstractCharacter implements Character{
         if (!(o instanceof Character)) return false;
         Character aCharacter = (Character) o;
         return this.type.equals(aCharacter.getType());
+    }
+
+    @Override
+    public String toString() {
+        return "" + type + ": "+
+                "lvl = " + lvl +
+                ", atk = " + atk +
+                ", def = " + def +
+                ", hp = " + hp +
+                ", isKnockedOut = " + isKnockedOut;
     }
 
     @Override

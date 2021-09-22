@@ -42,6 +42,9 @@ public class TestItems {
         testHoneySyrup = new HoneySyrup();
     }
 
+    /**
+     * Equals test.
+     */
     @Test
     public void equalsTest(){
         Star testStar2 = new Star();
@@ -53,6 +56,17 @@ public class TestItems {
         assertTrue(!testMushroom.equals(testHoneySyrup));
         assertTrue(!testStar.equals(testHoneySyrup));
     }
+
+    /**
+     * To string test.
+     */
+    @Test
+    public void toStringTest(){
+        assertEquals("RedMushroom",testMushroom.toString());
+        assertEquals("HoneySyrup",testHoneySyrup.toString());
+        assertEquals("Star",testStar.toString());
+    }
+
     /**
      * Pick + Use item mushroom test.
      */

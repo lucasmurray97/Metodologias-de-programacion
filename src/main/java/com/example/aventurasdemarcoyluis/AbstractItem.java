@@ -21,6 +21,7 @@ public abstract class AbstractItem implements Item {
      * Gets the items name
      * @return the item's name
      */
+    @Override
     public String getName(){
         return this.name;
     }
@@ -41,5 +42,10 @@ public abstract class AbstractItem implements Item {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "" + name;
     }
 }

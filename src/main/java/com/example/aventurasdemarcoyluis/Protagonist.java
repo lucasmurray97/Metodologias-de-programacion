@@ -63,4 +63,8 @@ public abstract class Protagonist extends AbstractCharacter implements Player, C
         return bag.getQuantity(anItem);
     }
 
+    public BagPack getBag(){
+        return bag;
+    }
+
 }

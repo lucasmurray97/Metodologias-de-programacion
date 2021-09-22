@@ -13,5 +13,10 @@ public interface Item {
      */
     void effect(Player player);
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     String getName();
 }

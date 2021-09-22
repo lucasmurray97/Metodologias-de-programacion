@@ -91,4 +91,15 @@ public class BagPack {
     public int hashCode() {
         return Objects.hash(player);
     }
+
+    @Override
+    public String toString() {
+        String stringio = "" + player.getType() +"'s BagPack, it contains:";
+        for ( String anItem: bag.keySet())
+              {stringio += " " + bag.get(anItem).size()+" " + anItem+ "s,";
+
+        }
+
+        return stringio.substring(0,stringio.length()-1);
+    }
 }

@@ -47,6 +47,15 @@ public class TestPlayer {
     }
 
     /**
+     * To string test.
+     */
+    @Test
+    public void toStringTest(){
+        assertEquals("Luigi: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testLuigi.toString());
+        assertEquals("Luigi: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testLuigi.toString());
+    }
+
+    /**
      * Set test.
      */
     @Test
