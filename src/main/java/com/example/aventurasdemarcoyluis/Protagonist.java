@@ -25,7 +25,7 @@ public abstract class Protagonist extends AbstractCharacter implements Player, C
     }
 
     /**
-     * Picks up an item, calling the item's method effect() and
+     * Picks up an item and stores it in the bagpack.
      * @param anItem the item that is picked up.
      */
     public void pickItem(Item anItem) {
@@ -33,6 +33,11 @@ public abstract class Protagonist extends AbstractCharacter implements Player, C
 
     }
 
+    /**
+     * Uses item an item.
+     *
+     * @param anItem item being used.
+     */
     public void useItem(String anItem){
         bag.useItem(anItem);
     }
@@ -59,10 +64,22 @@ public abstract class Protagonist extends AbstractCharacter implements Player, C
      */
     public void invincible() {
     }
+
+    /**
+     * Get's the quantity of item anItem present in the character's bagpack.
+     *
+     * @param anItem the an item
+     * @return the int
+     */
     public int getQuantity(String anItem){
         return bag.getQuantity(anItem);
     }
 
+    /**
+     * Gets the character's bagpack.
+     *
+     * @return the bag pack
+     */
     public BagPack getBag(){
         return bag;
     }

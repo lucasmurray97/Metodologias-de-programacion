@@ -9,5 +9,5 @@ public interface Character {
      *
      * @return the type
      */
-    public String getType();
+    String getType();
 }
