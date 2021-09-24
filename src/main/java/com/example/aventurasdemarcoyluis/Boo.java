@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis;
 /**
  * The type Boo. It's an enemy character.
  */
-public class Boo extends AbstractCharacter implements Enemy, Character {
+public class Boo extends AbstractCharacter implements Enemy{
     /**
      * Instantiates a new Boo. Base points are set to 100 arbitrarily.
      *

@@ -4,7 +4,7 @@ package com.example.aventurasdemarcoyluis;
  * The interface Player. Implemented by Luigi and Marcos, forces the implementation of pickItem
  * method.
  */
-public interface Player{
+public interface Player extends Character{
     /**
      * Pick item.
      *
