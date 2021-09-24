@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis;
 /**
  * The type Star.
  */
-public class Star extends AbstractItem implements Item{
+public class Star extends AbstractItem{
     /**
      * Instantiates a new Star Item
      */

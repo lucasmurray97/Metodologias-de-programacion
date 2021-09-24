@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis;
 /**
  * The type Red mushroom.
  */
-public class RedMushroom extends AbstractItem implements Item{
+public class RedMushroom extends AbstractItem{
     /**
      * Instantiates a new RedMushroom.
      */

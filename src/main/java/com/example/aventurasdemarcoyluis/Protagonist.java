@@ -5,7 +5,7 @@ package com.example.aventurasdemarcoyluis;
  * an additional variable in comparison with the abstract type Character: fp, which restrict
  * the use of items.
  */
-public abstract class Protagonist extends AbstractCharacter implements Player, Character {
+public abstract class Protagonist extends AbstractCharacter implements Player{
     private int fp;
     private BagPack bag;
 

@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis;
 /**
  * The type Goomba. It's an enemy character.
  */
-public class Goomba extends AbstractCharacter implements Enemy, Character {
+public class Goomba extends AbstractCharacter implements Enemy{
     /**
      * Instantiates a new Goomba. Base points are set to 100 arbitrarily.
      *
