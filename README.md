@@ -30,7 +30,20 @@ Actualmente la aplicación permite crear todos los personajes que se mencionaron
 permite a los protagonistas recoger, almacenar y utilizar items. Considera restricciones
 de integralidad en las distintas variables que componen a los personajes
 e implementa clases abstractas e interfaces que garantizan el correcto funcionamiento
-de los métodos programados.
+de los métodos programados. Existen avances por sobre los requisitos de la entrega, cómo 
+la clase BagPack y detalles en las construcciones de los personajes.
+##### Supuestos
+Se supuso que existe una relación entre el nivel de un personaje y las variables que lo definen, acá
+se muestra el cómo se implementó:
+
+```
+public void setLvl(int lvl) {
+    this.lvl = lvl;
+    this.maxHp = (int) (this.baseHp*Math.pow(1.1,this.lvl));
+    this.maxAtk = (int) (this.baseAtk*Math.pow(1.1,this.lvl));
+    this.maxDef = (int) (this.baseDef*Math.pow(1.1,this.lvl));
+}
+```
 
 ##### Testeo
 
