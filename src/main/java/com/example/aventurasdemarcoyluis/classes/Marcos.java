@@ -16,17 +16,10 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
         super(lvl, "Marcos", 100, 100, 100);
     }
 
-    public void normalAttacked(int damage, Enemy anEnemy){
-        if (anEnemy.getType() != "Boo") {
-            this.setHp(this.getHp() - damage);
-        }
-    };
     public void hammerAttack(AttackableByMarcos anEnemy){
         super.hammerAttack(anEnemy);
     }
-    public void hammerAttack(AttackableByMarcos anEnemy, String test){
-        super.hammerAttack(anEnemy, test);
-    }
+
     public void jumpAttack(AttackableByMarcos anEnemy){
         super.jumpAttack(anEnemy);
     };

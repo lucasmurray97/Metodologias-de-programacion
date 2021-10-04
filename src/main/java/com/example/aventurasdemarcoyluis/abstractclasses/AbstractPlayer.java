@@ -15,6 +15,7 @@ import java.util.Random;
 public abstract class AbstractPlayer extends AbstractCharacter implements Player {
     private int fp;
     private BagPack bag;
+    private Random random;
 
     /**
      * Instantiates a new Protagonist, setting it's fp to 0.
@@ -29,6 +30,7 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
         super(lvl, type, baseHp, baseAtk, baseDef);
         this.fp = 0;
         this.bag = new BagPack(this);
+        this.random = new Random();
     }
 
     /**
@@ -103,16 +105,15 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
         this.setFp(this.getFp()-2);
     }
     protected void hammerAttack(Enemy anEnemy){
-        Random rand = new Random();
-        if (rand.nextInt(4)==4){
+        if (this.random.nextInt(4)==0){
             baseHammerAttack(anEnemy);
         }
     }
-    protected void hammerAttack(Enemy anEnemy, String test){
-        if(test == "test"){
-            baseHammerAttack(anEnemy);
-        }
+
+    public void setSeed(int n){
+        this.random.setSeed(n);
     }
+
     @Override
     public void normalAttacked(int damage, Enemy anEnemy){
         this.setHp(this.getHp()-damage);

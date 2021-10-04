@@ -3,6 +3,8 @@ import com.example.aventurasdemarcoyluis.classes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestAttacks {
@@ -54,11 +56,14 @@ public class TestAttacks {
         assertEquals(goombaHp - damageLuigiJumpGoomba, testGoomba.getHp());
         assertEquals(spinyHp - damageLuigiJumpSpiny, testSpiny.getHp());
         assertEquals(luigiHp - damageLuigiJumpSpinyLuigi, testLuigi.getHp());
-
     }
 
     @Test
     public void marcosHammerAtkTest() {
+        Random random = new Random();
+        random.setSeed(2);
+        testLuigi.setSeed(2);
+        testMarcos.setSeed(2);
         int booHp = testBoo.getHp();
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
@@ -67,9 +72,15 @@ public class TestAttacks {
         int damageMarcosHammerGoomba = (int) (1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / testGoomba.getDef()));
         int damageMarcosHammerSpiny = (int) (1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / testGoomba.getDef()));
         int damageMarcosHammerSpinyMarcos = 0;
-        testMarcos.hammerAttack(testBoo, "test");
-        testMarcos.hammerAttack(testGoomba, "test");
-        testMarcos.hammerAttack(testSpiny, "test");
+        int count = 0;
+        while(count == 0) {
+            if(random.nextInt(4)==0){
+                count++;
+            }
+            testMarcos.hammerAttack(testBoo);
+            testMarcos.hammerAttack(testGoomba);
+            testMarcos.hammerAttack(testSpiny);
+        }
         assertEquals(booHp - damageMarcosHammerBoo, testBoo.getHp());
         assertEquals(goombaHp - damageMarcosHammerGoomba, testGoomba.getHp());
         assertEquals(spinyHp - damageMarcosHammerSpiny, testSpiny.getHp());
@@ -79,14 +90,24 @@ public class TestAttacks {
 
     @Test
     public void luigiHammerAtkTest() {
+        Random random = new Random();
+        random.setSeed(2);
+        testLuigi.setSeed(2);
+        testMarcos.setSeed(2);
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
         int luigiHp = testLuigi.getHp();
         int damageLuigiHammerGoomba = (int) (1.5 * testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef()));
         int damageLuigiHammerSpiny = (int) (1.5 * testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef()));
         int damageLuigiHammerSpinyLuigi = 0;
-        testLuigi.hammerAttack(testGoomba, "test");
-        testLuigi.hammerAttack(testSpiny, "test");
+        int count = 0;
+        while(count == 0) {
+            if(random.nextInt(4)==0){
+                count++;
+            }
+            testLuigi.hammerAttack(testGoomba);
+            testLuigi.hammerAttack(testSpiny);
+        }
         assertEquals(goombaHp - damageLuigiHammerGoomba, testGoomba.getHp());
         assertEquals(spinyHp - damageLuigiHammerSpiny, testSpiny.getHp());
         assertEquals(luigiHp - damageLuigiHammerSpinyLuigi, testLuigi.getHp());

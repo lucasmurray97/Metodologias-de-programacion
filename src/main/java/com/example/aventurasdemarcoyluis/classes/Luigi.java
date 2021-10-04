@@ -19,9 +19,7 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
     public void hammerAttack(AttackableByLuigi anEnemy){
         super.hammerAttack(anEnemy);
     }
-    public void hammerAttack(AttackableByLuigi anEnemy, String test){
-        super.hammerAttack(anEnemy, test);
-    }
+
     public void jumpAttack(AttackableByLuigi anEnemy){
         super.jumpAttack(anEnemy);
     };
