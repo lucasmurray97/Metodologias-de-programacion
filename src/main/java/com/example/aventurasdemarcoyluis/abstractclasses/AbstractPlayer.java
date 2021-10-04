@@ -91,23 +91,24 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
         return bag;
     }
 
-    public void jumpAttack(Enemy anEnemy){
+    protected void jumpAttack(Enemy anEnemy){
         int damage = this.getAtk() * (this.getLvl() / anEnemy.getDef());
         anEnemy.jumpAttacked(damage, this);
+        this.setFp(this.getFp()-1);
     };
 
-    public void baseHammerAttack(Enemy anEnemy){
+    protected void baseHammerAttack(Enemy anEnemy){
         int damage = (int) (1.5 * this.getAtk() * (this.getLvl() / anEnemy.getDef()));
         anEnemy.hammerAttacked(damage, this);
         this.setFp(this.getFp()-2);
     }
-    public void hammerAttack(Enemy anEnemy){
+    protected void hammerAttack(Enemy anEnemy){
         Random rand = new Random();
         if (rand.nextInt(4)==4){
             baseHammerAttack(anEnemy);
         }
     }
-    public void hammerAttack(Enemy anEnemy, String test){
+    protected void hammerAttack(Enemy anEnemy, String test){
         if(test == "test"){
             baseHammerAttack(anEnemy);
         }

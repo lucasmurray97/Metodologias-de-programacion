@@ -2,13 +2,15 @@ package com.example.aventurasdemarcoyluis.classes;
 
 import com.example.aventurasdemarcoyluis.abstractclasses.AbstractCharacter;
 import com.example.aventurasdemarcoyluis.abstractclasses.AbstractEnemy;
+import com.example.aventurasdemarcoyluis.interfaces.AttackableByBoo;
+import com.example.aventurasdemarcoyluis.interfaces.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.interfaces.Enemy;
 import com.example.aventurasdemarcoyluis.interfaces.Player;
 
 /**
  * The type Boo. It's an enemy character.
  */
-public class Boo extends AbstractEnemy{
+public class Boo extends AbstractEnemy implements AttackableByMarcos {
     /**
      * Instantiates a new Boo. Base points are set to 100 arbitrarily.
      *
@@ -18,15 +20,7 @@ public class Boo extends AbstractEnemy{
         super(lvl, "Boo", 100, 100, 100);
     }
 
-    @Override
-    public void hammerAttacked(int damage, Player aPlayer) {
+    public void normalAttack(AttackableByBoo aPlayer){
+        super.normalAttack(aPlayer);
     }
-
-    @Override
-    public void jumpAttacked(int damage, Player aPlayer) {
-        if(aPlayer.getType() != "Luigi"){
-            super.jumpAttacked(damage,aPlayer);
-        }
-    }
-
 }

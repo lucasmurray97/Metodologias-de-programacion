@@ -17,7 +17,7 @@ public abstract class AbstractEnemy extends AbstractCharacter implements Enemy {
         super(lvl, type, aBaseHp, aBaseAtk, aBaseDef);
     }
 
-    public void normalAttack(Player aPlayer){
+    protected void normalAttack(Player aPlayer){
         int damage = (int) (0.75 * this.getAtk() * (this.getLvl() / aPlayer.getDef()));
         aPlayer.normalAttacked(damage, this);
     };

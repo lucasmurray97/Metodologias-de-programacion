@@ -43,19 +43,14 @@ public class TestAttacks {
 
     @Test
     public void luigiJumpAtkTest() {
-        int booHp = testBoo.getHp();
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
-        int marcosHp = testMarcos.getHp();
         int luigiHp = testLuigi.getHp();
-        int damageLuigiJumpBoo = 0;
         int damageLuigiJumpGoomba = testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef());
         int damageLuigiJumpSpiny = 0;
         int damageLuigiJumpSpinyLuigi = (int) (testLuigi.getHp() * 0.05);
-        testLuigi.jumpAttack(testBoo);
         testLuigi.jumpAttack(testGoomba);
         testLuigi.jumpAttack(testSpiny);
-        assertEquals(booHp - damageLuigiJumpBoo, testBoo.getHp());
         assertEquals(goombaHp - damageLuigiJumpGoomba, testGoomba.getHp());
         assertEquals(spinyHp - damageLuigiJumpSpiny, testSpiny.getHp());
         assertEquals(luigiHp - damageLuigiJumpSpinyLuigi, testLuigi.getHp());
@@ -68,7 +63,6 @@ public class TestAttacks {
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
         int marcosHp = testMarcos.getHp();
-        int luigiHp = testLuigi.getHp();
         int damageMarcosHammerBoo = 0;
         int damageMarcosHammerGoomba = (int) (1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / testGoomba.getDef()));
         int damageMarcosHammerSpiny = (int) (1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / testGoomba.getDef()));
@@ -85,22 +79,17 @@ public class TestAttacks {
 
     @Test
     public void luigiHammerAtkTest() {
-        int booHp = testBoo.getHp();
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
-        int marcosHp = testMarcos.getHp();
         int luigiHp = testLuigi.getHp();
-        int damageLuigiHammerBoo = 0;
         int damageLuigiHammerGoomba = (int) (1.5 * testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef()));
         int damageLuigiHammerSpiny = (int) (1.5 * testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef()));
         int damageLuigiHammerSpinyLuigi = 0;
-        testMarcos.hammerAttack(testBoo, "test");
-        testMarcos.hammerAttack(testGoomba, "test");
-        testMarcos.hammerAttack(testSpiny, "test");
-        assertEquals(booHp - damageLuigiHammerBoo, testBoo.getHp());
+        testLuigi.hammerAttack(testGoomba, "test");
+        testLuigi.hammerAttack(testSpiny, "test");
         assertEquals(goombaHp - damageLuigiHammerGoomba, testGoomba.getHp());
         assertEquals(spinyHp - damageLuigiHammerSpiny, testSpiny.getHp());
-        assertEquals(marcosHp - damageLuigiHammerSpinyLuigi, testMarcos.getHp());
+        assertEquals(luigiHp - damageLuigiHammerSpinyLuigi, testLuigi.getHp());
 
     }
 
@@ -108,15 +97,12 @@ public class TestAttacks {
     public void enemyNormalAtk() {
         int marcosHp = testMarcos.getHp();
         int luigiHp = testLuigi.getHp();
-        int damageBooNormalMarcos = 0;
-        int damageBooNormalLuigi = (int) (0.75 * testBoo.getAtk() * (testLuigi.getLvl() / testLuigi.getDef()));
         int damageGoombaNormalMarcos = (int) (0.75 * testGoomba.getAtk() * (testMarcos.getLvl() / testMarcos.getDef()));
         int damageGoombaNormalLuigi = (int) (0.75 * testGoomba.getAtk() * (testLuigi.getLvl() / testLuigi.getDef()));
         int damageSpinyNormalMarcos = (int) (0.75 * testSpiny.getAtk() * (testMarcos.getLvl() / testMarcos.getDef()));
         int damageSpinyNormalLuigi = (int) (0.75 * testSpiny.getAtk() * (testLuigi.getLvl() / testLuigi.getDef()));
-        testBoo.normalAttack(testMarcos);
+        int damageBooNormalLuigi = (int) (0.75 * testBoo.getAtk() * (testLuigi.getLvl() / testLuigi.getDef()));
         testBoo.normalAttack(testLuigi);
-        assertEquals(marcosHp - damageBooNormalMarcos, testMarcos.getHp());
         assertEquals(luigiHp - damageBooNormalLuigi, testLuigi.getHp());
         testMarcos.setHp(marcosHp);
         testLuigi.setHp(luigiHp);
