@@ -1,6 +1,5 @@
 package com.example.aventurasdemarcoyluis.classes;
 
-import com.example.aventurasdemarcoyluis.abstractclasses.AbstractCharacter;
 import com.example.aventurasdemarcoyluis.abstractclasses.AbstractEnemy;
 import com.example.aventurasdemarcoyluis.interfaces.*;
 

@@ -1,11 +1,8 @@
 package com.example.aventurasdemarcoyluis.classes;
 
-import com.example.aventurasdemarcoyluis.abstractclasses.AbstractCharacter;
 import com.example.aventurasdemarcoyluis.abstractclasses.AbstractEnemy;
 import com.example.aventurasdemarcoyluis.interfaces.AttackableByBoo;
 import com.example.aventurasdemarcoyluis.interfaces.AttackableByMarcos;
-import com.example.aventurasdemarcoyluis.interfaces.Enemy;
-import com.example.aventurasdemarcoyluis.interfaces.Player;
 
 /**
  * The type Boo. It's an enemy character.

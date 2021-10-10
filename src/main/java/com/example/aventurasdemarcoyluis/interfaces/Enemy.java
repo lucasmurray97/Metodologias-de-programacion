@@ -1,7 +1,5 @@
 package com.example.aventurasdemarcoyluis.interfaces;
 
-import com.example.aventurasdemarcoyluis.abstractclasses.AbstractPlayer;
-
 /**
  * The interface Enemy, implemented by Boo, Spiny and Goomba.
  */

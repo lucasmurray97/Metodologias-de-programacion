@@ -1,7 +1,6 @@
 package com.example.aventurasdemarcoyluis.abstractclasses;
 
 import com.example.aventurasdemarcoyluis.classes.BagPack;
-import com.example.aventurasdemarcoyluis.classes.Boo;
 import com.example.aventurasdemarcoyluis.interfaces.Enemy;
 import com.example.aventurasdemarcoyluis.interfaces.Item;
 import com.example.aventurasdemarcoyluis.interfaces.Player;

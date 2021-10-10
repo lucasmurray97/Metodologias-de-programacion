@@ -1,9 +1,5 @@
 package com.example.aventurasdemarcoyluis.interfaces;
 
-import com.example.aventurasdemarcoyluis.abstractclasses.AbstractEnemy;
-import com.example.aventurasdemarcoyluis.interfaces.Character;
-import com.example.aventurasdemarcoyluis.interfaces.Item;
-
 /**
  * The interface Player. Implemented by Luigi and Marcos, forces the implementation of pickItem
  * method.
