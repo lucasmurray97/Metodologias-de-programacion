@@ -55,4 +55,7 @@ public interface Player extends Character {
     int getDef();
 
     void normalAttacked(int damage, Enemy anEnemy);
+
+
+    void useItem(String anItem);
 }

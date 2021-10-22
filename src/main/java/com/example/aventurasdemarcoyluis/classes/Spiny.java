@@ -20,7 +20,10 @@ public class Spiny extends AbstractEnemy implements AttackableByLuigi, Attackabl
     }
     @Override
     public void jumpAttacked(int damage, Player aPlayer) {
-        super.jumpAttacked(damage, aPlayer);
         aPlayer.setHp((int) (0.95*aPlayer.getHp()));
+    }
+    @Override
+    public EnemyTurn myTurn(){
+        return new SpinyTurn();
     }
 }

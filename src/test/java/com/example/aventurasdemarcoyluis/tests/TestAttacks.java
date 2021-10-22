@@ -13,14 +13,16 @@ public class TestAttacks {
     private Goomba testGoomba;
     private Boo testBoo;
     private Spiny testSpiny;
+    private BagPack testBag;
 
     @BeforeEach
     public void setUp() {
-        testMarcos = new Marcos(0);
-        testLuigi = new Luigi(0);
-        testGoomba = new Goomba(0);
-        testBoo = new Boo(0);
-        testSpiny = new Spiny(0);
+        testBag = new BagPack();
+        testMarcos = new Marcos(1, testBag);
+        testLuigi = new Luigi(1, testBag);
+        testGoomba = new Goomba(1);
+        testBoo = new Boo(1);
+        testSpiny = new Spiny(1);
     }
 
     @Test
@@ -29,10 +31,10 @@ public class TestAttacks {
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
         int marcosHp = testMarcos.getHp();
-        int damageMarcosJumpBoo = testMarcos.getAtk() * (testMarcos.getLvl() / testBoo.getDef());
-        int damageMarcosJumpGoomba = testMarcos.getAtk() * (testMarcos.getLvl() / testGoomba.getDef());
-        int damageMarcosJumpSpiny = 0;
-        int damageMarcosJumpSpinyMarcos = (int) (testMarcos.getHp() * 0.05);
+        int damageMarcosJumpBoo = (int) Math.round(testMarcos.getAtk() * (testMarcos.getLvl() / (double)testBoo.getDef()));
+        int damageMarcosJumpGoomba = (int) Math.round(testMarcos.getAtk() * (testMarcos.getLvl() / (double)testGoomba.getDef()));
+        int damageMarcosJumpSpiny = 0;;
+        int damageMarcosJumpSpinyMarcos = (int) Math.round(testMarcos.getHp() * 0.05);
         testMarcos.jumpAttack(testBoo);
         testMarcos.jumpAttack(testGoomba);
         testMarcos.jumpAttack(testSpiny);
@@ -48,9 +50,9 @@ public class TestAttacks {
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
         int luigiHp = testLuigi.getHp();
-        int damageLuigiJumpGoomba = testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef());
+        int damageLuigiJumpGoomba = (int) Math.round(testLuigi.getAtk() * (testLuigi.getLvl() / (double)testGoomba.getDef()));
         int damageLuigiJumpSpiny = 0;
-        int damageLuigiJumpSpinyLuigi = (int) (testLuigi.getHp() * 0.05);
+        int damageLuigiJumpSpinyLuigi = (int) Math.round(testLuigi.getHp() * 0.05);
         testLuigi.jumpAttack(testGoomba);
         testLuigi.jumpAttack(testSpiny);
         assertEquals(goombaHp - damageLuigiJumpGoomba, testGoomba.getHp());
@@ -69,16 +71,31 @@ public class TestAttacks {
         int spinyHp = testSpiny.getHp();
         int marcosHp = testMarcos.getHp();
         int damageMarcosHammerBoo = 0;
-        int damageMarcosHammerGoomba = (int) (1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / testGoomba.getDef()));
-        int damageMarcosHammerSpiny = (int) (1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / testGoomba.getDef()));
+        int damageMarcosHammerGoomba = (int) Math.round(1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / (double) testGoomba.getDef()));
+        int damageMarcosHammerSpiny = (int) Math.round(1.5 * testMarcos.getAtk() * (testMarcos.getLvl() / (double) testGoomba.getDef()));
         int damageMarcosHammerSpinyMarcos = 0;
         int count = 0;
         while(count == 0) {
-            if(random.nextInt(4)==0){
+            int rand = random.nextInt(4);
+            if(rand==0){
                 count++;
             }
             testMarcos.hammerAttack(testBoo);
+        }
+        count = 0;
+        while(count == 0) {
+            int rand = random.nextInt(4);
+            if(rand==0){
+                count++;
+            }
             testMarcos.hammerAttack(testGoomba);
+        }
+        count = 0;
+        while(count == 0) {
+            int rand = random.nextInt(4);
+            if(rand==0){
+                count++;
+            }
             testMarcos.hammerAttack(testSpiny);
         }
         assertEquals(booHp - damageMarcosHammerBoo, testBoo.getHp());
@@ -97,17 +114,26 @@ public class TestAttacks {
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
         int luigiHp = testLuigi.getHp();
-        int damageLuigiHammerGoomba = (int) (1.5 * testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef()));
-        int damageLuigiHammerSpiny = (int) (1.5 * testLuigi.getAtk() * (testLuigi.getLvl() / testGoomba.getDef()));
+        int damageLuigiHammerGoomba = (int) Math.round(1.5 * testLuigi.getAtk() * (testLuigi.getLvl() /(double) testGoomba.getDef()));
+        int damageLuigiHammerSpiny = (int) Math.round(1.5 * testLuigi.getAtk() * (testLuigi.getLvl() / (double) testGoomba.getDef()));
         int damageLuigiHammerSpinyLuigi = 0;
         int count = 0;
         while(count == 0) {
-            if(random.nextInt(4)==0){
+            int rand = random.nextInt(4);
+            if(rand==0){
                 count++;
             }
             testLuigi.hammerAttack(testGoomba);
+        }
+        count = 0;
+        while(count == 0) {
+            int rand = random.nextInt(4);
+            if(rand==0){
+                count++;
+            }
             testLuigi.hammerAttack(testSpiny);
         }
+
         assertEquals(goombaHp - damageLuigiHammerGoomba, testGoomba.getHp());
         assertEquals(spinyHp - damageLuigiHammerSpiny, testSpiny.getHp());
         assertEquals(luigiHp - damageLuigiHammerSpinyLuigi, testLuigi.getHp());
@@ -118,11 +144,11 @@ public class TestAttacks {
     public void enemyNormalAtk() {
         int marcosHp = testMarcos.getHp();
         int luigiHp = testLuigi.getHp();
-        int damageGoombaNormalMarcos = (int) (0.75 * testGoomba.getAtk() * (testMarcos.getLvl() / testMarcos.getDef()));
-        int damageGoombaNormalLuigi = (int) (0.75 * testGoomba.getAtk() * (testLuigi.getLvl() / testLuigi.getDef()));
-        int damageSpinyNormalMarcos = (int) (0.75 * testSpiny.getAtk() * (testMarcos.getLvl() / testMarcos.getDef()));
-        int damageSpinyNormalLuigi = (int) (0.75 * testSpiny.getAtk() * (testLuigi.getLvl() / testLuigi.getDef()));
-        int damageBooNormalLuigi = (int) (0.75 * testBoo.getAtk() * (testLuigi.getLvl() / testLuigi.getDef()));
+        int damageGoombaNormalMarcos = (int) Math.round(0.75 * testGoomba.getAtk() * (testMarcos.getLvl() / (double) testMarcos.getDef()));
+        int damageGoombaNormalLuigi = (int) Math.round(0.75 * testGoomba.getAtk() * (testLuigi.getLvl() / (double) testLuigi.getDef()));
+        int damageSpinyNormalMarcos = (int) Math.round(0.75 * testSpiny.getAtk() * (testMarcos.getLvl() / (double) testMarcos.getDef()));
+        int damageSpinyNormalLuigi = (int) Math.round(0.75 * testSpiny.getAtk() * (testLuigi.getLvl() / (double) testLuigi.getDef()));
+        int damageBooNormalLuigi = (int) Math.round(0.75 * testBoo.getAtk() * (testLuigi.getLvl() / (double) testLuigi.getDef()));
         testBoo.normalAttack(testLuigi);
         assertEquals(luigiHp - damageBooNormalLuigi, testLuigi.getHp());
         testMarcos.setHp(marcosHp);

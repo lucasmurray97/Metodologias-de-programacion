@@ -16,11 +16,20 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
         super(lvl, "Luigi", 100, 100, 100);
     }
 
+    public Luigi(int lvl, BagPack bag) {
+        super(lvl, "Luigi", 100, 100, 100, bag);
+    }
+
     public void hammerAttack(AttackableByLuigi anEnemy){
         super.hammerAttack(anEnemy);
     }
 
     public void jumpAttack(AttackableByLuigi anEnemy){
         super.jumpAttack(anEnemy);
-    };
+    }
+
+    @Override
+    public void useItem(String anItem) {
+        super.useItem(anItem);
+    }
 }

@@ -49,11 +49,11 @@ public class TestKnockOut {
         assertEquals(0, testGoomba.getAtk());
         assertEquals(0, testBoo.getAtk());
         assertEquals(0, testSpiny.getAtk());
-        testLuigi.unKnockOut();
-        testMarcos.unKnockOut();
-        testGoomba.unKnockOut();
-        testBoo.unKnockOut();
-        testSpiny.unKnockOut();
+        testLuigi.getState().revive();
+        testMarcos.getState().revive();
+        testGoomba.getState().revive();
+        testBoo.getState().revive();
+        testSpiny.getState().revive();
         assertEquals(100, testMarcos.getAtk());
         assertEquals(100, testLuigi.getAtk());
         assertEquals(100, testGoomba.getAtk());

@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.abstractclasses;
 
+import com.example.aventurasdemarcoyluis.classes.Marcos;
 import com.example.aventurasdemarcoyluis.interfaces.Enemy;
 import com.example.aventurasdemarcoyluis.interfaces.Player;
 
@@ -18,17 +19,20 @@ public abstract class AbstractEnemy extends AbstractCharacter implements Enemy {
     }
 
     protected void normalAttack(Player aPlayer){
-        int damage = (int) (0.75 * this.getAtk() * (this.getLvl() / aPlayer.getDef()));
+        this.getState().normalAttack();
+        int damage = (int) Math.round(0.75 * this.getAtk() * (this.getLvl() / (double) aPlayer.getDef()));
         aPlayer.normalAttacked(damage, this);
     };
 
     @Override
     public void hammerAttacked(int damage, Player aPlayer) {
+        this.getState().hammerAttacked();
         this.setHp(this.getHp()-damage);
     }
 
     @Override
     public void jumpAttacked(int damage, Player aPlayer) {
+        this.getState().jumpAttacked();
         this.setHp(this.getHp()-damage);
     }
 }

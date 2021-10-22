@@ -17,7 +17,7 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
     private Random random;
 
     /**
-     * Instantiates a new Protagonist, setting it's fp to 0.
+     * Instantiates a new Protagonist, setting it's fp to 0. An empty bag is instantiated with him.
      *
      * @param lvl     the level
      * @param type    the type
@@ -28,7 +28,23 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
     public AbstractPlayer(int lvl, String type, int baseHp, int baseAtk, int baseDef) {
         super(lvl, type, baseHp, baseAtk, baseDef);
         this.fp = 0;
-        this.bag = new BagPack(this);
+        this.random = new Random();
+    }
+
+    /**
+     * Instantiates a new Abstract player, linking him with the common bagpack
+     *
+     * @param lvl     the lvl
+     * @param type    the type
+     * @param baseHp  the base hp
+     * @param baseAtk the base atk
+     * @param baseDef the base def
+     * @param bag     the bag that is shared between players.
+     */
+    public AbstractPlayer(int lvl, String type, int baseHp, int baseAtk, int baseDef, BagPack bag) {
+        super(lvl, type, baseHp, baseAtk, baseDef);
+        this.fp = 0;
+        this.bag = bag;
         this.random = new Random();
     }
 
@@ -37,7 +53,7 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      * @param anItem the item that is picked up.
      */
     public void pickItem(Item anItem) {
-        bag.pickItem(anItem);
+        bag.addItem(anItem);
 
     }
 
@@ -46,14 +62,15 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      *
      * @param anItem item being used.
      */
-    public void useItem(String anItem){
-        bag.useItem(anItem);
-    }
+
     /**
      * Gets fp.
      *
      * @return the fp
      */
+    public void useItem(String anItem){
+        bag.useItem(anItem, this);
+    }
     public int getFp() {
         return fp;
     }
@@ -92,23 +109,50 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
         return bag;
     }
 
+    public void setBag(BagPack aBagpack){
+        this.bag = aBagpack;
+    }
+    /**
+     * Jump attack.
+     *
+     * @param anEnemy the an enemy
+     */
     protected void jumpAttack(Enemy anEnemy){
-        int damage = this.getAtk() * (this.getLvl() / anEnemy.getDef());
+        this.getState().jumpAttack();
+        int damage = (int) Math.round(this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
         anEnemy.jumpAttacked(damage, this);
         this.setFp(this.getFp()-1);
     };
 
+    /**
+     * Base hammer attack.
+     *
+     * @param anEnemy the an enemy
+     */
     protected void baseHammerAttack(Enemy anEnemy){
-        int damage = (int) (1.5 * this.getAtk() * (this.getLvl() / anEnemy.getDef()));
+        int damage = (int) Math.round(1.5 * this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
         anEnemy.hammerAttacked(damage, this);
         this.setFp(this.getFp()-2);
     }
+
+    /**
+     * Hammer attack.
+     *
+     * @param anEnemy the an enemy
+     */
     protected void hammerAttack(Enemy anEnemy){
-        if (this.random.nextInt(4)==0){
+        this.getState().hammerAttack();
+        int rand = this.random.nextInt(4);
+        if (rand==0){
             baseHammerAttack(anEnemy);
         }
     }
 
+    /**
+     * Set seed.
+     *
+     * @param n the n
+     */
     public void setSeed(int n){
         this.random.setSeed(n);
     }

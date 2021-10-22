@@ -14,59 +14,50 @@ public class TestBag {
     /**
      * The Test marcos.
      */
-    Marcos testMarcos;
+    private Marcos testMarcos;
     /**
      * The Test luigi.
      */
-    Luigi testLuigi;
+    private Luigi testLuigi;
 
 
     /**
      * The Test mushroom.
      */
-    RedMushroom testMushroom;
+    private RedMushroom testMushroom;
     /**
      * The Test honey syrup.
      */
-    HoneySyrup testHoneySyrup;
+    private HoneySyrup testHoneySyrup;
     /**
      * The Test star.
      */
-    Star testStar;
+    private Star testStar;
 
+    private BagPack testBag;
     /**
      * Sets up.
      */
     @BeforeEach
     public void setUp() {
-        testMarcos = new Marcos(0);
-        testLuigi = new Luigi(0);
+        testBag = new BagPack();
+        testMarcos = new Marcos(0, testBag);
+        testLuigi = new Luigi(0,testBag);
         testStar = new Star();
         testMushroom = new RedMushroom();
         testHoneySyrup = new HoneySyrup();
     }
 
-    /**
-     * Equals test.
-     */
-    @Test
-    public void equalsTest(){
-        BagPack bagPack = new BagPack(testMarcos);
-        BagPack bagPack2 = new BagPack(testMarcos);
-        BagPack bagPack3 = new BagPack(testLuigi);
-        assertTrue(bagPack.equals(bagPack2));
-        assertTrue(!bagPack.equals(bagPack3));
-    }
 
     /**
      * To string test.
      */
     @Test
     public void toStringTest(){
-        testLuigi.pickItem(testHoneySyrup);
-        testLuigi.pickItem(testStar);
-        testLuigi.pickItem(testMushroom);
-        assertEquals("Luigi's BagPack, it contains: 1 HoneySyrups, 1 Stars, 1 RedMushrooms",testLuigi.getBag().toString());
+        testBag.addItem(testHoneySyrup);
+        testBag.addItem(testStar);
+        testBag.addItem(testMushroom);
+        assertEquals("This BagPack contains: 1 HoneySyrups, 1 Stars, 1 RedMushrooms",testLuigi.getBag().toString());
     }
 
     /**
@@ -74,45 +65,27 @@ public class TestBag {
      */
     @Test
     public void pickItemBagTest() {
-        testMarcos.pickItem(testMushroom);
-        testLuigi.pickItem(testMushroom);
-        testMarcos.pickItem(testHoneySyrup);
-        testLuigi.pickItem(testHoneySyrup);
-        testMarcos.pickItem(testStar);
-        testLuigi.pickItem(testStar);
-        int luigiBagMushrooms = testLuigi.getQuantity("RedMushroom");
-        int marcosBagMushrooms = testMarcos.getQuantity("RedMushroom");
-        int luigiBagSyrup = testLuigi.getQuantity("HoneySyrup");
-        int marcosBagSyrup = testMarcos.getQuantity("HoneySyrup");
-        int luigiBagStar = testLuigi.getQuantity("Star");
-        int marcosBagStar = testMarcos.getQuantity("Star");
-        int marcosBagAny = testMarcos.getQuantity("Any");
-        assertEquals(1,luigiBagMushrooms);
-        assertEquals(1,luigiBagSyrup);
-        assertEquals(1,luigiBagStar);
-        assertEquals(1,marcosBagMushrooms);
-        assertEquals(1,marcosBagSyrup);
-        assertEquals(1,marcosBagStar);
-        assertEquals(0,marcosBagAny);
-        testMarcos.pickItem(testMushroom);
-        testLuigi.pickItem(testMushroom);
-        testMarcos.pickItem(testHoneySyrup);
-        testLuigi.pickItem(testHoneySyrup);
-        testMarcos.pickItem(testStar);
-        testLuigi.pickItem(testStar);
-        luigiBagMushrooms = testLuigi.getQuantity("RedMushroom");
-        marcosBagMushrooms = testMarcos.getQuantity("RedMushroom");
-        luigiBagSyrup = testLuigi.getQuantity("HoneySyrup");
-        marcosBagSyrup = testMarcos.getQuantity("HoneySyrup");
-        luigiBagStar = testLuigi.getQuantity("Star");
-        marcosBagStar = testMarcos.getQuantity("Star");
-        assertEquals(2,luigiBagMushrooms);
-        assertEquals(2,luigiBagSyrup);
-        assertEquals(2,luigiBagStar);
-        assertEquals(2,marcosBagMushrooms);
-        assertEquals(2,marcosBagSyrup);
-        assertEquals(2,marcosBagStar);
-
+        testBag.addItem(testMushroom);
+        testBag.addItem(testHoneySyrup);
+        testBag.addItem(testStar);
+        int bagMushrooms = testBag.getQuantity("RedMushroom");
+        int bagSyrup = testBag.getQuantity("HoneySyrup");
+        int bagStar = testBag.getQuantity("Star");
+        int bagAny = testBag.getQuantity("Any");
+        assertEquals(1,bagMushrooms);
+        assertEquals(1,bagSyrup);
+        assertEquals(1,bagStar);
+        assertEquals(0,bagAny);
+        testBag.addItem(testMushroom);
+        testBag.addItem(testHoneySyrup);
+        testBag.addItem(testStar);
+        bagMushrooms = testBag.getQuantity("RedMushroom");
+        bagSyrup = testBag.getQuantity("HoneySyrup");
+        bagStar = testBag.getQuantity("Star");
+        bagAny = testBag.getQuantity("Any");
+        assertEquals(2,bagMushrooms);
+        assertEquals(2,bagSyrup);
+        assertEquals(2,bagStar);
     }
 
     /**
@@ -120,29 +93,23 @@ public class TestBag {
      */
     @Test
     public void useItemTest(){
-        testMarcos.pickItem(testMushroom);
-        testLuigi.pickItem(testMushroom);
-        testMarcos.pickItem(testHoneySyrup);
-        testLuigi.pickItem(testHoneySyrup);
-        testMarcos.pickItem(testStar);
-        testLuigi.pickItem(testStar);
+        testBag.addItem(testMushroom);
+        testBag.addItem(testHoneySyrup);
+        testBag.addItem(testStar);
+        testBag.addItem(testMushroom);
+        testBag.addItem(testHoneySyrup);
+        testBag.addItem(testStar);
         testMarcos.useItem("RedMushroom");
         testLuigi.useItem("RedMushroom");
         testMarcos.useItem("HoneySyrup");
         testLuigi.useItem("HoneySyrup");
         testMarcos.useItem("Star");
         testLuigi.useItem("Star");
-        int luigiBagMushrooms = testLuigi.getQuantity("RedMushroom");
-        int marcosBagMushrooms = testMarcos.getQuantity("RedMushroom");
-        int luigiBagSyrup = testLuigi.getQuantity("HoneySyrup");
-        int marcosBagSyrup = testMarcos.getQuantity("HoneySyrup");
-        int luigiBagStar = testLuigi.getQuantity("Star");
-        int marcosBagStar = testMarcos.getQuantity("Star");
-        assertEquals(0,luigiBagMushrooms);
-        assertEquals(0,luigiBagSyrup);
-        assertEquals(0,luigiBagStar);
-        assertEquals(0,marcosBagMushrooms);
-        assertEquals(0,marcosBagSyrup);
-        assertEquals(0,marcosBagStar);
+        int bagMushrooms = testBag.getQuantity("RedMushroom");
+        int bagSyrup = testBag.getQuantity("HoneySyrup");
+        int bagStar = testBag.getQuantity("Star");
+        assertEquals(0,bagMushrooms);
+        assertEquals(0,bagSyrup);
+        assertEquals(0,bagStar);
     }
 }

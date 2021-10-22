@@ -16,11 +16,19 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
         super(lvl, "Marcos", 100, 100, 100);
     }
 
+    public Marcos(int lvl, BagPack bag) {
+        super(lvl, "Marcos", 100, 100, 100, bag);
+    }
+
     public void hammerAttack(AttackableByMarcos anEnemy){
         super.hammerAttack(anEnemy);
     }
 
     public void jumpAttack(AttackableByMarcos anEnemy){
         super.jumpAttack(anEnemy);
-    };
+    }
+    @Override
+    public void useItem(String anItem) {
+        super.useItem(anItem);
+    }
 }

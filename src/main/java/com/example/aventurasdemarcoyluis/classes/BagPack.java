@@ -12,17 +12,14 @@ import java.util.Objects;
  */
 public class BagPack {
     private HashMap<String, ArrayList<Item>> bag;
-    private Player player;
 
     /**
      * Instantiates a new Bag pack. Uses a hashmap to store the different items, where an item has an Arraylist if
      * it's own in the hashmap, and items of that type are appended to it.
      *
-     * @param aPlayer the player that owns the bagpack.
      */
-    public BagPack(Player aPlayer){
+    public BagPack(){
         this.bag = new HashMap<String, ArrayList<Item>>();
-        this.player = aPlayer;
     }
 
     /**
@@ -31,7 +28,7 @@ public class BagPack {
      *
      * @param anItem Item that is picked
      */
-    public void pickItem(Item anItem){
+    public void addItem(Item anItem){
         String name = anItem.getName();
         if(!bag.containsKey(name)){
             ArrayList<Item> itemList = new ArrayList<Item>();
@@ -46,35 +43,32 @@ public class BagPack {
      *
      * @param anItem the an item
      */
-    public void useItem(String anItem){
+    public void useItem(String anItem, Player aPlayer){
         if ((bag.containsKey(anItem))&&(bag.get(anItem).size()>0)) {
             Item item = bag.get(anItem).get(0);
-            item.effect(this.player);
+            item.effect(aPlayer);
             bag.get(anItem).remove(0);
+        }else{
+            throw new AssertionError("Item not contained in bag");
         }
     }
 
     /**
      * Gets quantity of items of type aItem in the bag.
      *
-     * @param aItem the a item
+     * @param anItem the a item
      * @return the int
      */
-    public int getQuantity(String aItem){
-        if (bag.containsKey(aItem)){
-            return bag.get(aItem).size();
+    public int getQuantity(String anItem){
+        if (bag.containsKey(anItem)){
+            return bag.get(anItem).size();
         }else{
             return 0;
         }
     }
 
-    /**
-     * Gets player, the owner of the bag.
-     *
-     * @return the player
-     */
-    public Player getPlayer() {
-        return player;
+    public HashMap<String, ArrayList<Item>> getBag() {
+        return bag;
     }
 
     /**
@@ -87,17 +81,17 @@ public class BagPack {
         if (this == o) return true;
         if (!(o instanceof BagPack)) return false;
         BagPack aBagpack = (BagPack) o;
-        return this.player.equals(aBagpack.getPlayer());
+        return this.bag.equals(aBagpack.getBag());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(player);
+        return Objects.hash(bag);
     }
 
     @Override
     public String toString() {
-        String stringio = "" + player.getType() +"'s BagPack, it contains:";
+        String stringio = "" +"This BagPack contains:";
         for ( String anItem: bag.keySet())
               {stringio += " " + bag.get(anItem).size()+" " + anItem+ "s,";
 

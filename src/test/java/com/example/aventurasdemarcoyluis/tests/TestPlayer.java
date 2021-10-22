@@ -22,8 +22,8 @@ public class TestPlayer {
      */
     @BeforeEach
     public void setUp() {
-        testMarcos= new Marcos(0);
-        testLuigi = new Luigi(0);
+        testMarcos= new Marcos(1);
+        testLuigi = new Luigi(1);
     }
 
     /**
@@ -40,8 +40,8 @@ public class TestPlayer {
      */
     @Test
     public void equalsTest(){
-        Marcos testMarcos2= new Marcos(0);
-        Luigi testLuigi2 = new Luigi(0);
+        Marcos testMarcos2= new Marcos(1);
+        Luigi testLuigi2 = new Luigi(1);
         assertTrue(testLuigi.equals(testLuigi2));
         assertTrue(testMarcos.equals(testMarcos2));
         assertTrue(!testLuigi.equals(testMarcos));
@@ -52,8 +52,8 @@ public class TestPlayer {
      */
     @Test
     public void toStringTest(){
-        assertEquals("Luigi: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testLuigi.toString());
-        assertEquals("Luigi: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testLuigi.toString());
+        assertEquals("Luigi: lvl = 1, atk = 100, def = 100, hp = 100, isKnockedOut = false",testLuigi.toString());
+        assertEquals("Luigi: lvl = 1, atk = 100, def = 100, hp = 100, isKnockedOut = false",testLuigi.toString());
     }
 
     /**
@@ -105,8 +105,8 @@ public class TestPlayer {
         assertEquals(100,testLuigi.getAtk());
         assertEquals(100,testMarcos.getDef());
         assertEquals(100,testLuigi.getDef());
-        assertEquals(0,testMarcos.getLvl());
-        assertEquals(0,testLuigi.getLvl());
+        assertEquals(1,testMarcos.getLvl());
+        assertEquals(1,testLuigi.getLvl());
     }
 
     /**
@@ -114,13 +114,13 @@ public class TestPlayer {
      */
     @Test
     public void upLvl(){
-        testMarcos.setLvl(1);
-        testLuigi.setLvl(1);
-        assertEquals(110,testLuigi.getMaxHp());
-        assertEquals(110,testMarcos.getMaxHp());
-        assertEquals(110,testLuigi.getMaxAtk());
-        assertEquals(110,testMarcos.getMaxAtk());
-        assertEquals(110,testLuigi.getMaxDef());
-        assertEquals(110,testMarcos.getMaxDef());
+        testMarcos.setLvl(2);
+        testLuigi.setLvl(2);
+        assertEquals(115,testLuigi.getMaxHp());
+        assertEquals(115,testMarcos.getMaxHp());
+        assertEquals(115,testLuigi.getMaxAtk());
+        assertEquals(115,testMarcos.getMaxAtk());
+        assertEquals(115,testLuigi.getMaxDef());
+        assertEquals(115,testMarcos.getMaxDef());
     }
 }

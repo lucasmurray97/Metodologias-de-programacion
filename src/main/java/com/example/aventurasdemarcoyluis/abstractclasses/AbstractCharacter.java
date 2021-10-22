@@ -1,4 +1,7 @@
 package com.example.aventurasdemarcoyluis.abstractclasses;
+import com.example.aventurasdemarcoyluis.classes.Alive;
+import com.example.aventurasdemarcoyluis.classes.KnockedOut;
+import com.example.aventurasdemarcoyluis.classes.State;
 import com.example.aventurasdemarcoyluis.interfaces.Character;
 
 import java.lang.Math;
@@ -20,10 +23,20 @@ public abstract class AbstractCharacter implements Character {
     private int maxAtk;
     private int maxDef;
     private String type;
-    private boolean isKnockedOut;
     private int baseHp;
     private int baseAtk;
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+        this.state.setCharacter(this);
+    }
+
     private int baseDef;
+    private State state;
 
     /**
      * Instantiates a new Abstract character.
@@ -35,18 +48,22 @@ public abstract class AbstractCharacter implements Character {
      * @param aBaseDef the a base def defined for each specific character
      */
     public AbstractCharacter(int lvl, String type, int aBaseHp, int aBaseAtk, int aBaseDef) {
+        if(lvl<1){
+            lvl = 1;
+        }
         this.lvl = lvl;
-        this.maxHp = (int) (aBaseHp*Math.pow(1.1,this.lvl));
-        this.maxAtk = (int) (aBaseAtk*Math.pow(1.1,this.lvl));
-        this.maxDef = (int) (aBaseDef*Math.pow(1.1,this.lvl));
+        this.maxHp = (int) Math.round(aBaseHp*Math.pow(1.15,this.lvl-1));
+        this.maxAtk = (int) Math.round(aBaseAtk*Math.pow(1.15,this.lvl-1));
+        this.maxDef = (int) Math.round(aBaseDef*Math.pow(1.15,this.lvl-1));
         this.hp = this.maxHp;
         this.atk = this.maxAtk;
         this.def = this.maxDef;
         this.type = type;
-        this.isKnockedOut = false;
         this.baseAtk = aBaseAtk;
         this.baseDef = aBaseDef;
         this.baseHp = aBaseHp;
+        this.setState(new Alive());
+        this.state.setCharacter(this);
     }
 
     /**
@@ -83,10 +100,14 @@ public abstract class AbstractCharacter implements Character {
      * @param lvl the lvl
      */
     public void setLvl(int lvl) {
+        if(lvl<1){
+            lvl = 1;
+        }
         this.lvl = lvl;
-        this.maxHp = (int) (this.baseHp*Math.pow(1.1,this.lvl));
-        this.maxAtk = (int) (this.baseAtk*Math.pow(1.1,this.lvl));
-        this.maxDef = (int) (this.baseDef*Math.pow(1.1,this.lvl));
+        this.maxHp = (int) Math.round(this.baseHp*Math.pow(1.15,this.lvl-1));
+        this.maxAtk = (int) Math.round(this.baseAtk*Math.pow(1.15,this.lvl-1));
+        this.maxDef = (int) Math.round(this.baseDef*Math.pow(1.15,this.lvl-1));
+        ;
     }
 
     /**
@@ -151,10 +172,12 @@ public abstract class AbstractCharacter implements Character {
      */
     public void setHp(int hp) {
         if(hp <= 0) {
-            this.knockout();
+            this.state.knockOut();
+            this.hp = 0;
+            this.atk = 0;
         } else{
-            if(this.isKnockedOut()){
-                this.unKnockOut();
+            if(this.state.isKnockedOut()){
+                this.state.revive();
             }else{
                 if (hp>=this.maxHp){
                     this.hp = this.maxHp;
@@ -175,22 +198,7 @@ public abstract class AbstractCharacter implements Character {
         return type;
     }
 
-    /**
-     * Knockout. Set's it's state to Knockout, hp to 0 and atk to zero.
-     */
-    public void knockout(){
-        this.isKnockedOut = true;
-        this.hp = 0;
-        this.atk = 0;
-    }
 
-    /**
-     * Unknockout, reverts the state Knockout, setting it to false
-     */
-    public void unKnockOut(){
-        this.isKnockedOut = false;
-        this.atk = maxAtk;
-    }
 
     /**
      * Returns knockedout boolean. True if it's knocked out, false otherwise.
@@ -198,8 +206,12 @@ public abstract class AbstractCharacter implements Character {
      * @return the boolean
      */
     public boolean isKnockedOut() {
-        return isKnockedOut;
+        return this.state.isKnockedOut();
     }
+    public boolean isAlive() {
+        return this.state.isAlive();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -210,12 +222,7 @@ public abstract class AbstractCharacter implements Character {
 
     @Override
     public String toString() {
-        return "" + type + ": "+
-                "lvl = " + lvl +
-                ", atk = " + atk +
-                ", def = " + def +
-                ", hp = " + hp +
-                ", isKnockedOut = " + isKnockedOut;
+        return "" + type + ": lvl = "+this.getLvl()+", atk = "+this.getAtk()+", def = "+this.getDef()+", hp = "+this.getDef()+", isKnockedOut = "+this.isKnockedOut();
     }
 
     @Override

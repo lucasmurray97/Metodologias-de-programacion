@@ -20,7 +20,7 @@ public class RedMushroom extends AbstractItem {
      */
     @Override
     public void effect(Player aPlayer) {
-        int newHp = (int) (1.1*aPlayer.getHp());
-        aPlayer.setHp(newHp);
+        int newHp = (int) (0.1*aPlayer.getMaxAtk());
+        aPlayer.setHp(aPlayer.getHp()+newHp);
     }
 }

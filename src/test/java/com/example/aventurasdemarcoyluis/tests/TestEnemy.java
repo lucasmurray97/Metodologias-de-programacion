@@ -40,9 +40,9 @@ public class TestEnemy {
     }
     @Test
     public void toStringTest(){
-        assertEquals("Goomba: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testGoomba.toString());
-        assertEquals("Boo: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testBoo.toString());
-        assertEquals("Spiny: lvl = 0, atk = 100, def = 100, hp = 100, isKnockedOut = false",testSpiny.toString());
+        assertEquals("Goomba: lvl = 1, atk = 100, def = 100, hp = 100, isKnockedOut = false",testGoomba.toString());
+        assertEquals("Boo: lvl = 1, atk = 100, def = 100, hp = 100, isKnockedOut = false",testBoo.toString());
+        assertEquals("Spiny: lvl = 1, atk = 100, def = 100, hp = 100, isKnockedOut = false",testSpiny.toString());
     }
     /**
      * Constructor test.
@@ -106,9 +106,9 @@ public class TestEnemy {
         assertEquals(100,testGoomba.getDef());
         assertEquals(100,testBoo.getDef());
         assertEquals(100,testSpiny.getDef());
-        assertEquals(0,testGoomba.getLvl());
-        assertEquals(0,testBoo.getLvl());
-        assertEquals(0,testSpiny.getLvl());
+        assertEquals(1,testGoomba.getLvl());
+        assertEquals(1,testBoo.getLvl());
+        assertEquals(1,testSpiny.getLvl());
     }
 
     /**
@@ -116,17 +116,17 @@ public class TestEnemy {
      */
     @Test
     public void upLvl(){
-        testBoo.setLvl(1);
-        testGoomba.setLvl(1);
-        testSpiny.setLvl(1);
-        assertEquals(110,testBoo.getMaxHp());
-        assertEquals(110,testGoomba.getMaxHp());
-        assertEquals(110,testSpiny.getMaxHp());
-        assertEquals(110,testBoo.getMaxAtk());
-        assertEquals(110,testGoomba.getMaxAtk());
-        assertEquals(110,testSpiny.getMaxAtk());
-        assertEquals(110,testBoo.getMaxDef());
-        assertEquals(110,testGoomba.getMaxDef());
-        assertEquals(110,testSpiny.getMaxDef());
+        testBoo.setLvl(2);
+        testGoomba.setLvl(2);
+        testSpiny.setLvl(2);
+        assertEquals(115,testBoo.getMaxHp());
+        assertEquals(115,testGoomba.getMaxHp());
+        assertEquals(115,testSpiny.getMaxHp());
+        assertEquals(115,testBoo.getMaxAtk());
+        assertEquals(115,testGoomba.getMaxAtk());
+        assertEquals(115,testSpiny.getMaxAtk());
+        assertEquals(115,testBoo.getMaxDef());
+        assertEquals(115,testGoomba.getMaxDef());
+        assertEquals(115,testSpiny.getMaxDef());
     }
 }

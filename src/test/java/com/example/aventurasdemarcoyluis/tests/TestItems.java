@@ -35,10 +35,13 @@ public class TestItems {
     /**
      * Sets up.
      */
+
+    private BagPack testBag;
     @BeforeEach
     public void setUp() {
-        testMarcos = new Marcos(0);
-        testLuigi = new Luigi(0);
+        testBag = new BagPack();
+        testMarcos = new Marcos(0, testBag);
+        testLuigi = new Luigi(0, testBag);
         testStar = new Star();
         testMushroom = new RedMushroom();
         testHoneySyrup = new HoneySyrup();
@@ -76,14 +79,14 @@ public class TestItems {
     public void pickItemMushroomTest(){
         testMarcos.setHp(50);
         testLuigi.setHp(50);
-        int marcosHpInit = testMarcos.getHp();
-        int luigiHpInit = testLuigi.getHp();
-        testMarcos.pickItem(testMushroom);
-        testLuigi.pickItem(testMushroom);
+        int marcosHpInit = testMarcos.getMaxHp();
+        int luigiHpInit = testLuigi.getMaxHp();
+        testBag.addItem(testMushroom);
+        testBag.addItem(testMushroom);
         testMarcos.useItem("RedMushroom");
         testLuigi.useItem("RedMushroom");
-        int expectedMarcos = (int) (marcosHpInit*1.1);
-        int expectedLuigi = (int) (luigiHpInit*1.1);
+        int expectedMarcos = 50 + (int) (marcosHpInit*0.1);
+        int expectedLuigi = 50 + (int) (luigiHpInit*0.1);
         assertEquals(expectedMarcos,testMarcos.getHp());
         assertEquals(expectedLuigi,testLuigi.getHp());
     }
@@ -95,8 +98,8 @@ public class TestItems {
     public void pickItemHoneySyrupTest(){
         int marcosFpInit = testMarcos.getFp();
         int luigiFpInit = testLuigi.getFp();
-        testMarcos.pickItem(testHoneySyrup);
-        testLuigi.pickItem(testHoneySyrup);
+        testBag.addItem(testHoneySyrup);
+        testBag.addItem(testHoneySyrup);
         testMarcos.useItem("HoneySyrup");
         testLuigi.useItem("HoneySyrup");
         assertEquals(3,testMarcos.getFp()-marcosFpInit);
@@ -108,8 +111,8 @@ public class TestItems {
      */
     @Test
     public void pickStarTest(){
-        testMarcos.pickItem(testStar);
-        testLuigi.pickItem(testStar);
+        testBag.addItem(testStar);
+        testBag.addItem(testStar);
         testMarcos.useItem("Star");
         testLuigi.useItem("Star");
     }
