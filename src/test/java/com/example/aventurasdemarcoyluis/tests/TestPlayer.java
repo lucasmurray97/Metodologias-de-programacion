@@ -1,7 +1,7 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.classes.Luigi;
-import com.example.aventurasdemarcoyluis.classes.Marcos;
+import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

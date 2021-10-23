@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.aventurasdemarcoyluis.tests.TestItems" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-10-22T12:35:00" hostname="LAPTOP-DATE9JPB" time="0.003">
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestItems" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-10-23T00:33:15" hostname="LAPTOP-DATE9JPB" time="0.002">
   <properties/>
-  <testcase name="equalsTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.001"/>
-  <testcase name="toStringTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
+  <testcase name="equalsTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
+  <testcase name="toStringTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.001"/>
   <testcase name="pickStarTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
   <testcase name="pickItemHoneySyrupTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.001"/>
   <testcase name="pickItemMushroomTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>

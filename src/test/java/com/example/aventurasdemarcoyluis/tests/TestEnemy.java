@@ -1,8 +1,8 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.classes.Boo;
-import com.example.aventurasdemarcoyluis.classes.Goomba;
-import com.example.aventurasdemarcoyluis.classes.Spiny;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

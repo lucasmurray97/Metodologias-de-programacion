@@ -1,9 +1,17 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.classes.*;
-import com.example.aventurasdemarcoyluis.interfaces.Character;
-import com.example.aventurasdemarcoyluis.interfaces.Item;
-import com.example.aventurasdemarcoyluis.interfaces.Player;
+import com.example.aventurasdemarcoyluis.BagPack;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
+import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.Game.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Items.HoneySyrup;
+import com.example.aventurasdemarcoyluis.Items.RedMushroom;
+import com.example.aventurasdemarcoyluis.Items.Star;
+import com.example.aventurasdemarcoyluis.Characters.Character;
+import com.example.aventurasdemarcoyluis.Characters.Players.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,7 +58,6 @@ public class TestBattle {
         Character currentPlayer = battle.getCurrentPlayer();
         assertEquals(0, outcome);
         assertTrue(!isOver);
-        //assertEquals(charactersExpected, characters);
         assertEquals(expectedBag, currentBag);
         assertEquals(testMarcos, currentPlayer);
         assertTrue(battle.isMarcosTurn());
@@ -101,16 +108,18 @@ public class TestBattle {
     public void thirdTurnTest(){
         Random random = new Random();
         random.setSeed(2);
-        battle.setSeed();
+        battle.setSeed(2);
         battle.pass();
         battle.pass();
         assertTrue(battle.isEnemyTurn());
+        Character expectedCurrentPlayer = battle.getEnemies().get(random.nextInt(2));
         Player chosenPlayer = battle.getPlayers().get(random.nextInt(2));
         int hp = chosenPlayer.getHp();
-        assertTrue(battle.isEnemyTurn());
         battle.randomAttack();
+        Character currentPlayer = battle.getCurrentPlayer();
+        assertEquals(expectedCurrentPlayer, currentPlayer);
         battle.normalAttack();
-        int damage = (int) Math.round(0.75 * testGoomba.getAtk() * (testMarcos.getLvl() / (double) testMarcos.getDef()));
+        int damage = (int) Math.round(0.75 * currentPlayer.getAtk() * (chosenPlayer.getLvl() / (double) chosenPlayer.getDef()));
         assertEquals(hp-damage, chosenPlayer.getHp());
         assertTrue(battle.isMarcosTurn());
     }

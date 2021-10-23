@@ -1,6 +1,11 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.classes.*;
+import com.example.aventurasdemarcoyluis.BagPack;
+import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.Items.HoneySyrup;
+import com.example.aventurasdemarcoyluis.Items.RedMushroom;
+import com.example.aventurasdemarcoyluis.Items.Star;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
