@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.aventurasdemarcoyluis.tests.TestBag" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-10-23T00:33:15" hostname="LAPTOP-DATE9JPB" time="0.01">
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestBag" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-11-02T13:34:02" hostname="LAPTOP-DATE9JPB" time="0.013">
   <properties/>
   <testcase name="useItemTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBag" time="0.001"/>
-  <testcase name="pickItemBagTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBag" time="0.0"/>
-  <testcase name="toStringTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBag" time="0.007"/>
+  <testcase name="pickItemBagTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBag" time="0.001"/>
+  <testcase name="toStringTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBag" time="0.01"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -2,6 +2,8 @@ package com.example.aventurasdemarcoyluis.tests;
 
 import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.Characters.States.State;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -122,5 +124,29 @@ public class TestPlayer {
         assertEquals(115,testMarcos.getMaxAtk());
         assertEquals(115,testLuigi.getMaxDef());
         assertEquals(115,testMarcos.getMaxDef());
+    }
+    @Test
+    public void state(){
+        testMarcos.setState(new State());
+        AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
+           testMarcos.getState().error();
+        });
+        Assertions.assertEquals("Wrong state", error.getMessage());
+        AssertionError error2 = Assertions.assertThrows(AssertionError.class, () -> {
+            testMarcos.getState().knockOut();
+        });
+        Assertions.assertEquals("Wrong state", error2.getMessage());
+        AssertionError error4 = Assertions.assertThrows(AssertionError.class, () -> {
+            testMarcos.getState().jumpAttack();
+        });
+        Assertions.assertEquals("Wrong state", error4.getMessage());
+        AssertionError error5 = Assertions.assertThrows(AssertionError.class, () -> {
+            testMarcos.getState().hammerAttack();
+        });
+        Assertions.assertEquals("Wrong state", error5.getMessage());
+        AssertionError error6 = Assertions.assertThrows(AssertionError.class, () -> {
+            testMarcos.getState().normalAttacked();
+        });
+        Assertions.assertEquals("Wrong state", error6.getMessage());
     }
 }

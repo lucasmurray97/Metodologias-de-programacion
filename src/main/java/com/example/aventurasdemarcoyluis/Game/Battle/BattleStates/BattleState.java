@@ -220,7 +220,7 @@ public class BattleState {
     /**
      * Random attack.
      */
-    public void randomAttack(){
+    public void setEnemyTurn(){
         error();
     }
 
@@ -257,5 +257,14 @@ public class BattleState {
      */
     public void luigiHammerAttack(){
         error();
+    }
+
+    public void setCurrent(int i) {
+        error();
+    }
+
+    public int getCurrent() {
+        error();
+        return 0;
     }
 }

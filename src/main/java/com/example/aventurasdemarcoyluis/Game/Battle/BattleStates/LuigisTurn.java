@@ -14,6 +14,8 @@ public class LuigisTurn extends PlayerTurn {
     public void pass() {
         if (this.anyEnemiesAlive()) {
             this.changeState(new EnemyTurn());
+            this.getBattle().getState().setCurrent(0);
+            this.getBattle().getState().setEnemyTurn();
         } else{
             this.changeState(new Over());
             this.getBattle().setOutcome(1);

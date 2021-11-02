@@ -24,29 +24,21 @@ public class Battle {
     private Marcos marcos;
     private ArrayList<Enemy> enemies;
     private ArrayList<Player> players;
-
-    public void setOutcome(int outcome) {
-        this.outcome = outcome;
-    }
-
     private int outcome;
-
-    public Random getRandom() {
-        return random;
-    }
-
     private Random random;
     private Character currentPlayer;
+    private Character NextPlayer;
 
     /**
      * Instantiates a new Battle.
      *
      * @param randomEnemies the random enemies
+     * @param level         the level
      * @param aBag          the a bag
      * @param luigi         the luigi
      * @param marcos        the marcos
      */
-    public Battle(int randomEnemies, BagPack aBag, Luigi luigi, Marcos marcos) {
+    public Battle(int randomEnemies, int level, BagPack aBag, Luigi luigi, Marcos marcos) {
         this.outcome = 0;
         this.bag = aBag;
         this.luigi = luigi;
@@ -55,27 +47,58 @@ public class Battle {
         this.enemies = new ArrayList<Enemy>();
         this.players = new ArrayList<Player>();
         this.characters = new ArrayList<Character>();
-        this.players.add(marcos);
-        this.players.add(luigi);
-        this.characters.add(marcos);
-        this.characters.add(luigi);
+        this.addPlayer(marcos);
+        this.addPlayer(luigi);
         for(int i=0; i<randomEnemies; i++){
-            int randomNumber = random.nextInt(3);
-            if (randomNumber == 0){
-                enemies.add(new Goomba(1));
-                characters.add(new Goomba(1));
-            }else if(randomNumber == 1){
-                enemies.add(new Boo(1));
-                characters.add(new Boo(1));
-            }else{
-                enemies.add(new Spiny(1));
-                characters.add(new Spiny(1));
-            }
+            this.addRandomEnemy(level);
         }
         this.setState(new MarcosTurn());
         this.setCurrentCharacter(marcos);
+        this.setNextCharacter(luigi);
     }
 
+    public void setNextCharacter(Character aCharacter) {
+        this.NextPlayer = aCharacter;
+    }
+
+    /**
+     * Instantiates a new Battle.
+     */
+    public Battle() {
+        this.outcome = 0;
+        this.random = new Random();
+        this.enemies = new ArrayList<Enemy>();
+        this.players = new ArrayList<Player>();
+        this.characters = new ArrayList<Character>();
+        this.setState(new MarcosTurn());
+    }
+
+    /**
+     * Gets random.
+     *
+     * @return the random
+     */
+    public Random getRandom() {
+        return random;
+    }
+
+    /**
+     * Sets random.
+     *
+     * @param random the random
+     */
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+
+    /**
+     * Sets outcome.
+     *
+     * @param outcome the outcome
+     */
+    public void setOutcome(int outcome) {
+        this.outcome = outcome;
+    }
 
     /**
      * Sets state.
@@ -122,6 +145,16 @@ public class Battle {
     public BagPack getBagPack() {
         return this.bag;
     }
+
+    /**
+     * Sets bag pack.
+     *
+     * @param aBag the a bag
+     */
+    public void setBagPack(BagPack aBag) {
+        this.bag = aBag;
+    }
+
 
     /**
      * Is over boolean.
@@ -199,6 +232,8 @@ public class Battle {
 
     /**
      * Sets seed.
+     *
+     * @param n the n
      */
     public void setSeed(int n) {
         this.random.setSeed(n);
@@ -260,16 +295,22 @@ public class Battle {
      * Check survivors.
      */
     public void checkSurvivors(){
-        for (Enemy enemy: this.getEnemies()) {
-            if (enemy.isKnockedOut()) {
-                this.getEnemies().remove(enemy);
-                this.getCharacters().remove(enemy);
+        int n = this.getEnemies().size();
+        for(int i = 0; i<n; i++){
+            if (this.getEnemies().get(i).isKnockedOut()) {
+                this.getCharacters().remove(this.getEnemies().get(i));
+                this.getEnemies().remove(this.getEnemies().get(i));
+                i--;
+                n--;
             }
         }
-        for (Player player: this.getPlayers()) {
-            if (player.isKnockedOut()) {
-                this.getEnemies().remove(player);
-                this.getCharacters().remove(player);
+        int m = this.getPlayers().size();
+        for (int i = 0; i<m;i++) {
+            if (this.getPlayers().get(i).isKnockedOut()) {
+                this.getCharacters().remove(this.getPlayers().get(i));
+                this.getPlayers().remove(this.getPlayers().get(i));
+                i--;
+                m--;
             }
         }
     }
@@ -314,10 +355,93 @@ public class Battle {
     }
 
     /**
-     * Random attack.
+     * Marcos hammer attack.
      */
-    public void randomAttack() {
-        this.state.randomAttack();
+    public void marcosHammerAttack() {
+        this.state.marcosHammerAttack();
+    }
+
+    /**
+     * Luigi hammer attack.
+     */
+    public void luigiHammerAttack() {
+        this.state.luigiHammerAttack();
+    }
+
+    /**
+     * Is boo turn boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isBooTurn() {
+        return this.state.isBooTurn();
+    }
+
+    /**
+     * Is goomba turn boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isGoombaTurn() {
+        return this.state.isGoombaTurn();
+    }
+
+    /**
+     * Is spiny turn boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isSpinyTurn() {
+        return this.state.isSpinyTurn();
+    }
+
+    /**
+     * Is player turn boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isPlayerTurn() {
+        return state.isPlayerTurn();
+    }
+
+    /**
+     * Add enemy.
+     *
+     * @param anEnemy the an enemy
+     */
+    public void addEnemy(Enemy anEnemy) {
+        this.getEnemies().add(anEnemy);
+        this.addCharacter(anEnemy);
+    }
+
+    /**
+     * Add player.
+     *
+     * @param aPlayer the a player
+     */
+    public void addPlayer(Player aPlayer) {
+        this.getPlayers().add(aPlayer);
+        this.addCharacter(aPlayer);
+    }
+
+    /**
+     * Add random enemy.
+     *
+     * @param level the level
+     */
+    public void addRandomEnemy(int level) {
+        int randomNumber = random.nextInt(3);
+        if (randomNumber == 0){
+            this.addEnemy(new Goomba(level));
+        }else if(randomNumber == 1){
+            this.addEnemy(new Boo(level));
+        }else{
+            this.addEnemy(new Spiny(level));
+        }
+    }
+
+    public Character getNextCharacter() {
+        return this.NextPlayer;
     }
 }
 

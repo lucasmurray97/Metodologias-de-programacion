@@ -59,7 +59,7 @@ public class State {
     /**
      * Error.
      */
-    void error() {
+    public void error() {
         throw new AssertionError("Wrong state");
     }
 
@@ -73,8 +73,10 @@ public class State {
     /**
      * Revive.
      */
-    public void revive(){
-        error();
+    public void revive() {
+        this.changeState(new Alive());
+        this.getCharacter().setHp(this.getCharacter().getMaxHp());
+        this.getCharacter().setAtk(this.getCharacter().getMaxAtk());
     }
 
     /**
