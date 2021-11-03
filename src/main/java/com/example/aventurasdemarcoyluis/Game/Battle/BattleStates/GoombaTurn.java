@@ -18,6 +18,6 @@ public class GoombaTurn extends EnemyTurn{
         int n = this.getBattle().getPlayers().size();
         Player toBeattacked = this.getBattle().getPlayers().get(this.getRandom().nextInt(n));
         ((Goomba) this.getCurrentCharacter()).normalAttack((AttackableByGoomba) toBeattacked);
-        pass();
+        terminate();
     }
 }

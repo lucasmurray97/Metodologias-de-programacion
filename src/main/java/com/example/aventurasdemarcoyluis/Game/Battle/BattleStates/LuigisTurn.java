@@ -11,7 +11,7 @@ public class LuigisTurn extends PlayerTurn {
         return true;
     }
     @Override
-    public void pass() {
+    public void terminate() {
         if (this.anyEnemiesAlive()) {
             this.changeState(new EnemyTurn());
             this.getBattle().getState().setCurrent(0);
@@ -28,11 +28,16 @@ public class LuigisTurn extends PlayerTurn {
     @Override
     public void luigiJumpAttack(){
         this.getBattle().getLuigi().jumpAttack(this.target);
-        this.pass();
+        this.terminate();
     }
     @Override
     public void luigiHammerAttack(){
         this.getBattle().getLuigi().hammerAttack(this.target);
-        this.pass();
+        this.terminate();
+    }
+    @Override
+    public void setLuigisTurn(){
+        this.getBattle().setCurrentCharacter(this.getBattle().getLuigi());
+        this.getBattle().setNextCharacter(this.getBattle().getEnemies().get(0));
     }
 }

@@ -11,7 +11,7 @@ import java.util.Random;
 public class EnemyTurn extends BattleState {
     private int current;
     @Override
-    public void pass() {
+    public void terminate() {
         if (!isLuigiAlive() && !isMarcosAlive()){
             this.changeState(new Over());
             this.getBattle().setOutcome(-1);
@@ -24,13 +24,11 @@ public class EnemyTurn extends BattleState {
         }
         else if(isMarcosAlive()){
             this.changeState(new MarcosTurn());
-            this.getBattle().setCurrentCharacter(this.getBattle().getMarcos());
-            this.getBattle().setNextCharacter(this.getBattle().getCharacters().get(1));
+            this.getBattle().getState().setMarcosTurn();
 
         }else if (isLuigiAlive()){
             this.changeState(new LuigisTurn());
-            this.getBattle().setCurrentCharacter(this.getBattle().getLuigi());
-            this.getBattle().setNextCharacter(this.getBattle().getEnemies().get(0));
+            this.getBattle().getState().setLuigisTurn();
         }
     }
     @Override

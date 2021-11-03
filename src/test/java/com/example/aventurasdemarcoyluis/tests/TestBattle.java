@@ -104,7 +104,7 @@ public class TestBattle {
         this.battle.setState(new Over());
         assertTrue(this.battle.isOver());
         AssertionError error1 = Assertions.assertThrows(AssertionError.class, () -> {
-            this.battle.pass();
+            this.battle.terminate();
         });
         Assertions.assertEquals("Wrong State", error1.getMessage());
         AssertionError error2 = Assertions.assertThrows(AssertionError.class, () -> {
@@ -288,17 +288,18 @@ public class TestBattle {
         battle.choosePlayer(testMarcos);
         assertEquals(expectedHp, testMarcos.getHp());
         assertEquals(testLuigi, battle.getCurrentPlayer());
+        assertEquals(0, testBag.getQuantity("RedMushroom"));
         assertTrue(battle.isLuigisTurn());
     }
     @Test
     public void firstTurnPassTest(){
-        battle.pass();
+        battle.terminate();
         assertEquals(testLuigi, battle.getCurrentPlayer());
         assertTrue(battle.isLuigisTurn());
     }
     @Test
     public void secondTurnTest(){
-        battle.pass();
+        battle.terminate();
         assertEquals(testLuigi, battle.getCurrentPlayer());
         assertTrue(battle.isLuigisTurn());
         testLuigi.setFp(1);
@@ -314,13 +315,12 @@ public class TestBattle {
         Random random = new Random();
         random.setSeed(2);
         battle.setSeed(2);
-        battle.pass();
-        battle.pass();
+        battle.terminate();
+        battle.terminate();
         assertTrue(battle.isEnemyTurn());
         Character expectedCurrentPlayer = battle.getEnemies().get(0);
         Player chosenPlayer = battle.getPlayers().get(random.nextInt(2));
         int hp = chosenPlayer.getHp();
-
         Character currentPlayer = battle.getCurrentPlayer();
         assertEquals(expectedCurrentPlayer, currentPlayer);
         battle.normalAttack();
@@ -328,12 +328,10 @@ public class TestBattle {
         assertEquals(hp-damage, chosenPlayer.getHp());
         assertTrue(battle.isEnemyTurn());
         assertEquals(1, battle.getState().getCurrent());
-
         expectedCurrentPlayer = battle.getEnemies().get(1);
         assertEquals(expectedCurrentPlayer, this.battle.getCurrentPlayer());
         battle.normalAttack();
         assertEquals(2, battle.getState().getCurrent());
-
         expectedCurrentPlayer = battle.getEnemies().get(2);
         assertEquals(expectedCurrentPlayer, this.battle.getCurrentPlayer());
         battle.normalAttack();
@@ -344,7 +342,7 @@ public class TestBattle {
         battle.setState(new EnemyTurn());
         testLuigi.setHp(0);
         testMarcos.setHp(0);
-        battle.pass();
+        battle.terminate();
         assertEquals(0, this.battle.getPlayers().size());
         assertTrue(battle.isOver());
     }
@@ -354,27 +352,25 @@ public class TestBattle {
         for(int i=0; i<n; i++){
             battle.getEnemies().get(i).setHp(0);
         }
-        battle.pass();
+        battle.terminate();
         assertEquals(0, this.battle.getEnemies().size());
         assertTrue(battle.isOver());
     }
     @Test
     public void testEnemiesDeath2(){
-        battle.pass();
+        battle.terminate();
         int n = battle.getEnemies().size();
         for(int i=0; i<n; i++){
             battle.getEnemies().get(i).setHp(0);
         }
-        battle.pass();
+        battle.terminate();
         assertEquals(0, this.battle.getEnemies().size());
         assertTrue(battle.isOver());
     }
     @Test
     public void testLuigiDeath(){
         testLuigi.setHp(0);
-        battle.pass();
+        battle.terminate();
         assertTrue(battle.isEnemyTurn());
-
-
     }
 }

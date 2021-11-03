@@ -17,7 +17,9 @@ public class PlayerTurn extends BattleState {
     }
     @Override
     public void choosePlayer(Player aPlayer) {
-        aPlayer.useItem(this.item);
-        this.pass();
+        if(aPlayer.isAlive()) {
+            aPlayer.useItem(this.item);
+        }
+        this.terminate();
     }
 }

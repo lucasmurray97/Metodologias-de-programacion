@@ -18,6 +18,6 @@ public class SpinyTurn extends EnemyTurn{
         int n = this.getBattle().getPlayers().size();
         Player toBeattacked = this.getBattle().getPlayers().get(this.getRandom().nextInt(n));
         ((Spiny) this.getCurrentCharacter()).normalAttack((AttackableBySpiny) toBeattacked);
-        pass();
+        terminate();
     }
 }

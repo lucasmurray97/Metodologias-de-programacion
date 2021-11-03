@@ -16,6 +16,6 @@ public class BooTurn extends EnemyTurn{
         if(this.isLuigiAlive()){
             ((Boo) this.getCurrentCharacter()).normalAttack(this.getBattle().getLuigi());
         }
-        pass();
+        terminate();
     }
 }

@@ -133,7 +133,7 @@ public class BattleState {
     /**
      * Pass.
      */
-    public void pass() {
+    public void terminate() {
         error();
     }
 
@@ -266,5 +266,11 @@ public class BattleState {
     public int getCurrent() {
         error();
         return 0;
+    }
+    public void setMarcosTurn(){
+        error();
+    }
+    public void setLuigisTurn(){
+        error();
     }
 }

@@ -12,15 +12,14 @@ public class MarcosTurn extends PlayerTurn {
         return true;
     }
     @Override
-    public void pass() {
+    public void terminate() {
         if (!this.anyEnemiesAlive()){
             this.changeState(new Over());
             this.getBattle().setOutcome(1);
         }
         else if (this.isLuigiAlive()){
             this.changeState(new LuigisTurn());
-            this.getBattle().setCurrentCharacter(this.getBattle().getLuigi());
-            this.getBattle().setNextCharacter(this.getBattle().getEnemies().get(0));
+            this.getBattle().getState().setLuigisTurn();
         }else if(this.anyEnemiesAlive()){
             this.changeState(new EnemyTurn());
             this.getBattle().getState().setCurrent(0);
@@ -34,11 +33,16 @@ public class MarcosTurn extends PlayerTurn {
     @Override
     public void marcosJumpAttack(){
         this.getBattle().getMarcos().jumpAttack(this.target);
-        pass();
+        terminate();
     }
     @Override
     public void marcosHammerAttack(){
         this.getBattle().getMarcos().hammerAttack(this.target);
-        pass();
+        terminate();
+    }
+    @Override
+    public void setMarcosTurn(){
+        this.getBattle().setCurrentCharacter(this.getBattle().getMarcos());
+        this.getBattle().setNextCharacter(this.getBattle().getCharacters().get(1));
     }
 }

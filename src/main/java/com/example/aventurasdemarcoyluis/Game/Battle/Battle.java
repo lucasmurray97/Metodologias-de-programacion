@@ -41,20 +41,17 @@ public class Battle {
     public Battle(int randomEnemies, int level, BagPack aBag, Luigi luigi, Marcos marcos) {
         this.outcome = 0;
         this.bag = aBag;
-        this.luigi = luigi;
-        this.marcos = marcos;
         this.random = new Random();
         this.enemies = new ArrayList<Enemy>();
         this.players = new ArrayList<Player>();
         this.characters = new ArrayList<Character>();
-        this.addPlayer(marcos);
-        this.addPlayer(luigi);
+        this.addMarcos(marcos);
+        this.addLuigi(luigi);
         for(int i=0; i<randomEnemies; i++){
             this.addRandomEnemy(level);
         }
         this.setState(new MarcosTurn());
-        this.setCurrentCharacter(marcos);
-        this.setNextCharacter(luigi);
+        this.getState().setMarcosTurn();
     }
 
     public void setNextCharacter(Character aCharacter) {
@@ -269,8 +266,8 @@ public class Battle {
     /**
      * Pass.
      */
-    public void pass() {
-        this.state.pass();
+    public void terminate() {
+        this.state.terminate();
     }
 
     /**
@@ -298,6 +295,7 @@ public class Battle {
         int n = this.getEnemies().size();
         for(int i = 0; i<n; i++){
             if (this.getEnemies().get(i).isKnockedOut()) {
+                this.getCharacters().remove(this.getEnemies().get(i));
                 this.getCharacters().remove(this.getEnemies().get(i));
                 this.getEnemies().remove(this.getEnemies().get(i));
                 i--;
@@ -422,6 +420,16 @@ public class Battle {
     public void addPlayer(Player aPlayer) {
         this.getPlayers().add(aPlayer);
         this.addCharacter(aPlayer);
+    }
+
+    public void addMarcos(Marcos aMarcos) {
+        this.addPlayer(aMarcos);
+        this.marcos = aMarcos;
+    }
+
+    public void addLuigi(Luigi aLuigi) {
+        this.addPlayer(aLuigi);
+        this.luigi = aLuigi;
     }
 
     /**
