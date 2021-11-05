@@ -1,4 +1,4 @@
-package com.example.aventurasdemarcoyluis.Game.Battle.BattleStates;
+package com.example.aventurasdemarcoyluis.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.AttackableByGoomba;

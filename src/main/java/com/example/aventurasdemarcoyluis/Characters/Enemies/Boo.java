@@ -1,7 +1,7 @@
 package com.example.aventurasdemarcoyluis.Characters.Enemies;
 
-import com.example.aventurasdemarcoyluis.Game.Battle.BattleStates.BooTurn;
-import com.example.aventurasdemarcoyluis.Game.Battle.BattleStates.EnemyTurn;
+import com.example.aventurasdemarcoyluis.Battle.BattleStates.BooTurn;
+import com.example.aventurasdemarcoyluis.Battle.BattleStates.EnemyTurn;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.Characters.Players.Player;
 
@@ -16,6 +16,18 @@ public class Boo extends AbstractEnemy implements AttackableByMarcos {
      */
     public Boo(int lvl) {
         super(lvl, "Boo", 100, 100, 100);
+    }
+
+    /**
+     * Instantiates a new Boo, base points are settable now. Default method for testing.
+     *
+     * @param lvl     the lvl
+     * @param baseHp  the base hp
+     * @param baseAtk the base atk
+     * @param baseDef the base def
+     */
+    public Boo(int lvl, int baseHp, int baseAtk, int baseDef) {
+        super(lvl, "Boo", baseHp, baseAtk, baseDef);
     }
 
     /**
@@ -35,6 +47,7 @@ public class Boo extends AbstractEnemy implements AttackableByMarcos {
     @Override
     public void hammerAttacked(int damage, Player aPlayer) {
     }
+
     @Override
     public EnemyTurn myTurn(){
         return new BooTurn();

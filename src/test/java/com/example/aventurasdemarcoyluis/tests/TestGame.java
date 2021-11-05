@@ -1,18 +1,25 @@
 package com.example.aventurasdemarcoyluis.tests;
 
 import com.example.aventurasdemarcoyluis.BagPack;
+import com.example.aventurasdemarcoyluis.Characters.Character;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
+import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
-import com.example.aventurasdemarcoyluis.Game.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Battle.Battle;
 import com.example.aventurasdemarcoyluis.Game.Game;
 import com.example.aventurasdemarcoyluis.Game.GameStates.GameState;
+import com.example.aventurasdemarcoyluis.Items.HoneySyrup;
+import com.example.aventurasdemarcoyluis.Items.Item;
+import com.example.aventurasdemarcoyluis.Items.RedMushroom;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,11 +46,31 @@ public class TestGame {
         this.game.setScore(2);
         assertEquals(2,this.game.getScore());
         game.addRedMushroom(3);
+        game.addHoneySyrup(3);
         assertEquals(3, game.getBagPack().getQuantity("RedMushroom"));
-        game.createBattle(3);
+        game.createBattle();
+        game.setSeed(2);
+        game.addRandomEnemy(1);
+        game.addRandomEnemy(1);
+        game.addRandomEnemy(1);
+        ArrayList<Character> characters = new ArrayList<Character>();
+        characters.add(new Marcos(1));
+        characters.add(new Luigi(1));
+        characters.add(new Boo(1));
+        characters.add(new Goomba(1));
+        characters.add(new Spiny(1));
+        ArrayList<Item> items = new ArrayList<Item>();
+        items.add(new HoneySyrup());
+        items.add(new HoneySyrup());
+        items.add(new HoneySyrup());
+        items.add(new RedMushroom());
+        items.add(new RedMushroom());
+        items.add(new RedMushroom());
         assertEquals(game.getCurrentPlayer(),game.getMarcos());
         assertEquals(game.getNextPlayer(),game.getLuigi());
         assertEquals(5,game.getCharacters().size());
+        assertEquals(items, game.getItems());
+        assertEquals(characters, game.getCharacters());
     }
     @Test
     public void gameStateTest(){
@@ -51,7 +78,7 @@ public class TestGame {
         assertEquals(game, game.getState().getGame());
         assertTrue(!game.getState().isPreparingBattle());
         assertTrue(!game.getState().isInBattle());
-        assertTrue(!game.getState().isOver());
+        assertTrue(!game.getState().Lost());
         assertTrue(!game.getState().hasWon());
         AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
             game.createBattle(1);
@@ -143,7 +170,18 @@ public class TestGame {
         Assertions.assertEquals("Wrong State", error22.getMessage());
     }
     @Test
+    public void battleSetUp(){
+        game.getLuigi().setHp(0);
+        game.getMarcos().setHp(0);
+        game.createBattle(3);
+        assertTrue(game.getLuigi().isAlive());
+        assertTrue(game.getMarcos().isAlive());
+        assertEquals(5,game.getCharacters().size());
+    }
+    @Test
     public void testBattle(){
+        game.getLuigi().setFp(10);
+        game.getMarcos().setFp(10);
         Random random = new Random();
         random.setSeed(2);
         game.addRedMushroom(3);
@@ -170,6 +208,8 @@ public class TestGame {
         random.setSeed(1);
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
+        game.getLuigi().setFp(300);
+        game.getMarcos().setFp(300);
         game.createBattle();
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
@@ -271,7 +311,7 @@ public class TestGame {
         assertTrue(this.game.getBattle().isOver());
         game.checkBattleState();
         assertEquals(5,this.game.getScore());
-        assertTrue(game.getState().hasWon());
+        assertTrue(game.hasWon());
 
     }
     @Test
@@ -281,6 +321,8 @@ public class TestGame {
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
         game.createBattle();
+        game.getLuigi().setFp(50);
+        game.getMarcos().setFp(50);
         game.getBattle().setSeed(3);
         game.addRandomEnemy(1);
         while(game.getBattle().getLuigi().isAlive()){
@@ -298,6 +340,6 @@ public class TestGame {
         assertTrue(this.game.getBattle().isOver());
         game.checkBattleState();
         assertEquals(0,this.game.getScore());
-        assertTrue(this.game.getState().isOver());
+        assertTrue(this.game.Lost());
     }
 }

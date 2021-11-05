@@ -24,6 +24,11 @@ public abstract class AbstractCharacter implements Character {
     private int baseHp;
     private int baseAtk;
 
+    /**
+     * Gets state.
+     *
+     * @return the state
+     */
     public State getState() {
         return state;
     }
@@ -93,7 +98,7 @@ public abstract class AbstractCharacter implements Character {
 
     /**
      * Sets lvl. Each level determines a character's maxhp, maxAtk and maxDef. The increase of
-     *the level by one, increases each of the latter by 10%.
+     * the level by one, increases each of the latter by 10%.
      *
      * @param lvl the lvl
      */

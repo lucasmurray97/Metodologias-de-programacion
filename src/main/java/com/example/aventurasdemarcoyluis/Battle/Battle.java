@@ -1,4 +1,4 @@
-package com.example.aventurasdemarcoyluis.Game.Battle;
+package com.example.aventurasdemarcoyluis.Battle;
 
 import com.example.aventurasdemarcoyluis.Characters.Character;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
@@ -7,8 +7,8 @@ import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
 import com.example.aventurasdemarcoyluis.Characters.Players.*;
 import com.example.aventurasdemarcoyluis.BagPack;
-import com.example.aventurasdemarcoyluis.Game.Battle.BattleStates.BattleState;
-import com.example.aventurasdemarcoyluis.Game.Battle.BattleStates.MarcosTurn;
+import com.example.aventurasdemarcoyluis.Battle.BattleStates.BattleState;
+import com.example.aventurasdemarcoyluis.Battle.BattleStates.MarcosTurn;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -54,6 +54,11 @@ public class Battle {
         this.getState().setMarcosTurn();
     }
 
+    /**
+     * Sets next character.
+     *
+     * @param aCharacter the a character
+     */
     public void setNextCharacter(Character aCharacter) {
         this.NextPlayer = aCharacter;
     }
@@ -422,11 +427,21 @@ public class Battle {
         this.addCharacter(aPlayer);
     }
 
+    /**
+     * Add marcos.
+     *
+     * @param aMarcos the a marcos
+     */
     public void addMarcos(Marcos aMarcos) {
         this.addPlayer(aMarcos);
         this.marcos = aMarcos;
     }
 
+    /**
+     * Add luigi.
+     *
+     * @param aLuigi the a luigi
+     */
     public void addLuigi(Luigi aLuigi) {
         this.addPlayer(aLuigi);
         this.luigi = aLuigi;
@@ -448,6 +463,11 @@ public class Battle {
         }
     }
 
+    /**
+     * Gets next character.
+     *
+     * @return the next character
+     */
     public Character getNextCharacter() {
         return this.NextPlayer;
     }

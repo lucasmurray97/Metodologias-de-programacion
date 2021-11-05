@@ -4,10 +4,13 @@ import com.example.aventurasdemarcoyluis.Characters.Character;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.Characters.Players.Player;
-import com.example.aventurasdemarcoyluis.Game.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Battle.Battle;
 
 import java.util.ArrayList;
 
+/**
+ * The type In battle.
+ */
 public class InBattle extends GameState{
     private Battle battle;
     @Override

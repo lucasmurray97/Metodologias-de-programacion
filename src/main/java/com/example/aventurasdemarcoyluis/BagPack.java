@@ -16,7 +16,6 @@ public class BagPack {
     /**
      * Instantiates a new Bag pack. Uses a hashmap to store the different items, where an item has an Arraylist if
      * it's own in the hashmap, and items of that type are appended to it.
-     *
      */
     public BagPack(){
         this.bag = new HashMap<String, ArrayList<Item>>();
@@ -41,7 +40,8 @@ public class BagPack {
      * Uses item. In case there are items of anItems' type in the bag, they are used, and the corresponding arraylist
      * is reduced by one of it's items.
      *
-     * @param anItem the an item
+     * @param anItem  the an item
+     * @param aPlayer the a player
      */
     public void useItem(String anItem, Player aPlayer){
         if ((bag.containsKey(anItem))&&(bag.get(anItem).size()>0)) {
@@ -67,6 +67,11 @@ public class BagPack {
         }
     }
 
+    /**
+     * Gets bag.
+     *
+     * @return the bag
+     */
     public HashMap<String, ArrayList<Item>> getBag() {
         return bag;
     }

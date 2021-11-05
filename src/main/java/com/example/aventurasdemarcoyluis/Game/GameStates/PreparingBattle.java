@@ -1,12 +1,13 @@
 package com.example.aventurasdemarcoyluis.Game.GameStates;
 
 import com.example.aventurasdemarcoyluis.BagPack;
-import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
-import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
-import com.example.aventurasdemarcoyluis.Game.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Battle.Battle;
 import com.example.aventurasdemarcoyluis.Items.HoneySyrup;
 import com.example.aventurasdemarcoyluis.Items.RedMushroom;
 
+/**
+ * The type Preparing battle.
+ */
 public class PreparingBattle extends GameState{
     @Override
     public boolean isPreparingBattle() {

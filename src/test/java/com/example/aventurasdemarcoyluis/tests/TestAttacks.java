@@ -32,6 +32,8 @@ public class TestAttacks {
 
     @Test
     public void marcosJumpAtkTest() {
+        testMarcos.setFp(50);
+        testLuigi.setFp(50);
         int booHp = testBoo.getHp();
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
@@ -52,6 +54,8 @@ public class TestAttacks {
 
     @Test
     public void luigiJumpAtkTest() {
+        testMarcos.setFp(50);
+        testLuigi.setFp(50);
         int goombaHp = testGoomba.getHp();
         int spinyHp = testSpiny.getHp();
         int luigiHp = testLuigi.getHp();
@@ -67,6 +71,8 @@ public class TestAttacks {
 
     @Test
     public void marcosHammerAtkTest() {
+        testMarcos.setFp(50);
+        testLuigi.setFp(50);
         Random random = new Random();
         random.setSeed(2);
         testLuigi.setSeed(2);
@@ -112,6 +118,8 @@ public class TestAttacks {
 
     @Test
     public void luigiHammerAtkTest() {
+        testMarcos.setFp(50);
+        testLuigi.setFp(50);
         Random random = new Random();
         random.setSeed(2);
         testLuigi.setSeed(2);
@@ -147,6 +155,8 @@ public class TestAttacks {
 
     @Test
     public void enemyNormalAtk() {
+        testMarcos.setFp(50);
+        testLuigi.setFp(50);
         int marcosHp = testMarcos.getHp();
         int luigiHp = testLuigi.getHp();
         int damageGoombaNormalMarcos = (int) Math.round(0.75 * testGoomba.getAtk() * (testMarcos.getLvl() / (double) testMarcos.getDef()));

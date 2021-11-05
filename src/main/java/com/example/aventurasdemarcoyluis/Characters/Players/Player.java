@@ -56,10 +56,26 @@ public interface Player extends Character {
      */
     void invincible();
 
+    /**
+     * Gets def.
+     *
+     * @return the def
+     */
     int getDef();
 
+    /**
+     * Normal attacked.
+     *
+     * @param damage  the damage
+     * @param anEnemy the an enemy
+     */
     void normalAttacked(int damage, Enemy anEnemy);
 
 
+    /**
+     * Use item.
+     *
+     * @param anItem the an item
+     */
     void useItem(String anItem);
 }

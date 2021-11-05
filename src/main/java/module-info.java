@@ -14,10 +14,10 @@ module com.example.aventurasdemarcoyluis {
     opens com.example.aventurasdemarcoyluis.Characters.States to javafx.fxml;
     exports com.example.aventurasdemarcoyluis.Game;
     opens com.example.aventurasdemarcoyluis.Game to javafx.fxml;
-    exports com.example.aventurasdemarcoyluis.Game.Battle;
-    opens com.example.aventurasdemarcoyluis.Game.Battle to javafx.fxml;
-    exports com.example.aventurasdemarcoyluis.Game.Battle.BattleStates;
-    opens com.example.aventurasdemarcoyluis.Game.Battle.BattleStates to javafx.fxml;
+    exports com.example.aventurasdemarcoyluis.Battle;
+    opens com.example.aventurasdemarcoyluis.Battle to javafx.fxml;
+    exports com.example.aventurasdemarcoyluis.Battle.BattleStates;
+    opens com.example.aventurasdemarcoyluis.Battle.BattleStates to javafx.fxml;
     exports com.example.aventurasdemarcoyluis;
     opens com.example.aventurasdemarcoyluis to javafx.fxml;
     exports com.example.aventurasdemarcoyluis.Game.GameStates;

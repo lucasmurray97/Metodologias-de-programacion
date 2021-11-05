@@ -3,6 +3,9 @@ package com.example.aventurasdemarcoyluis.Characters.Enemies;
 import com.example.aventurasdemarcoyluis.Characters.AbstractCharacter;
 import com.example.aventurasdemarcoyluis.Characters.Players.Player;
 
+/**
+ * The type Abstract enemy.
+ */
 public abstract class AbstractEnemy extends AbstractCharacter implements Enemy {
     /**
      * Instantiates a new Abstract character.
@@ -17,6 +20,11 @@ public abstract class AbstractEnemy extends AbstractCharacter implements Enemy {
         super(lvl, type, aBaseHp, aBaseAtk, aBaseDef);
     }
 
+    /**
+     * Normal attack.
+     *
+     * @param aPlayer the a player
+     */
     protected void normalAttack(Player aPlayer){
         this.getState().normalAttack();
         int damage = (int) Math.round(0.75 * this.getAtk() * (this.getLvl() / (double) aPlayer.getDef()));

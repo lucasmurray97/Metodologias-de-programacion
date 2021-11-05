@@ -83,6 +83,9 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      */
     public void setFp(int fp) {
         this.fp = fp;
+        if(fp<0){
+            throw new AssertionError("Not enough Fp!");
+        }
     }
 
     /**
@@ -110,9 +113,15 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
         return bag;
     }
 
+    /**
+     * Set bag.
+     *
+     * @param aBagpack the a bagpack
+     */
     public void setBag(BagPack aBagpack){
         this.bag = aBagpack;
     }
+
     /**
      * Jump attack.
      *

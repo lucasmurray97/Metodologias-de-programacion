@@ -1,6 +1,6 @@
-package com.example.aventurasdemarcoyluis.Game.Battle.BattleStates;
+package com.example.aventurasdemarcoyluis.Battle.BattleStates;
 
-import com.example.aventurasdemarcoyluis.Game.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Battle.Battle;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.Characters.Character;
@@ -259,17 +259,35 @@ public class BattleState {
         error();
     }
 
+    /**
+     * Sets current.
+     *
+     * @param i the
+     */
     public void setCurrent(int i) {
         error();
     }
 
+    /**
+     * Gets current.
+     *
+     * @return the current
+     */
     public int getCurrent() {
         error();
         return 0;
     }
+
+    /**
+     * Set marcos turn.
+     */
     public void setMarcosTurn(){
         error();
     }
+
+    /**
+     * Set luigis turn.
+     */
     public void setLuigisTurn(){
         error();
     }

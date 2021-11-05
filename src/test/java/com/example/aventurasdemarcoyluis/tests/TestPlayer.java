@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.tests;
 
+import com.example.aventurasdemarcoyluis.BagPack;
 import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
 import com.example.aventurasdemarcoyluis.Characters.States.State;
@@ -17,7 +18,8 @@ public class TestPlayer {
 
     private Marcos testMarcos;
     private Luigi testLuigi;
-
+    private Marcos testMarcos2;
+    private Luigi testLuigi2;
 
     /**
      * Sets up.
@@ -26,6 +28,8 @@ public class TestPlayer {
     public void setUp() {
         testMarcos= new Marcos(1);
         testLuigi = new Luigi(1);
+        testMarcos2 = new Marcos(1, 10, 10, 10, new BagPack());
+        testLuigi2 = new Luigi(1, 10, 10, 10, new BagPack());
     }
 
     /**
@@ -35,6 +39,12 @@ public class TestPlayer {
     public void constructorTest(){
         assertEquals("Luigi",testLuigi.getType());
         assertEquals("Marcos",testMarcos.getType());
+        assertEquals(10, testLuigi2.getHp());
+        assertEquals(10, testLuigi2.getAtk());
+        assertEquals(10, testLuigi2.getDef());
+        assertEquals(10, testMarcos2.getHp());
+        assertEquals(10, testMarcos2.getDef());
+        assertEquals(10, testMarcos2.getAtk());
     }
 
     /**

@@ -4,7 +4,7 @@ import com.example.aventurasdemarcoyluis.Characters.Character;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.Characters.Players.Player;
-import com.example.aventurasdemarcoyluis.Game.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Battle.Battle;
 import com.example.aventurasdemarcoyluis.Game.Game;
 
 import java.util.ArrayList;
@@ -47,12 +47,19 @@ public class GameState {
      *
      * @return the boolean
      */
-    public boolean isOver() {
+    public boolean Lost() {
         return false;
     }
+
+    /**
+     * Has won boolean.
+     *
+     * @return the boolean
+     */
     public boolean hasWon() {
         return false;
     }
+
     /**
      * Sets game.
      *
@@ -78,9 +85,18 @@ public class GameState {
         error();
     }
 
+    /**
+     * Create battle.
+     */
     public void createBattle() {
         error();
     }
+
+    /**
+     * Add random enemy.
+     *
+     * @param level the level
+     */
     public void addRandomEnemy(int level){
         error();
     }
@@ -161,44 +177,92 @@ public class GameState {
         error();
     }
 
+    /**
+     * Choose item.
+     *
+     * @param str the str
+     */
     public void chooseItem(String str) {
         error();
     }
+
+    /**
+     * Choose player.
+     *
+     * @param aPlayer the a player
+     */
     public void choosePlayer(Player aPlayer){
         error();
     }
+
+    /**
+     * Terminate.
+     */
     public void terminate() {
         error();
     }
+
+    /**
+     * Level up.
+     */
     public void levelUp(){
         error();
     }
 
+    /**
+     * Gets characters.
+     *
+     * @return the characters
+     */
     public ArrayList<Character> getCharacters() {
         error();
         return null;
     }
 
+    /**
+     * Gets current player.
+     *
+     * @return the current player
+     */
     public Character getCurrentPlayer() {
         error();
         return null;
     }
+
+    /**
+     * Gets next character.
+     *
+     * @return the next character
+     */
     public Character getNextCharacter() {
         error();
         return null;
     }
 
+    /**
+     * Check battle state.
+     */
     public void checkBattleState() {
         error();
     }
 
+    /**
+     * Increase score.
+     */
     public void increaseScore() {
         error();
     }
 
+    /**
+     * Marcos hammer attack.
+     */
     public void marcosHammerAttack() {
         error();
     }
+
+    /**
+     * Luigi hammer attack.
+     */
     public void luigiHammerAttack() {
         error();
     }

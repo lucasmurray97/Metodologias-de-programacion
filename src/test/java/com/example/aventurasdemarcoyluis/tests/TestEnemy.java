@@ -1,8 +1,11 @@
 package com.example.aventurasdemarcoyluis.tests;
 
+import com.example.aventurasdemarcoyluis.BagPack;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
+import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +20,9 @@ public class TestEnemy {
     private Goomba testGoomba;
     private Boo testBoo;
     private Spiny testSpiny;
+    private Goomba testGoomba2;
+    private Boo testBoo2;
+    private Spiny testSpiny2;
 
     /**
      * Sets up.
@@ -26,6 +32,9 @@ public class TestEnemy {
         testGoomba= new Goomba(0);
         testBoo = new Boo(0);
         testSpiny = new Spiny(0);
+        testGoomba2 = new Goomba(1, 10, 10, 10);
+        testBoo2 = new Boo(1, 10, 10, 10);
+        testSpiny2 = new Spiny(1, 10, 10, 10);
     }
     @Test
     public void equalsTest(){
@@ -52,6 +61,15 @@ public class TestEnemy {
         assertEquals("Boo",testBoo.getType());
         assertEquals("Goomba",testGoomba.getType());
         assertEquals("Spiny",testSpiny.getType());
+        assertEquals(10, testGoomba2.getHp());
+        assertEquals(10, testGoomba2.getAtk());
+        assertEquals(10, testGoomba2.getDef());
+        assertEquals(10, testBoo2.getHp());
+        assertEquals(10, testBoo2.getDef());
+        assertEquals(10, testBoo2.getAtk());
+        assertEquals(10, testSpiny2.getHp());
+        assertEquals(10, testSpiny2.getDef());
+        assertEquals(10, testSpiny2.getAtk());
     }
 
     /**

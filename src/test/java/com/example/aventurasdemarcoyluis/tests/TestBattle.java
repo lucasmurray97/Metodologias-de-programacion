@@ -6,8 +6,8 @@ import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
 import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
-import com.example.aventurasdemarcoyluis.Game.Battle.Battle;
-import com.example.aventurasdemarcoyluis.Game.Battle.BattleStates.*;
+import com.example.aventurasdemarcoyluis.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Battle.BattleStates.*;
 import com.example.aventurasdemarcoyluis.Items.HoneySyrup;
 import com.example.aventurasdemarcoyluis.Items.RedMushroom;
 import com.example.aventurasdemarcoyluis.Items.Star;
@@ -185,6 +185,7 @@ public class TestBattle {
     }
     @Test
     public void luigiStateTest(){
+        this.battle.getLuigi().setFp(50);
         this.battle.setState(new LuigisTurn());
         this.battle.setCurrentCharacter(testLuigi);
         assertEquals(testLuigi, this.battle.getCurrentPlayer());
@@ -218,6 +219,7 @@ public class TestBattle {
     }
     @Test
     public void marcosStateTest(){
+        this.battle.getMarcos().setFp(50);
         this.battle.setState(new MarcosTurn());
         this.battle.setCurrentCharacter(testMarcos);
         assertEquals(testMarcos, this.battle.getCurrentPlayer());
