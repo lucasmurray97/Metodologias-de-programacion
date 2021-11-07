@@ -24,7 +24,7 @@ una está descrita y documentada, sin embargo las principales son:
 
 ##### ¿Como funciona?
 
-######Entrega anterior:
+####Entrega anterior:
 
 Actualmente la aplicación permite crear todos los personajes que se mencionaron y
 permite a los protagonistas recoger, almacenar y utilizar items. Considera restricciones
@@ -33,7 +33,8 @@ e implementa clases abstractas e interfaces que garantizan el correcto funcionam
 de los métodos programados. Existen avances por sobre los requisitos de la entrega, cómo 
 la clase BagPack y detalles en las construcciones de los personajes.
 
-######Esta entrega:
+####Esta entrega:
+
 - Se implementó toda la dinámica de ataques entre personajes, considerando todas las restricciones asociadas al 
 quién puede atacar a quién.
 - Se implementó un state pattern para los personajes, en donde la actividad que puede realizar un personaje está 
