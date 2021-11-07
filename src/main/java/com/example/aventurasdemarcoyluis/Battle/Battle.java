@@ -32,7 +32,7 @@ public class Battle {
     /**
      * Instantiates a new Battle.
      *
-     * @param randomEnemies the random enemies
+     * @param randomEnemies the number of random enemies
      * @param level         the level
      * @param aBag          the a bag
      * @param luigi         the luigi
@@ -55,16 +55,7 @@ public class Battle {
     }
 
     /**
-     * Sets next character.
-     *
-     * @param aCharacter the a character
-     */
-    public void setNextCharacter(Character aCharacter) {
-        this.NextPlayer = aCharacter;
-    }
-
-    /**
-     * Instantiates a new Battle.
+     * Instantiates an empty battle.
      */
     public Battle() {
         this.outcome = 0;
@@ -74,6 +65,16 @@ public class Battle {
         this.characters = new ArrayList<Character>();
         this.setState(new MarcosTurn());
     }
+
+    /**
+     * Sets next character.
+     *
+     * @param aCharacter the character that goes next.
+     */
+    public void setNextCharacter(Character aCharacter) {
+        this.NextPlayer = aCharacter;
+    }
+
 
     /**
      * Gets random.
@@ -94,7 +95,7 @@ public class Battle {
     }
 
     /**
-     * Sets outcome.
+     * Sets outcome. 1 if players won, -1 if they lost, 0 when the battle starts.
      *
      * @param outcome the outcome
      */
@@ -105,7 +106,7 @@ public class Battle {
     /**
      * Sets state.
      *
-     * @param aState the a state
+     * @param aState the state
      */
     public void setState(BattleState aState) {
         this.state = aState;
@@ -131,9 +132,9 @@ public class Battle {
     }
 
     /**
-     * Add character.
+     * Adds a character to the battle.
      *
-     * @param aCharacter the a character
+     * @param aCharacter the character
      */
     public void addCharacter(Character aCharacter){
         characters.add(aCharacter);
@@ -159,7 +160,7 @@ public class Battle {
 
 
     /**
-     * Is over boolean.
+     * Is over boolean. True if battle is over.
      *
      * @return the boolean
      */
@@ -199,7 +200,7 @@ public class Battle {
     /**
      * Choose target luigi.
      *
-     * @param enemy the enemy
+     * @param enemy the enemy to be attacked.
      */
     public void chooseTargetLuigi(AttackableByLuigi enemy) {
         this.state.chooseTargetLuigi(enemy);
@@ -208,25 +209,25 @@ public class Battle {
     /**
      * Choose target marcos.
      *
-     * @param enemy the enemy
+     * @param enemy the enemy to be attacked.
      */
     public void chooseTargetMarcos(AttackableByMarcos enemy) {
         this.state.chooseTargetMarcos(enemy);
     }
 
     /**
-     * Choose item.
+     * Chooses an item.
      *
-     * @param str the str
+     * @param str the item
      */
     public void chooseItem(String str) {
         this.state.chooseItem(str);
     }
 
     /**
-     * Choose player.
+     * Choose a player for the item to take effect.
      *
-     * @param aPlayer the a player
+     * @param aPlayer the player
      */
     public void choosePlayer(Player aPlayer) {
         this.state.choosePlayer(aPlayer);
@@ -242,7 +243,7 @@ public class Battle {
     }
 
     /**
-     * Gets players.
+     * Gets players currently fighting.
      *
      * @return the players
      */
@@ -251,7 +252,7 @@ public class Battle {
     }
 
     /**
-     * Is luigis turn boolean.
+     * Is luigis turn boolean. True if it's luigi's turn to play.
      *
      * @return the boolean
      */
@@ -260,7 +261,7 @@ public class Battle {
     }
 
     /**
-     * Is marcos turn boolean.
+     * Is marcos turn boolean. True if it's Marcos' turn to play
      *
      * @return the boolean
      */
@@ -269,14 +270,14 @@ public class Battle {
     }
 
     /**
-     * Pass.
+     * Terinates current turn.
      */
     public void terminate() {
         this.state.terminate();
     }
 
     /**
-     * Is enemy turn boolean.
+     * Is enemy turn boolean. True if an Enemy is playing.
      *
      * @return the boolean
      */
@@ -294,7 +295,7 @@ public class Battle {
     }
 
     /**
-     * Check survivors.
+     * Check survivors. Updates characters, enemies and players currently in battle, removing knocked out ones.
      */
     public void checkSurvivors(){
         int n = this.getEnemies().size();
@@ -321,7 +322,7 @@ public class Battle {
     /**
      * Get luigi luigi.
      *
-     * @return the luigi
+     * @return luigi
      */
     public Luigi getLuigi(){
         return this.luigi;
@@ -330,7 +331,7 @@ public class Battle {
     /**
      * Get marcos marcos.
      *
-     * @return the marcos
+     * @return marcos
      */
     public Marcos getMarcos(){
         return this.marcos;
@@ -372,7 +373,7 @@ public class Battle {
     }
 
     /**
-     * Is boo turn boolean.
+     * Is boo turn boolean. True if it's a boo's turn to play.
      *
      * @return the boolean
      */
@@ -381,7 +382,7 @@ public class Battle {
     }
 
     /**
-     * Is goomba turn boolean.
+     * Is goomba turn boolean. True if it's a Gooomba's turn to play.
      *
      * @return the boolean
      */
@@ -390,7 +391,7 @@ public class Battle {
     }
 
     /**
-     * Is spiny turn boolean.
+     * Is spiny turn boolean. True if it's a Spiny's turn to play.
      *
      * @return the boolean
      */
@@ -399,7 +400,7 @@ public class Battle {
     }
 
     /**
-     * Is player turn boolean.
+     * Is player turn boolean. True if a it's a players turn to play.
      *
      * @return the boolean
      */
@@ -408,9 +409,9 @@ public class Battle {
     }
 
     /**
-     * Add enemy.
+     * Adds enemy to battle.
      *
-     * @param anEnemy the an enemy
+     * @param anEnemy the enemy to be added.
      */
     public void addEnemy(Enemy anEnemy) {
         this.getEnemies().add(anEnemy);
@@ -418,9 +419,9 @@ public class Battle {
     }
 
     /**
-     * Add player.
+     * Add a player to the battle.
      *
-     * @param aPlayer the a player
+     * @param aPlayer the player
      */
     public void addPlayer(Player aPlayer) {
         this.getPlayers().add(aPlayer);
@@ -428,9 +429,9 @@ public class Battle {
     }
 
     /**
-     * Add marcos.
+     * Adds a marcos to be the battle.
      *
-     * @param aMarcos the a marcos
+     * @param aMarcos the marcos
      */
     public void addMarcos(Marcos aMarcos) {
         this.addPlayer(aMarcos);
@@ -438,9 +439,9 @@ public class Battle {
     }
 
     /**
-     * Add luigi.
+     * Adds a luigi to the battle.
      *
-     * @param aLuigi the a luigi
+     * @param aLuigi the luigi
      */
     public void addLuigi(Luigi aLuigi) {
         this.addPlayer(aLuigi);
@@ -448,9 +449,9 @@ public class Battle {
     }
 
     /**
-     * Add random enemy.
+     * Adds random enemy to the battle.
      *
-     * @param level the level
+     * @param level the level of the enemy to be added.
      */
     public void addRandomEnemy(int level) {
         int randomNumber = random.nextInt(3);
@@ -464,7 +465,7 @@ public class Battle {
     }
 
     /**
-     * Gets next character.
+     * Gets next character to play.
      *
      * @return the next character
      */

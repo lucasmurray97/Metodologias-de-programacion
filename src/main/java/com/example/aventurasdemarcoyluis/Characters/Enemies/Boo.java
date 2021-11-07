@@ -40,7 +40,7 @@ public class Boo extends AbstractEnemy implements AttackableByMarcos {
     }
 
     /**
-     *Boo dodges hammer attacks, therefore no damage is done
+     *Boo dodges hammer attacks, therefore no damage is done.
      * @param damage
      * @param aPlayer
      */
@@ -48,6 +48,10 @@ public class Boo extends AbstractEnemy implements AttackableByMarcos {
     public void hammerAttacked(int damage, Player aPlayer) {
     }
 
+    /**
+     * Returns Boo Turn.
+     * @return
+     */
     @Override
     public EnemyTurn myTurn(){
         return new BooTurn();

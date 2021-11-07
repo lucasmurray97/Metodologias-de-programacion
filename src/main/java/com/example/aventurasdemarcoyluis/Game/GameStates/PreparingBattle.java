@@ -6,14 +6,24 @@ import com.example.aventurasdemarcoyluis.Items.HoneySyrup;
 import com.example.aventurasdemarcoyluis.Items.RedMushroom;
 
 /**
- * The type Preparing battle.
+ * The State PreparingBattle. State the game switches before a battle. Items can be added to the bag
+ * levels can be increased, score can be increased, battles can be created.
  */
 public class PreparingBattle extends GameState{
+    /**
+     * Is preparing battle boolean. Returns true.
+     *
+     * @return the boolean
+     */
     @Override
     public boolean isPreparingBattle() {
         return true;
     }
-
+    /**
+     * Add red mushroom.
+     *
+     * @param i the quantity of the item to be added.
+     */
     @Override
     public void addRedMushroom(int i) {
         while(i>0) {
@@ -21,6 +31,11 @@ public class PreparingBattle extends GameState{
             i--;
         }
     }
+    /**
+     * Add honey syrup.
+     *
+     * @param i the quantity of the item to be added.
+     */
     @Override
     public void addHoneySyrup(int i) {
         while(i>0) {
@@ -28,6 +43,11 @@ public class PreparingBattle extends GameState{
             i--;
         }
     }
+    /**
+     * Creates battle.
+     *
+     * @param i is the number of random enemies to be added.
+     */
     @Override
     public void createBattle(int i){
         Battle battle = new Battle(i, 1, this.getGame().getBagPack(), this.getGame().getLuigi(), this.getGame().getMarcos());
@@ -36,6 +56,9 @@ public class PreparingBattle extends GameState{
         this.getGame().getLuigi().getState().revive();
         this.getGame().getMarcos().getState().revive();
     }
+    /**
+     * Creates empty battle.
+     */
     @Override
     public void createBattle(){
         Battle battle = new Battle();
@@ -48,11 +71,17 @@ public class PreparingBattle extends GameState{
         this.getGame().getLuigi().getState().revive();
         this.getGame().getMarcos().getState().revive();
     }
+    /**
+     * Level up. Increases player's level.
+     */
     @Override
     public void levelUp(){
         this.getGame().getLuigi().setLvl(this.getGame().getLuigi().getLvl()+1);
         this.getGame().getMarcos().setLvl(this.getGame().getMarcos().getLvl()+1);
     }
+    /**
+     * Increase score.
+     */
     @Override
     public void increaseScore() {
         this.getGame().setScore(this.getGame().getScore()+1);

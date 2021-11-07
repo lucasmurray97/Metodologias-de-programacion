@@ -8,7 +8,7 @@ import com.example.aventurasdemarcoyluis.Characters.Enemies.Enemy;
 import com.example.aventurasdemarcoyluis.Characters.Players.Player;
 
 /**
- * The type Battle state.
+ * A generic State of a Battle.
  */
 public class BattleState {
     private Character currentCharacter;
@@ -24,7 +24,7 @@ public class BattleState {
     }
 
     /**
-     * Get battle battle.
+     * Get battle.
      *
      * @return the battle
      */
@@ -33,9 +33,9 @@ public class BattleState {
     }
 
     /**
-     * Change state.
+     * Changes state of the battle.
      *
-     * @param aState the a state
+     * @param aState the state the battle switches to
      */
     public void changeState(BattleState aState){
         this.battle.setState(aState);
@@ -45,14 +45,14 @@ public class BattleState {
     /**
      * Set current character.
      *
-     * @param aCharacter the a character
+     * @param aCharacter the character
      */
     public void setCurrentCharacter(Character aCharacter){
         this.currentCharacter = aCharacter;
     }
 
     /**
-     * Is over boolean.
+     * Is over boolean. True if battle is over.
      *
      * @return the boolean
      */
@@ -61,7 +61,7 @@ public class BattleState {
     }
 
     /**
-     * Is marcos turn boolean.
+     * Is marcos turn boolean. True if it's Marcos' turn to play
      *
      * @return the boolean
      */
@@ -70,7 +70,7 @@ public class BattleState {
     }
 
     /**
-     * Is luigis turn boolean.
+     * Is luigis turn boolean. True if it's luigi's turn to play.
      *
      * @return the boolean
      */
@@ -79,7 +79,7 @@ public class BattleState {
     }
 
     /**
-     * Is enemy turn boolean.
+     * Is enemy turn boolean. True if an Enemy is playing.
      *
      * @return the boolean
      */
@@ -88,7 +88,7 @@ public class BattleState {
     }
 
     /**
-     * Is player turn boolean.
+     * Is player turn boolean. True if a it's a players turn to play.
      *
      * @return the boolean
      */
@@ -97,7 +97,7 @@ public class BattleState {
     }
 
     /**
-     * Is boo turn boolean.
+     * Is boo turn boolean. True if it's a boo's turn to play.
      *
      * @return the boolean
      */
@@ -106,7 +106,7 @@ public class BattleState {
     }
 
     /**
-     * Is goomba turn boolean.
+     * Is goomba turn boolean. True if it's a Gooomba's turn to play.
      *
      * @return the boolean
      */
@@ -115,7 +115,7 @@ public class BattleState {
     }
 
     /**
-     * Is spiny turn boolean.
+     * Is spiny turn boolean. True if it's a Spiny's turn to play.
      *
      * @return the boolean
      */
@@ -124,23 +124,23 @@ public class BattleState {
     }
 
     /**
-     * Error.
+     * Throws an assertion error with the message "Wrong State"
      */
     void error(){
         throw new AssertionError("Wrong State");
     }
 
     /**
-     * Pass.
+     * Terminates current turn.
      */
     public void terminate() {
         error();
     }
 
     /**
-     * Choose item.
+     * Chooses an item.
      *
-     * @param str the str
+     * @param str the item
      */
     public void chooseItem(String str) {
         error();
@@ -150,7 +150,7 @@ public class BattleState {
     /**
      * Choose target marcos.
      *
-     * @param enemy the enemy
+     * @param enemy the enemy to be attacked.
      */
     public void chooseTargetMarcos(AttackableByMarcos enemy) {
         error();
@@ -159,7 +159,7 @@ public class BattleState {
     /**
      * Choose target luigi.
      *
-     * @param enemy the enemy
+     * @param enemy the enemy to be attacked.
      */
     public void chooseTargetLuigi(AttackableByLuigi enemy) {
         error();
@@ -167,16 +167,16 @@ public class BattleState {
 
 
     /**
-     * Choose player.
+     * Choose a player for the item to take effect.
      *
-     * @param aPlayer the a player
+     * @param aPlayer the player
      */
     public void choosePlayer(Player aPlayer) {
         error();
     }
 
     /**
-     * Is luigi alive boolean.
+     * Is luigi alive boolean. True Luigi is alive.
      *
      * @return the boolean
      */
@@ -185,7 +185,7 @@ public class BattleState {
     }
 
     /**
-     * Is marcos alive boolean.
+     * Is marcos alive boolean. True if Marcos is alive.
      *
      * @return the boolean
      */
@@ -194,7 +194,7 @@ public class BattleState {
     }
 
     /**
-     * Any enemies alive boolean.
+     * Any enemies alive boolean. True if any enemies alive in the battle.
      *
      * @return the boolean
      */
@@ -209,7 +209,7 @@ public class BattleState {
     }
 
     /**
-     * Get current character character.
+     * Get current character. The one playing.
      *
      * @return the character
      */
@@ -218,14 +218,14 @@ public class BattleState {
     }
 
     /**
-     * Random attack.
+     * Prepares an enemy turn.
      */
     public void setEnemyTurn(){
         error();
     }
 
     /**
-     * Normal attack.
+     * Normal attack performed by an enemy.
      */
     public void normalAttack() {
         error();
@@ -260,18 +260,18 @@ public class BattleState {
     }
 
     /**
-     * Sets current.
+     * Sets current count for enemies turn.
      *
-     * @param i the
+     * @param i the count
      */
     public void setCurrent(int i) {
         error();
     }
 
     /**
-     * Gets current.
+     * Gets current count for enemies.
      *
-     * @return the current
+     * @return the current count.
      */
     public int getCurrent() {
         error();
@@ -279,14 +279,14 @@ public class BattleState {
     }
 
     /**
-     * Set marcos turn.
+     * Prepares marcos turn.
      */
     public void setMarcosTurn(){
         error();
     }
 
     /**
-     * Set luigis turn.
+     * Prepares luigis turn.
      */
     public void setLuigisTurn(){
         error();

@@ -38,6 +38,10 @@ public class Goomba extends AbstractEnemy implements AttackableByLuigi, Attackab
     public void normalAttack(AttackableByGoomba aPlayer){
         super.normalAttack(aPlayer);
     }
+    /**
+     * Returns Goomba Turn.
+     * @return
+     */
     @Override
     public EnemyTurn myTurn(){
         return new GoombaTurn();

@@ -18,13 +18,10 @@ public class Game {
     private GameState state;
     private Luigi luigi;
     private Marcos marcos;
-    /**
-     * The Score.
-     */
     int score;
 
     /**
-     * Instantiates a new Game.
+     * Instantiates a new Game. Main characters are created and linked to their bagpack, the state is set to preparing battle
      */
     public Game(){
         this.score = 0;
@@ -103,7 +100,7 @@ public class Game {
     /**
      * Add red mushroom.
      *
-     * @param i the
+     * @param i is the quantity of the item to be added.
      */
     public void addRedMushroom(int i) {
         this.state.addRedMushroom(i);
@@ -112,23 +109,23 @@ public class Game {
     /**
      * Add honey syrup.
      *
-     * @param i the
+     * @param i the is the quantity of the item to be added.
      */
     public void addHoneySyrup(int i) {
         this.state.addHoneySyrup(i);
     }
 
     /**
-     * Create battle.
+     * Creates a battle.
      *
-     * @param i the
+     * @param i is the number of random enemies to be created.
      */
     public void createBattle(int i) {
         this.state.createBattle(i);
     }
 
     /**
-     * Create battle.
+     * Creates an "empty battle", intended for enemies to be added manually.
      */
     public void createBattle() {
         this.state.createBattle();
@@ -144,7 +141,7 @@ public class Game {
     }
 
     /**
-     * Choose target marcos.
+     * Choose target marcos. Picks the enemy to be attacked.
      *
      * @param enemy the enemy
      */
@@ -160,14 +157,14 @@ public class Game {
     }
 
     /**
-     * Normal attack.
+     * Normal attack, performed by an enemy.
      */
     public void normalAttack() {
         this.state.normalAttack();
     }
 
     /**
-     * Choose target luigi.
+     * Choose target luigi. Picks the enemy to be attacked.
      *
      * @param enemy the enemy
      */
@@ -192,7 +189,7 @@ public class Game {
     }
 
     /**
-     * Get current player character.
+     * Get current player character, if in battle.
      *
      * @return the character
      */
@@ -201,7 +198,7 @@ public class Game {
     }
 
     /**
-     * Get next player character.
+     * Get next player character, if in battle.
      *
      * @return the character
      */
@@ -210,16 +207,16 @@ public class Game {
     }
 
     /**
-     * Check battle state.
+     * Check battle state. Weather it's over or still being played.
      */
     public void checkBattleState(){
         this.state.checkBattleState();
     }
 
     /**
-     * Add random enemy.
+     * Adds a random enemy.
      *
-     * @param level the level
+     * @param level the level of the random enemie.
      */
     public void addRandomEnemy(int level){
         this.state.addRandomEnemy(level);
@@ -249,7 +246,7 @@ public class Game {
     }
 
     /**
-     * Choose item.
+     * Chooses an item to be used.
      *
      * @param str the str
      */
@@ -258,37 +255,37 @@ public class Game {
     }
 
     /**
-     * Choose player.
+     * Chooses a player for the item to take effect on.
      *
-     * @param aPlayer the a player
+     * @param aPlayer the player
      */
     public void choosePlayer(Player aPlayer){
         this.state.choosePlayer(aPlayer);
     }
 
     /**
-     * Terminate.
+     * Terminates current turn, if in battle.
      */
     public void terminate() {
         this.state.terminate();
     }
 
     /**
-     * Level up.
+     * Level up, increases the players level by one.
      */
     public void levelUp() {
         this.state.levelUp();
     }
 
     /**
-     * Increase score.
+     * Increase score. Increases the score by one.
      */
     public void increaseScore() {
         this.state.increaseScore();
     }
 
     /**
-     * Is in battle boolean.
+     * Is in battle boolean, weather a battle is taking place.
      *
      * @return the boolean
      */
@@ -297,7 +294,7 @@ public class Game {
     }
 
     /**
-     * Has won boolean.
+     * Has won boolean, returns true if the players have won the game.
      *
      * @return the boolean
      */
@@ -306,7 +303,7 @@ public class Game {
     }
 
     /**
-     * Is over boolean.
+     * Lost boolean, returns true if the players lost the game.
      *
      * @return the boolean
      */
@@ -315,7 +312,7 @@ public class Game {
     }
 
     /**
-     * Get items array list.
+     * Returns an array of the items currently in the bag.
      *
      * @return the array list
      */

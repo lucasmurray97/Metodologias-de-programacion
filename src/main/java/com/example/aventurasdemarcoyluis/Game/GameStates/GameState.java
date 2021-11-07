@@ -10,13 +10,13 @@ import com.example.aventurasdemarcoyluis.Game.Game;
 import java.util.ArrayList;
 
 /**
- * The type Game state.
+ * Generic Game state.
  */
 public class GameState {
     private Game game;
 
     /**
-     * Get game game.
+     * Gets the game.
      *
      * @return the game
      */
@@ -25,7 +25,7 @@ public class GameState {
     }
 
     /**
-     * Is preparing battle boolean.
+     * Is preparing battle boolean. True if Game in state PreparingBattle.
      *
      * @return the boolean
      */
@@ -34,7 +34,7 @@ public class GameState {
     }
 
     /**
-     * Is in battle boolean.
+     * Is in battle boolean. True if Game in state InBattle.
      *
      * @return the boolean
      */
@@ -43,7 +43,7 @@ public class GameState {
     }
 
     /**
-     * Is over boolean.
+     * Lost boolean. Returns true if players lost game.
      *
      * @return the boolean
      */
@@ -52,7 +52,7 @@ public class GameState {
     }
 
     /**
-     * Has won boolean.
+     * Has won boolean. Returns True if players won game.
      *
      * @return the boolean
      */
@@ -70,32 +70,32 @@ public class GameState {
     }
 
     /**
-     * Error.
+     * Error. Throws an assertion error with the message "Wrong State"
      */
     public void error(){
         throw new AssertionError("Wrong State");
     }
 
     /**
-     * Create battle.
+     * Creates battle.
      *
-     * @param i the
+     * @param i is the number of random enemies to be added.
      */
     public void createBattle(int i) {
         error();
     }
 
     /**
-     * Create battle.
+     * Creates empty battle.
      */
     public void createBattle() {
         error();
     }
 
     /**
-     * Add random enemy.
+     * Adds random enemy.
      *
-     * @param level the level
+     * @param level the level of the enemies to be added.
      */
     public void addRandomEnemy(int level){
         error();
@@ -104,7 +104,7 @@ public class GameState {
     /**
      * Add honey syrup.
      *
-     * @param i the
+     * @param i the quantity of the item to be added.
      */
     public void addHoneySyrup(int i) {
         error();
@@ -113,7 +113,7 @@ public class GameState {
     /**
      * Add red mushroom.
      *
-     * @param i the
+     * @param i the quantity of the item to be added.
      */
     public void addRedMushroom(int i) {
         error();
@@ -129,7 +129,7 @@ public class GameState {
     }
 
     /**
-     * Get battle battle.
+     * Gets battle.
      *
      * @return the battle
      */
@@ -139,9 +139,9 @@ public class GameState {
     }
 
     /**
-     * Choose target marcos.
+     * Chooses target marcos.
      *
-     * @param enemy the enemy
+     * @param enemy the enemy to be attacked
      */
     public void chooseTargetMarcos(AttackableByMarcos enemy) {
         error();
@@ -155,16 +155,16 @@ public class GameState {
     }
 
     /**
-     * Random attack.
+     * Normal attacked to be performed by an enemy to a random player.
      */
     public void normalAttack() {
         error();
     }
 
     /**
-     * Choose target luigi.
+     * Chooses target luigi.
      *
-     * @param enemy the enemy
+     * @param enemy the enemy to be attacked.
      */
     public void chooseTargetLuigi(AttackableByLuigi enemy) {
         error();
@@ -178,7 +178,7 @@ public class GameState {
     }
 
     /**
-     * Choose item.
+     * Chooses item to be used.
      *
      * @param str the str
      */
@@ -187,23 +187,23 @@ public class GameState {
     }
 
     /**
-     * Choose player.
+     * Chooses player for the chosen item to take effect on.
      *
-     * @param aPlayer the a player
+     * @param aPlayer the player
      */
     public void choosePlayer(Player aPlayer){
         error();
     }
 
     /**
-     * Terminate.
+     * Terminates current turn if in battle.
      */
     public void terminate() {
         error();
     }
 
     /**
-     * Level up.
+     * Level up. Increases player's level.
      */
     public void levelUp(){
         error();

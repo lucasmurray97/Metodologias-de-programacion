@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis.Characters.States;
 import com.example.aventurasdemarcoyluis.Characters.Character;
 
 /**
- * The type State.
+ * Generic State for a character. In general
  */
 public class State {
     /**
@@ -30,7 +30,7 @@ public class State {
     }
 
     /**
-     * Change state.
+     * Changes state.
      *
      * @param state the state
      */
@@ -39,7 +39,7 @@ public class State {
     }
 
     /**
-     * Is knocked out boolean.
+     * Is knocked out boolean. True if knocked out.
      *
      * @return the boolean
      */
@@ -48,7 +48,7 @@ public class State {
     }
 
     /**
-     * Is alive boolean.
+     * Is alive boolean. True if alive.
      *
      * @return the boolean
      */
@@ -57,21 +57,21 @@ public class State {
     }
 
     /**
-     * Error.
+     * Error. Throws assertion error with message "Wrong State".
      */
     public void error() {
         throw new AssertionError("Wrong state");
     }
 
     /**
-     * Knock out.
+     * Knocks out a character.
      */
     public void knockOut(){
         error();
     }
 
     /**
-     * Revive.
+     * Revives a character, resetting it's stats.
      */
     public void revive() {
         this.changeState(new Alive());
@@ -94,28 +94,28 @@ public class State {
     }
 
     /**
-     * Normal attacked.
+     * Normal attacked. To be run when platyer is attacked.
      */
     public void normalAttacked(){
         error();
     }
 
     /**
-     * Normal attack.
+     * Normal attack, for enemies.
      */
     public void normalAttack(){
         error();
     }
 
     /**
-     * Jump attacked.
+     * Jump attacked, when an enemy is attacked.
      */
     public void jumpAttacked(){
         error();
     }
 
     /**
-     * Hammer attacked.
+     * Hammer attacked, when enemy is attacked.
      */
     public void hammerAttacked(){
         error();

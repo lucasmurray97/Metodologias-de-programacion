@@ -3,13 +3,21 @@ package com.example.aventurasdemarcoyluis.Battle.BattleStates;
 import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
 
 /**
- * The type Boo turn.
+ * State when a Boo is playing.
  */
 public class BooTurn extends EnemyTurn{
+    /**
+     * Returns True.
+     * @return
+     */
     @Override
     public boolean isBooTurn(){
         return true;
     }
+
+    /**
+     * Attacks luigi if alive.
+     */
     @Override
     public void normalAttack(){
         this.setCurrentCharacter((Boo) this.getCurrentCharacter());

@@ -6,10 +6,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * The type Enemy turn.
+ * State when a generic enemy is playing.
  */
 public class EnemyTurn extends BattleState {
+    /**
+     * count to set the exact enemy that is set to play
+     */
     private int current;
+
+    /**
+     * Terminates any enemy turn: if players knocked out, sets the battle to over and outcome to -1.
+     * If Enemies left to play, sets the turn to the next enemy in line to play increasing the count.
+     * else if Marcos alive, sets turn to MarcosTurn, else to LuigisTurn.
+     */
     @Override
     public void terminate() {
         if (!isLuigiAlive() && !isMarcosAlive()){
@@ -31,10 +40,20 @@ public class EnemyTurn extends BattleState {
             this.getBattle().getState().setLuigisTurn();
         }
     }
+
+    /**
+     * Return True
+     * @return
+     */
     @Override
     public boolean isEnemyTurn(){
         return true;
     }
+
+    /**
+     * Prepares a generic enemy's turn, getting current count and passing it to the next enemy to play
+     * Set's generic EnemyTurn to specific enemy turn.
+     */
     @Override
     public void setEnemyTurn(){
         ArrayList<Enemy> enemies = this.getBattle().getEnemies();
@@ -49,9 +68,19 @@ public class EnemyTurn extends BattleState {
             this.getBattle().setNextCharacter(enemies.get(this.getCurrent()+1));
         }
     }
+
+    /**
+     * Sets current count.
+     * @param n
+     */
     public void setCurrent(int n){
         this.current = n;
     }
+
+    /**
+     * Gets current count.
+     * @return
+     */
     public int getCurrent(){
         return this.current;
     }

@@ -39,10 +39,20 @@ public class Spiny extends AbstractEnemy implements AttackableByLuigi, Attackabl
     public void normalAttack(AttackableBySpiny aPlayer){
         super.normalAttack(aPlayer);
     }
+
+    /**
+     * If jump attacked, attacker takes 5% damage.
+     * @param damage  the damage
+     * @param aPlayer the player
+     */
     @Override
     public void jumpAttacked(int damage, Player aPlayer) {
         aPlayer.setHp((int) (0.95*aPlayer.getHp()));
     }
+    /**
+     * Returns Spiny Turn.
+     * @return
+     */
     @Override
     public EnemyTurn myTurn(){
         return new SpinyTurn();

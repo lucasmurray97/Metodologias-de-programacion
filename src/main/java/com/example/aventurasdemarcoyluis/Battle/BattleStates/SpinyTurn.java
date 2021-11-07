@@ -5,13 +5,20 @@ import com.example.aventurasdemarcoyluis.Characters.Enemies.AttackableBySpiny;
 import com.example.aventurasdemarcoyluis.Characters.Players.Player;
 
 /**
- * The type Spiny turn.
+ * * State when a Spiny is playing.
  */
 public class SpinyTurn extends EnemyTurn{
+    /**
+     * Returns True
+     * @return
+     */
     @Override
     public boolean isSpinyTurn(){
         return true;
     }
+    /**
+     * Attacks an enemy attackable by spiny.
+     */
     @Override
     public void normalAttack(){
         this.setCurrentCharacter(this.getCurrentCharacter());
