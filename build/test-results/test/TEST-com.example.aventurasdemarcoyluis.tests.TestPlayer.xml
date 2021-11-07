@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestPlayer" tests="8" skipped="0" failures="0" errors="0" timestamp="2021-11-05T11:46:50" hostname="LAPTOP-DATE9JPB" time="0.01">
+  <properties/>
+  <testcase name="constructorTest()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.001"/>
+  <testcase name="SetTest()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.001"/>
+  <testcase name="state()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.005"/>
+  <testcase name="upLvl()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.001"/>
+  <testcase name="equalsTest()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.001"/>
+  <testcase name="toStringTest()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.0"/>
+  <testcase name="GetTest()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.001"/>
+  <testcase name="borderHp()" classname="com.example.aventurasdemarcoyluis.tests.TestPlayer" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
