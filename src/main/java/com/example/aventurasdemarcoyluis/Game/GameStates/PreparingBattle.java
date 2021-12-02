@@ -2,6 +2,7 @@ package com.example.aventurasdemarcoyluis.Game.GameStates;
 
 import com.example.aventurasdemarcoyluis.BagPack;
 import com.example.aventurasdemarcoyluis.Battle.Battle;
+import com.example.aventurasdemarcoyluis.Game.Handlers.BattleOverHandler;
 import com.example.aventurasdemarcoyluis.Items.HoneySyrup;
 import com.example.aventurasdemarcoyluis.Items.RedMushroom;
 
@@ -52,6 +53,7 @@ public class PreparingBattle extends GameState{
     public void createBattle(int i){
         Battle battle = new Battle(i, 1, this.getGame().getBagPack(), this.getGame().getLuigi(), this.getGame().getMarcos());
         this.getGame().setState(new InBattle());
+        battle.addObserver(new BattleOverHandler((InBattle) this.getGame().getState()));
         this.getGame().getState().setBattle(battle);
         this.getGame().getLuigi().getState().revive();
         this.getGame().getMarcos().getState().revive();
@@ -67,6 +69,7 @@ public class PreparingBattle extends GameState{
         battle.addLuigi(this.getGame().getLuigi());
         battle.getState().setMarcosTurn();
         this.getGame().setState(new InBattle());
+        battle.addObserver(new BattleOverHandler((InBattle) this.getGame().getState()));
         this.getGame().getState().setBattle(battle);
         this.getGame().getLuigi().getState().revive();
         this.getGame().getMarcos().getState().revive();

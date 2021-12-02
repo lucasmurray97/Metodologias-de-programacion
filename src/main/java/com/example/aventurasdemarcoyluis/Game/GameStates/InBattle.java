@@ -158,18 +158,13 @@ public class InBattle extends GameState{
     public void addRandomEnemy(int level){
         this.battle.addRandomEnemy(level);
     }
-    /**
-     * If the battle is won, switches state to PreparingBattle and increases score, else sets it to Game Over.
-     */
-    @Override
-    public void checkBattleState() {
-        if(battle.isOver()){
-            if(battle.getOutcome()==1) {
-                this.getGame().setState(new PreparingBattle());
-                this.getGame().getState().increaseScore();
-            }else{
-                this.getGame().setState(new GameOver());
-            }
+
+    public void onBattleOver(int newValue) {
+        if(newValue==1){
+            this.getGame().setState(new PreparingBattle());
+            this.getGame().getState().increaseScore();
+        }else if(newValue==-1){
+            this.getGame().setState(new GameOver());
         }
     }
 }

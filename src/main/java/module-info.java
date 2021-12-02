@@ -1,6 +1,7 @@
 module com.example.aventurasdemarcoyluis {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
     exports com.example.aventurasdemarcoyluis.Characters;
     opens com.example.aventurasdemarcoyluis.Characters to javafx.fxml;

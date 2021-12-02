@@ -213,19 +213,18 @@ public class TestGame {
         game.createBattle();
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
-        while(game.getBattle().getEnemies().size()>0){
+        while(game.isInBattle()){
             game.chooseTargetMarcos((AttackableByMarcos) game.getBattle().getEnemies().get(0));
             game.marcosJumpAttack();
-            if(game.getBattle().getEnemies().size()>0) {
+            if(game.isInBattle()) {
                 game.chooseTargetLuigi((AttackableByLuigi) game.getBattle().getEnemies().get(0));
                 game.luigiJumpAttack();
             }
-            if(game.getBattle().getEnemies().size()>0) {
+            if(game.isInBattle()) {
                 game.normalAttack();
             }
         }
-        assertTrue(this.game.getBattle().isOver());
-        game.checkBattleState();
+        assertTrue(!this.game.isInBattle());
         assertEquals(1,this.game.getScore());
         random = new Random();
         random.setSeed(1);
@@ -234,19 +233,18 @@ public class TestGame {
         game.createBattle();
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
-        while(game.getBattle().getEnemies().size()>0){
+        while(game.isInBattle()) {
             game.chooseTargetMarcos((AttackableByMarcos) game.getBattle().getEnemies().get(0));
             game.marcosJumpAttack();
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.chooseTargetLuigi((AttackableByLuigi) game.getBattle().getEnemies().get(0));
                 game.luigiJumpAttack();
             }
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.normalAttack();
             }
         }
-        assertTrue(this.game.getBattle().isOver());
-        game.checkBattleState();
+        assertTrue(!this.game.isInBattle());
         assertEquals(2,this.game.getScore());
         random = new Random();
         random.setSeed(1);
@@ -255,19 +253,18 @@ public class TestGame {
         game.createBattle();
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
-        while(game.getBattle().getEnemies().size()>0){
+        while(game.isInBattle()) {
             game.chooseTargetMarcos((AttackableByMarcos) game.getBattle().getEnemies().get(0));
             game.marcosJumpAttack();
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.chooseTargetLuigi((AttackableByLuigi) game.getBattle().getEnemies().get(0));
                 game.luigiJumpAttack();
             }
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.normalAttack();
             }
         }
-        assertTrue(this.game.getBattle().isOver());
-        game.checkBattleState();
+        assertTrue(!this.game.isInBattle());
         assertEquals(3,this.game.getScore());
         random = new Random();
         random.setSeed(1);
@@ -276,19 +273,18 @@ public class TestGame {
         game.createBattle();
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
-        while(game.getBattle().getEnemies().size()>0){
+        while(game.isInBattle()) {
             game.chooseTargetMarcos((AttackableByMarcos) game.getBattle().getEnemies().get(0));
             game.marcosJumpAttack();
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.chooseTargetLuigi((AttackableByLuigi) game.getBattle().getEnemies().get(0));
                 game.luigiJumpAttack();
             }
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.normalAttack();
             }
         }
-        assertTrue(this.game.getBattle().isOver());
-        game.checkBattleState();
+        assertTrue(!this.game.isInBattle());
         assertEquals(4,this.game.getScore());
         random = new Random();
         random.setSeed(1);
@@ -297,19 +293,18 @@ public class TestGame {
         game.createBattle();
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
-        while(game.getBattle().getEnemies().size()>0){
+        while(game.isInBattle()) {
             game.chooseTargetMarcos((AttackableByMarcos) game.getBattle().getEnemies().get(0));
             game.marcosJumpAttack();
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.chooseTargetLuigi((AttackableByLuigi) game.getBattle().getEnemies().get(0));
                 game.luigiJumpAttack();
             }
-            if(game.getBattle().getEnemies().size()>0) {
+            if (game.isInBattle()) {
                 game.normalAttack();
             }
         }
-        assertTrue(this.game.getBattle().isOver());
-        game.checkBattleState();
+        assertTrue(!this.game.isInBattle());
         assertEquals(5,this.game.getScore());
         assertTrue(game.hasWon());
 
@@ -332,13 +327,11 @@ public class TestGame {
             game.luigiJumpAttack();
             game.normalAttack();
         }
-        while(game.getBattle().getMarcos().isAlive()){
+        while(!game.Lost()){
             game.chooseTargetMarcos((AttackableByMarcos) game.getBattle().getEnemies().get(0));
             game.marcosJumpAttack();
             game.normalAttack();
         }
-        assertTrue(this.game.getBattle().isOver());
-        game.checkBattleState();
         assertEquals(0,this.game.getScore());
         assertTrue(this.game.Lost());
     }

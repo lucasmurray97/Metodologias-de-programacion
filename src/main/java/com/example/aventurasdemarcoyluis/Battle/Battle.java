@@ -9,7 +9,10 @@ import com.example.aventurasdemarcoyluis.Characters.Players.*;
 import com.example.aventurasdemarcoyluis.BagPack;
 import com.example.aventurasdemarcoyluis.Battle.BattleStates.BattleState;
 import com.example.aventurasdemarcoyluis.Battle.BattleStates.MarcosTurn;
+import com.example.aventurasdemarcoyluis.Game.Game;
+import com.example.aventurasdemarcoyluis.Game.Handlers.BattleOverHandler;
 
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,6 +31,8 @@ public class Battle {
     private Random random;
     private Character currentPlayer;
     private Character NextPlayer;
+    private final PropertyChangeSupport atBattleOver = new PropertyChangeSupport(this);
+    private Game game;
 
     /**
      * Instantiates a new Battle.
@@ -94,6 +99,11 @@ public class Battle {
         this.random = random;
     }
 
+
+    public void addObserver(BattleOverHandler resp){
+        atBattleOver.addPropertyChangeListener(resp);
+    }
+
     /**
      * Sets outcome. 1 if players won, -1 if they lost, 0 when the battle starts.
      *
@@ -101,6 +111,7 @@ public class Battle {
      */
     public void setOutcome(int outcome) {
         this.outcome = outcome;
+        atBattleOver.firePropertyChange("BATTLE_IS_OVER", 0,outcome);
     }
 
     /**
@@ -472,6 +483,8 @@ public class Battle {
     public Character getNextCharacter() {
         return this.NextPlayer;
     }
+
+
 }
 
 
