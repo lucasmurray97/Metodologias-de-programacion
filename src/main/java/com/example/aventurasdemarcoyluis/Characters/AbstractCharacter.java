@@ -1,6 +1,6 @@
 package com.example.aventurasdemarcoyluis.Characters;
 import com.example.aventurasdemarcoyluis.Characters.States.Alive;
-import com.example.aventurasdemarcoyluis.Characters.States.State;
+import com.example.aventurasdemarcoyluis.Characters.States.CharacterState;
 
 import java.lang.Math;
 import java.util.Objects;
@@ -29,17 +29,17 @@ public abstract class AbstractCharacter implements Character {
      *
      * @return the state
      */
-    public State getState() {
-        return state;
+    public CharacterState getState() {
+        return characterState;
     }
 
-    public void setState(State state) {
-        this.state = state;
-        this.state.setCharacter(this);
+    public void setState(CharacterState characterState) {
+        this.characterState = characterState;
+        this.characterState.setCharacter(this);
     }
 
     private int baseDef;
-    private State state;
+    private CharacterState characterState;
 
     /**
      * Instantiates a new Abstract character.
@@ -66,7 +66,7 @@ public abstract class AbstractCharacter implements Character {
         this.baseDef = aBaseDef;
         this.baseHp = aBaseHp;
         this.setState(new Alive());
-        this.state.setCharacter(this);
+        this.characterState.setCharacter(this);
     }
 
     /**
@@ -175,12 +175,12 @@ public abstract class AbstractCharacter implements Character {
      */
     public void setHp(int hp) {
         if(hp <= 0) {
-            this.state.knockOut();
+            this.characterState.knockOut();
             this.hp = 0;
             this.atk = 0;
         } else{
-            if(this.state.isKnockedOut()){
-                this.state.revive();
+            if(this.characterState.isKnockedOut()){
+                this.characterState.revive();
             }else{
                 if (hp>=this.maxHp){
                     this.hp = this.maxHp;
@@ -209,10 +209,10 @@ public abstract class AbstractCharacter implements Character {
      * @return the boolean
      */
     public boolean isKnockedOut() {
-        return this.state.isKnockedOut();
+        return this.characterState.isKnockedOut();
     }
     public boolean isAlive() {
-        return this.state.isAlive();
+        return this.characterState.isAlive();
     }
 
     @Override

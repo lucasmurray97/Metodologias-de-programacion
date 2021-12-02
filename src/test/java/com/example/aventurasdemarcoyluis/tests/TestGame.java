@@ -304,10 +304,8 @@ public class TestGame {
                 game.normalAttack();
             }
         }
-        assertTrue(!this.game.isInBattle());
-        assertEquals(5,this.game.getScore());
         assertTrue(game.hasWon());
-
+        assertEquals(5,this.game.getScore());
     }
     @Test
     public void testLoss(){

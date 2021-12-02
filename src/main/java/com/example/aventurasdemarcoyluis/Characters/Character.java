@@ -1,6 +1,6 @@
 package com.example.aventurasdemarcoyluis.Characters;
 
-import com.example.aventurasdemarcoyluis.Characters.States.State;
+import com.example.aventurasdemarcoyluis.Characters.States.CharacterState;
 
 /**
  * Interface for general characters, implemented by Luigi, Marcos, Boo, Spiny and Goomba.
@@ -16,9 +16,9 @@ public interface Character {
     /**
      * Sets state.
      *
-     * @param state the state
+     * @param characterState the state
      */
-    void setState(State state);
+    void setState(CharacterState characterState);
 
     /**
      * Sets hp.

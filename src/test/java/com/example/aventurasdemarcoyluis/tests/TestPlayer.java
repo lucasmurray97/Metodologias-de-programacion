@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis.tests;
 import com.example.aventurasdemarcoyluis.BagPack;
 import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
-import com.example.aventurasdemarcoyluis.Characters.States.State;
+import com.example.aventurasdemarcoyluis.Characters.States.CharacterState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -137,7 +137,7 @@ public class TestPlayer {
     }
     @Test
     public void state(){
-        testMarcos.setState(new State());
+        testMarcos.setState(new CharacterState());
         AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
            testMarcos.getState().error();
         });

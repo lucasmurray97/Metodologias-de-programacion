@@ -3,7 +3,7 @@ package com.example.aventurasdemarcoyluis.Characters.States;
 /**
  * State of a character when alive.
  */
-public class Alive extends State {
+public class Alive extends CharacterState {
     /**
      * Returns true
      * @return
