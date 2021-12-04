@@ -1,9 +1,9 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.BagPack;
-import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
-import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
-import com.example.aventurasdemarcoyluis.Characters.States.CharacterState;
+import com.example.aventurasdemarcoyluis.model.BagPack;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.model.Characters.States.CharacterState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,10 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
-import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
-import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Boo;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Goomba;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Spiny;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
