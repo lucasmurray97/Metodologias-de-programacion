@@ -3,6 +3,7 @@ package com.example.aventurasdemarcoyluis.model.Characters.Players;
 import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableByGoomba;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableBySpiny;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 
 /**
  * The type Marcos. It's a protagonist character, intended to be used by the user.
@@ -45,7 +46,7 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
      *
      * @param anEnemy the an enemy
      */
-    public void hammerAttack(AttackableByMarcos anEnemy){
+    public void hammerAttack(AttackableByMarcos anEnemy) throws InvalidCharacterActionException {
         super.hammerAttack(anEnemy);
     }
 
@@ -54,7 +55,7 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
      *
      * @param anEnemy the an enemy
      */
-    public void jumpAttack(AttackableByMarcos anEnemy){
+    public void jumpAttack(AttackableByMarcos anEnemy) throws InvalidCharacterActionException {
         super.jumpAttack(anEnemy);
     }
     @Override

@@ -6,6 +6,7 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMa
 import com.example.aventurasdemarcoyluis.model.Characters.Character;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Enemy;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Player;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 
 /**
  * A generic State of a Battle.
@@ -234,28 +235,28 @@ public class BattleState {
     /**
      * Marcos jump attack.
      */
-    public void marcosJumpAttack(){
+    public void marcosJumpAttack() throws InvalidCharacterActionException {
         error();
     }
 
     /**
      * Luigi jump attack.
      */
-    public void luigiJumpAttack(){
+    public void luigiJumpAttack() throws InvalidCharacterActionException {
         error();
     }
 
     /**
      * Marcos hammer attack.
      */
-    public void marcosHammerAttack(){
+    public void marcosHammerAttack() throws InvalidCharacterActionException {
         error();
     }
 
     /**
      * Luigi hammer attack.
      */
-    public void luigiHammerAttack(){
+    public void luigiHammerAttack() throws InvalidCharacterActionException {
         error();
     }
 

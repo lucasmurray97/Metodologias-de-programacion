@@ -26,4 +26,6 @@ module com.example.aventurasdemarcoyluis {
     opens com.example.aventurasdemarcoyluis.model.Game.GameStates to javafx.fxml;
     exports com.example.aventurasdemarcoyluis.model;
     opens com.example.aventurasdemarcoyluis.model to javafx.fxml;
+    exports com.example.aventurasdemarcoyluis.model.Game.Exceptions;
+    opens com.example.aventurasdemarcoyluis.model.Game.Exceptions to javafx.fxml;
 }

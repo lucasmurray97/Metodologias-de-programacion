@@ -1,6 +1,7 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLuigi;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 
 /**
  * State when Luigi is playing.
@@ -41,7 +42,7 @@ public class LuigisTurn extends PlayerTurn {
      * Luigi jump attack.
      */
     @Override
-    public void luigiJumpAttack(){
+    public void luigiJumpAttack() throws InvalidCharacterActionException {
         this.getBattle().getLuigi().jumpAttack(this.target);
         this.terminate();
     }/**
@@ -49,7 +50,7 @@ public class LuigisTurn extends PlayerTurn {
      */
 
     @Override
-    public void luigiHammerAttack(){
+    public void luigiHammerAttack() throws InvalidCharacterActionException {
         this.getBattle().getLuigi().hammerAttack(this.target);
         this.terminate();
     }

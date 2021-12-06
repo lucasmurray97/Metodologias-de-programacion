@@ -1,40 +1,30 @@
 package com.example.aventurasdemarcoyluis.gui;
-
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 
 public class App extends Application {
     private static final String RESOURCE_PATH = "src/main/resources/";
     private Game game;
+
     public static void main(String[] args) {
         launch(args);
     }
+
     Scene scene, marioScene;
 
     public void start(Stage primaryStage) throws Exception {
@@ -52,27 +42,39 @@ public class App extends Application {
         Scene goombaScene = new Scene(layout4, width, height);
         Scene booScene = new Scene(layout5, width, height);
         Scene spinyScene = new Scene(layout6, width, height);
-        Button button = new Button("New Game");
-        button.setOnAction(e -> {
+        ImageNodeBuilder newGameBuilder = new ImageNodeBuilder(newGameScene);
+        ImageView newgame = newGameBuilder.build(450, 300, 100, 100, RESOURCE_PATH, "newgame.jpg");
+        newgame.setPickOnBounds(true);
+        newgame.setOnMouseClicked((MouseEvent e) -> {
+            //System.out.println("New Game Started!");
             this.game = new Game();
-            this.game.levelUp();
-            this.game.createBattle();
+            this.game.addRedMushroom(3);
+            this.game.addHoneySyrup(3);
+            this.game.createBattle(4);
             primaryStage.setScene(marioScene);
             String stats = this.game.getBattle().getMarcos().toString();
-            Text marioStats = new Text (10, 55, stats);
-            marioStats.setFont(Font.font ("Comic Sans MS", FontWeight.BOLD, 15));
+            Text marioStats = new Text(10, 55, stats);
+            marioStats.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
             marioStats.setFill(Color.WHITE);
             layout2.getChildren().add(marioStats);
-            this.game.chooseTargetMarcos((AttackableByMarcos) this.game.getCharacters().get(0));
+            try {
+                showCharacters(marioScene, layout2);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                showItems(marioScene, layout2);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            //System.out.println("New Game Started!");
         });
-        button.setLayoutY(300);
-        button.setLayoutX(450);
         Button button2 = new Button("Backwards");
         button2.setOnAction(e -> {
             primaryStage.setScene(luigiScene);
             String stats = this.game.getBattle().getLuigi().toString();
-            Text luigiStats = new Text (10, 55, stats);
-            luigiStats.setFont(Font.font ("Comic Sans MS", FontWeight.BOLD, 15));
+            Text luigiStats = new Text(10, 55, stats);
+            luigiStats.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 15));
             luigiStats.setFill(Color.WHITE);
             layout3.getChildren().add(luigiStats);
         });
@@ -83,7 +85,7 @@ public class App extends Application {
             primaryStage.setScene(goombaScene);
         });
         button3.setLayoutY(300);
-        button3.setLayoutX(450);
+        button3.setLayoutX(500);
         Button button4 = new Button("Backwards");
         button4.setOnAction(e -> {
             primaryStage.setScene(booScene);
@@ -108,24 +110,14 @@ public class App extends Application {
         var background4 = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "background.jpg")));
         var background5 = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "background.jpg")));
         var background6 = new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "background.jpg")));
-        Image marioImage = new Image(new FileInputStream(RESOURCE_PATH + "mario.jpg"));
-        var mario = new ImageCursor(marioImage, marioImage.getWidth(), marioImage.getHeight());
-        Image luigiImage = new Image(new FileInputStream(RESOURCE_PATH + "luigi.png"));
-        var luigi = new ImageCursor(luigiImage, luigiImage.getWidth(), luigiImage.getHeight());
-        Image goombaImage = new Image(new FileInputStream(RESOURCE_PATH + "goomba.png"));
-        var goomba = new ImageCursor(goombaImage, goombaImage.getWidth(), goombaImage.getHeight());
-        Image booImage = new Image(new FileInputStream(RESOURCE_PATH + "boo.png"));
-        var boo = new ImageCursor(booImage, booImage.getWidth(), booImage.getHeight());
-        Image spinyImage = new Image(new FileInputStream(RESOURCE_PATH + "spiny.jpg"));
-        var spiny = new ImageCursor(spinyImage, spinyImage.getWidth(), spinyImage.getHeight());
-        Text welcome = new Text (10, 30, "Welcome to Mario and Luigi adventures!");
-        welcome.setFont(Font.font ("Comic Sans MS", FontWeight.BOLD, 30));
+        Text welcome = new Text(10, 30, "Welcome to Mario and Luigi adventures!");
+        welcome.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
         welcome.setFill(Color.WHITE);
-        Text marioText = new Text (10, 30, "It's Mario's Turn!");
-        marioText.setFont(Font.font ("Comic Sans MS", FontWeight.BOLD, 30));
+        Text marioText = new Text(10, 30, "It's Mario's Turn!");
+        marioText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
         marioText.setFill(Color.WHITE);
-        Text luigiText = new Text (10, 30, "It's Luigi's Turn!");
-        luigiText.setFont(Font.font ("Comic Sans MS", FontWeight.BOLD, 30));
+        Text luigiText = new Text(10, 30, "It's Luigi's Turn!");
+        luigiText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
         luigiText.setFill(Color.WHITE);
         layout.getChildren().add(background);
         layout2.getChildren().add(background2);
@@ -133,12 +125,7 @@ public class App extends Application {
         layout4.getChildren().add(background4);
         layout5.getChildren().add(background5);
         layout6.getChildren().add(background6);
-        marioScene.setCursor(mario);
-        luigiScene.setCursor(luigi);
-        goombaScene.setCursor(goomba);
-        booScene.setCursor(boo);
-        spinyScene.setCursor(spiny);
-        layout.getChildren().add(button);
+        layout.getChildren().add(newgame);
         layout2.getChildren().add(button2);
         layout3.getChildren().add(button3);
         layout4.getChildren().add(button4);
@@ -150,6 +137,52 @@ public class App extends Application {
         primaryStage.setTitle("Mario and Luigi");
         primaryStage.setScene(newGameScene);
         primaryStage.show();
+    }
+    public void showCharacters(Scene escena, Group layout) throws FileNotFoundException {
+        for (int i = 0; i < this.game.getCharacters().size(); i++) {
+            String type = this.game.getCharacters().get(i).getType();
+            if (type == "Marcos") {
+                    ImageNodeBuilder imageNodeBuilder = new ImageNodeBuilder(escena);
+                    layout.getChildren().add(imageNodeBuilder.build(100 + 100 * i, 500, 30, 30, RESOURCE_PATH, "mario.jpg"));
+            }else if (type == "Luigi") {
+                    ImageNodeBuilder imageNodeBuilder = new ImageNodeBuilder(escena);
+                    ImageView image = imageNodeBuilder.build(100 + 100 * i, 500, 30, 30, RESOURCE_PATH, "luigi.png");
+                    layout.getChildren().add(image);
+            } else if (type == "Goomba") {
+                    AttackableByMarcos character = (AttackableByMarcos) this.game.getCharacters().get(i);
+                    ImageNodeBuilder imageNodeBuilder = new ImageNodeBuilder(escena);
+                    ImageView image = imageNodeBuilder.build(100 + 100 * i, 500, 30, 30, RESOURCE_PATH, "goomba.png");
+                    image.setPickOnBounds(true);
+                    image.setOnMouseClicked((MouseEvent e) -> {
+                        this.game.chooseTargetMarcos(character);
+                        this.game.marcosJumpAttack();
+                        System.out.println("Click");
+                    });
+                    layout.getChildren().add(image);
+            } else if (type == "Boo") {
+                    ImageNodeBuilder imageNodeBuilder = new ImageNodeBuilder(escena);
+                    layout.getChildren().add(imageNodeBuilder.build(100 + 100 * i, 500, 30, 30, RESOURCE_PATH, "boo.png"));
+            } else if (type == "Spiny") {
+                    ImageNodeBuilder imageNodeBuilder = new ImageNodeBuilder(escena);
+                    layout.getChildren().add(imageNodeBuilder.build(100 + 100 * i, 500, 30, 30, RESOURCE_PATH, "spiny.jpg"));
+            }
+        }
+    }
+    public void showItems(Scene escena, Group layout) throws FileNotFoundException{
+        Text items = new Text(50, 570, "Items:");
+        items.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
+        items.setFill(Color.WHITE);
+        layout.getChildren().add(items);
+        for(int i=0; i< this.game.getItems().size(); i++){
+            System.out.println(this.game.getItems().get(i).getName());
+            if(this.game.getItems().get(i).getName()=="RedMushroom"){
+                ImageNodeBuilder imageNodeBuilder = new ImageNodeBuilder(escena);
+                layout.getChildren().add(imageNodeBuilder.build(100 + 100 * i, 600, 30, 30, RESOURCE_PATH, "mushroom.jpg"));
+            }else if (this.game.getItems().get(i).getName()=="HoneySyrup"){
+                ImageNodeBuilder imageNodeBuilder = new ImageNodeBuilder(escena);
+                layout.getChildren().add(imageNodeBuilder.build(100 + 100 * i, 600, 30, 30, RESOURCE_PATH, "honey.jpg"));
+            }
+        }
     }
 }
 

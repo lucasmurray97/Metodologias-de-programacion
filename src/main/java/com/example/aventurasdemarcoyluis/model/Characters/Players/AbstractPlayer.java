@@ -3,6 +3,8 @@ package com.example.aventurasdemarcoyluis.model.Characters.Players;
 import com.example.aventurasdemarcoyluis.model.Characters.AbstractCharacter;
 import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Enemy;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.ItemUnavailableException;
 import com.example.aventurasdemarcoyluis.model.Items.Item;
 
 import java.util.Random;
@@ -55,7 +57,6 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      */
     public void pickItem(Item anItem) {
         bag.addItem(anItem);
-
     }
 
     /**
@@ -70,7 +71,11 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      * @return the fp
      */
     public void useItem(String anItem){
-        bag.useItem(anItem, this);
+        try {
+            bag.useItem(anItem, this);
+        } catch (ItemUnavailableException e) {
+            e.printStackTrace();
+        }
     }
     public int getFp() {
         return fp;
@@ -127,11 +132,16 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      *
      * @param anEnemy the an enemy
      */
-    protected void jumpAttack(Enemy anEnemy){
-        this.getState().jumpAttack();
-        int damage = (int) Math.round(this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
-        anEnemy.jumpAttacked(damage, this);
-        this.setFp(this.getFp()-1);
+    protected void jumpAttack(Enemy anEnemy) throws InvalidCharacterActionException {
+        if(this.getFp()-1<0){
+            throw new InvalidCharacterActionException("Not enough Fp to perform action!");
+        }else{
+            this.getState().jumpAttack();
+            int damage = (int) Math.round(this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
+            anEnemy.jumpAttacked(damage, this);
+            this.setFp(this.getFp()-1);
+        }
+
     };
 
     /**
@@ -139,10 +149,14 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      *
      * @param anEnemy the an enemy
      */
-    protected void baseHammerAttack(Enemy anEnemy){
-        int damage = (int) Math.round(1.5 * this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
-        anEnemy.hammerAttacked(damage, this);
-        this.setFp(this.getFp()-2);
+    protected void baseHammerAttack(Enemy anEnemy) throws InvalidCharacterActionException {
+        if(this.getFp()-2>=0) {
+            int damage = (int) Math.round(1.5 * this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
+            anEnemy.hammerAttacked(damage, this);
+            this.setFp(this.getFp() - 2);
+        }else{
+            throw new InvalidCharacterActionException("Not enough fp to perform action");
+        }
     }
 
     /**
@@ -150,7 +164,7 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      *
      * @param anEnemy the an enemy
      */
-    protected void hammerAttack(Enemy anEnemy){
+    protected void hammerAttack(Enemy anEnemy) throws InvalidCharacterActionException {
         this.getState().hammerAttack();
         int rand = this.random.nextInt(4);
         if (rand==0){

@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.model;
 
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.ItemUnavailableException;
 import com.example.aventurasdemarcoyluis.model.Items.Item;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Player;
 
@@ -35,7 +36,9 @@ public class BagPack {
         }
         bag.get(name).add(anItem);
     }
-
+    public void error(){
+        throw new AssertionError("Error in items bag");
+    }
     /**
      * Uses item. In case there are items of anItems' type in the bag, they are used, and the corresponding arraylist
      * is reduced by one of it's items.
@@ -43,13 +46,14 @@ public class BagPack {
      * @param anItem  the an item
      * @param aPlayer the a player
      */
-    public void useItem(String anItem, Player aPlayer){
+    public void useItem(String anItem, Player aPlayer) throws ItemUnavailableException {
         if ((bag.containsKey(anItem))&&(bag.get(anItem).size()>0)) {
             Item item = bag.get(anItem).get(0);
             item.effect(aPlayer);
             bag.get(anItem).remove(0);
         }else{
-            throw new AssertionError("Item not contained in bag");
+            error();
+            throw new ItemUnavailableException("You currently don't have this item");
         }
     }
 

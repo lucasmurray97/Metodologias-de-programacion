@@ -4,6 +4,7 @@ import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableByBoo;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableByGoomba;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableBySpiny;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 
 /**
  * The type Luigi. It's a protagonist character, intended to be used by the user.
@@ -46,7 +47,7 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
      *
      * @param anEnemy the an enemy
      */
-    public void hammerAttack(AttackableByLuigi anEnemy){
+    public void hammerAttack(AttackableByLuigi anEnemy) throws InvalidCharacterActionException {
         super.hammerAttack(anEnemy);
     }
 
@@ -55,7 +56,7 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
      *
      * @param anEnemy the an enemy
      */
-    public void jumpAttack(AttackableByLuigi anEnemy){
+    public void jumpAttack(AttackableByLuigi anEnemy) throws InvalidCharacterActionException {
         super.jumpAttack(anEnemy);
     }
 

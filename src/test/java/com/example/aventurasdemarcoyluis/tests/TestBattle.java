@@ -8,6 +8,7 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
 import com.example.aventurasdemarcoyluis.model.Battle.BattleStates.*;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 import com.example.aventurasdemarcoyluis.model.Items.HoneySyrup;
 import com.example.aventurasdemarcoyluis.model.Items.RedMushroom;
 import com.example.aventurasdemarcoyluis.model.Items.Star;
@@ -184,7 +185,7 @@ public class TestBattle {
         assertTrue(this.battle.isEnemyTurn());
     }
     @Test
-    public void luigiStateTest(){
+    public void luigiStateTest() throws InvalidCharacterActionException {
         this.battle.getLuigi().setFp(50);
         this.battle.setState(new LuigisTurn());
         this.battle.setCurrentCharacter(testLuigi);
@@ -218,7 +219,7 @@ public class TestBattle {
         assertTrue(this.battle.isEnemyTurn());
     }
     @Test
-    public void marcosStateTest(){
+    public void marcosStateTest() throws InvalidCharacterActionException {
         this.battle.getMarcos().setFp(50);
         this.battle.setState(new MarcosTurn());
         this.battle.setCurrentCharacter(testMarcos);
@@ -270,7 +271,7 @@ public class TestBattle {
         assertEquals(3, this.battle.getEnemies().size());
     }
     @Test
-    public void firstTurnAttackTest(){
+    public void firstTurnAttackTest() throws InvalidCharacterActionException {
         testMarcos.setFp(1);
         int expectedHp = testGoomba.getHp()-(int) Math.round(testMarcos.getAtk() * (testMarcos.getLvl() / (double)testGoomba.getDef()));
         battle.chooseTargetMarcos(testGoomba);
@@ -300,7 +301,7 @@ public class TestBattle {
         assertTrue(battle.isLuigisTurn());
     }
     @Test
-    public void secondTurnTest(){
+    public void secondTurnTest() throws InvalidCharacterActionException {
         battle.terminate();
         assertEquals(testLuigi, battle.getCurrentPlayer());
         assertTrue(battle.isLuigisTurn());

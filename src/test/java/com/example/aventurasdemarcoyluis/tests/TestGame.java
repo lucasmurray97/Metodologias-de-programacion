@@ -152,10 +152,6 @@ public class TestGame {
             game.getNextPlayer();
         });
         Assertions.assertEquals("Wrong State", error18.getMessage());
-        AssertionError error19 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.checkBattleState();
-        });
-        Assertions.assertEquals("Wrong State", error19.getMessage());
         AssertionError error20 = Assertions.assertThrows(AssertionError.class, () -> {
             game.increaseScore();
         });

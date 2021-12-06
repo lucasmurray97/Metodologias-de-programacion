@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.aventurasdemarcoyluis.tests.TestGame" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-12-04T14:00:15" hostname="LAPTOP-DATE9JPB" time="0.033">
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestGame" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-12-06T14:55:10" hostname="LAPTOP-DATE9JPB" time="0.023">
   <properties/>
-  <testcase name="gameStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.012"/>
-  <testcase name="generalFunctionalities()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.005"/>
-  <testcase name="testWin()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.008"/>
+  <testcase name="gameStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.01"/>
+  <testcase name="generalFunctionalities()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.002"/>
+  <testcase name="testWin()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.005"/>
   <testcase name="testLoss()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.002"/>
-  <testcase name="battleSetUp()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.0"/>
+  <testcase name="battleSetUp()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.001"/>
   <testcase name="testBattle()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.0"/>
   <testcase name="testGameSetUp()" classname="com.example.aventurasdemarcoyluis.tests.TestGame" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

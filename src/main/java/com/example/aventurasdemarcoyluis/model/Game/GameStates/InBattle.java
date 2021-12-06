@@ -5,6 +5,8 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLu
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Player;
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
 import java.util.ArrayList;
 
@@ -65,28 +67,28 @@ public class InBattle extends GameState{
      * Marcos jump attack.
      */
     @Override
-    public void marcosJumpAttack(){
+    public void marcosJumpAttack() throws InvalidCharacterActionException {
         this.battle.marcosJumpAttack();
     }
     /**
      * Luigi jump attack.
      */
     @Override
-    public void luigiJumpAttack(){
+    public void luigiJumpAttack() throws InvalidCharacterActionException {
         this.battle.luigiJumpAttack();
     }
     /**
      * Marcos hammer attack.
      */
     @Override
-    public void marcosHammerAttack(){
+    public void marcosHammerAttack() throws InvalidCharacterActionException {
         this.battle.marcosHammerAttack();
     }
     /**
      * Luigi hammer attack.
      */
     @Override
-    public void luigiHammerAttack(){
+    public void luigiHammerAttack() throws InvalidCharacterActionException {
         this.battle.luigiHammerAttack();
     }
     /**
@@ -162,7 +164,11 @@ public class InBattle extends GameState{
     public void onBattleOver(int newValue) {
         if(newValue==1){
             this.getGame().setState(new PreparingBattle());
-            this.getGame().getState().increaseScore();
+            try {
+                this.getGame().getState().increaseScore();
+            } catch (InvalidGamePlay e) {
+                e.printStackTrace();
+            }
         }else if(newValue==-1){
             this.getGame().setState(new GameOver());
         }

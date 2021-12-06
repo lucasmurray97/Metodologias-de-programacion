@@ -2,6 +2,7 @@ package com.example.aventurasdemarcoyluis.model.Game.GameStates;
 
 import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.Handlers.BattleOverHandler;
 import com.example.aventurasdemarcoyluis.model.Items.HoneySyrup;
 import com.example.aventurasdemarcoyluis.model.Items.RedMushroom;
@@ -54,7 +55,11 @@ public class PreparingBattle extends GameState{
         Battle battle = new Battle(i, 1, this.getGame().getBagPack(), this.getGame().getLuigi(), this.getGame().getMarcos());
         this.getGame().setState(new InBattle());
         battle.addObserver(new BattleOverHandler((InBattle) this.getGame().getState()));
-        this.getGame().getState().setBattle(battle);
+        try {
+            this.getGame().getState().setBattle(battle);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         this.getGame().getLuigi().getState().revive();
         this.getGame().getMarcos().getState().revive();
     }
@@ -70,7 +75,11 @@ public class PreparingBattle extends GameState{
         battle.getState().setMarcosTurn();
         this.getGame().setState(new InBattle());
         battle.addObserver(new BattleOverHandler((InBattle) this.getGame().getState()));
-        this.getGame().getState().setBattle(battle);
+        try {
+            this.getGame().getState().setBattle(battle);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         this.getGame().getLuigi().getState().revive();
         this.getGame().getMarcos().getState().revive();
     }

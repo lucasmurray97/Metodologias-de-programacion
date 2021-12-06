@@ -9,6 +9,7 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.*;
 import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Battle.BattleStates.BattleState;
 import com.example.aventurasdemarcoyluis.model.Battle.BattleStates.MarcosTurn;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import com.example.aventurasdemarcoyluis.model.Game.Handlers.BattleOverHandler;
 
@@ -19,7 +20,7 @@ import java.util.Random;
 /**
  * The type Battle.
  */
-public class Battle {
+public class Battle implements IBattle {
     private ArrayList<Character> characters;
     private BagPack bag;
     private BattleState state;
@@ -76,6 +77,7 @@ public class Battle {
      *
      * @param aCharacter the character that goes next.
      */
+    @Override
     public void setNextCharacter(Character aCharacter) {
         this.NextPlayer = aCharacter;
     }
@@ -86,6 +88,7 @@ public class Battle {
      *
      * @return the random
      */
+    @Override
     public Random getRandom() {
         return random;
     }
@@ -95,11 +98,13 @@ public class Battle {
      *
      * @param random the random
      */
+    @Override
     public void setRandom(Random random) {
         this.random = random;
     }
 
 
+    @Override
     public void addObserver(BattleOverHandler resp){
         atBattleOver.addPropertyChangeListener(resp);
     }
@@ -109,6 +114,7 @@ public class Battle {
      *
      * @param outcome the outcome
      */
+    @Override
     public void setOutcome(int outcome) {
         this.outcome = outcome;
         atBattleOver.firePropertyChange("BATTLE_IS_OVER", 0,outcome);
@@ -119,6 +125,7 @@ public class Battle {
      *
      * @param aState the state
      */
+    @Override
     public void setState(BattleState aState) {
         this.state = aState;
         this.state.setBattle(this);
@@ -129,6 +136,7 @@ public class Battle {
      *
      * @return the state
      */
+    @Override
     public BattleState getState() {
         return this.state;
     }
@@ -138,6 +146,7 @@ public class Battle {
      *
      * @return the characters
      */
+    @Override
     public ArrayList<Character> getCharacters() {
         return this.characters;
     }
@@ -147,6 +156,7 @@ public class Battle {
      *
      * @param aCharacter the character
      */
+    @Override
     public void addCharacter(Character aCharacter){
         characters.add(aCharacter);
     }
@@ -156,6 +166,7 @@ public class Battle {
      *
      * @return the bag pack
      */
+    @Override
     public BagPack getBagPack() {
         return this.bag;
     }
@@ -165,6 +176,7 @@ public class Battle {
      *
      * @param aBag the a bag
      */
+    @Override
     public void setBagPack(BagPack aBag) {
         this.bag = aBag;
     }
@@ -175,6 +187,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isOver() {
         return this.state.isOver();
     }
@@ -184,6 +197,7 @@ public class Battle {
      *
      * @return the outcome
      */
+    @Override
     public int getOutcome() {
         return this.outcome;
     }
@@ -193,6 +207,7 @@ public class Battle {
      *
      * @return the current player
      */
+    @Override
     public Character getCurrentPlayer() {
         return this.currentPlayer;
     }
@@ -202,6 +217,7 @@ public class Battle {
      *
      * @param aCharacter the a character
      */
+    @Override
     public void setCurrentCharacter(Character aCharacter) {
         this.currentPlayer = aCharacter ;
         this.state.setCurrentCharacter(aCharacter);
@@ -213,6 +229,7 @@ public class Battle {
      *
      * @param enemy the enemy to be attacked.
      */
+    @Override
     public void chooseTargetLuigi(AttackableByLuigi enemy) {
         this.state.chooseTargetLuigi(enemy);
     }
@@ -222,6 +239,7 @@ public class Battle {
      *
      * @param enemy the enemy to be attacked.
      */
+    @Override
     public void chooseTargetMarcos(AttackableByMarcos enemy) {
         this.state.chooseTargetMarcos(enemy);
     }
@@ -231,6 +249,7 @@ public class Battle {
      *
      * @param str the item
      */
+    @Override
     public void chooseItem(String str) {
         this.state.chooseItem(str);
     }
@@ -240,6 +259,7 @@ public class Battle {
      *
      * @param aPlayer the player
      */
+    @Override
     public void choosePlayer(Player aPlayer) {
         this.state.choosePlayer(aPlayer);
     }
@@ -249,6 +269,7 @@ public class Battle {
      *
      * @param n the n
      */
+    @Override
     public void setSeed(int n) {
         this.random.setSeed(n);
     }
@@ -258,6 +279,7 @@ public class Battle {
      *
      * @return the players
      */
+    @Override
     public ArrayList<Player> getPlayers() {
         return this.players;
     }
@@ -267,6 +289,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isLuigisTurn() {
         return this.state.isLuigisTurn();
     }
@@ -276,6 +299,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isMarcosTurn() {
         return this.state.isMarcosTurn();
     }
@@ -283,6 +307,7 @@ public class Battle {
     /**
      * Terinates current turn.
      */
+    @Override
     public void terminate() {
         this.state.terminate();
     }
@@ -292,6 +317,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isEnemyTurn() {
         return this.state.isEnemyTurn();
     }
@@ -301,6 +327,7 @@ public class Battle {
      *
      * @return the enemies
      */
+    @Override
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
     }
@@ -308,6 +335,7 @@ public class Battle {
     /**
      * Check survivors. Updates characters, enemies and players currently in battle, removing knocked out ones.
      */
+    @Override
     public void checkSurvivors(){
         int n = this.getEnemies().size();
         for(int i = 0; i<n; i++){
@@ -335,6 +363,7 @@ public class Battle {
      *
      * @return luigi
      */
+    @Override
     public Luigi getLuigi(){
         return this.luigi;
     }
@@ -344,6 +373,7 @@ public class Battle {
      *
      * @return marcos
      */
+    @Override
     public Marcos getMarcos(){
         return this.marcos;
     }
@@ -351,20 +381,23 @@ public class Battle {
     /**
      * Marcos jump attack.
      */
-    public void marcosJumpAttack() {
+    @Override
+    public void marcosJumpAttack() throws InvalidCharacterActionException {
         this.state.marcosJumpAttack();
     }
 
     /**
      * Luigi jump attack.
      */
-    public void luigiJumpAttack() {
+    @Override
+    public void luigiJumpAttack() throws InvalidCharacterActionException {
         this.state.luigiJumpAttack();
     }
 
     /**
      * Normal attack.
      */
+    @Override
     public void normalAttack() {
         this.state.normalAttack();
     }
@@ -372,14 +405,16 @@ public class Battle {
     /**
      * Marcos hammer attack.
      */
-    public void marcosHammerAttack() {
+    @Override
+    public void marcosHammerAttack() throws InvalidCharacterActionException {
         this.state.marcosHammerAttack();
     }
 
     /**
      * Luigi hammer attack.
      */
-    public void luigiHammerAttack() {
+    @Override
+    public void luigiHammerAttack() throws InvalidCharacterActionException {
         this.state.luigiHammerAttack();
     }
 
@@ -388,6 +423,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isBooTurn() {
         return this.state.isBooTurn();
     }
@@ -397,6 +433,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isGoombaTurn() {
         return this.state.isGoombaTurn();
     }
@@ -406,6 +443,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isSpinyTurn() {
         return this.state.isSpinyTurn();
     }
@@ -415,6 +453,7 @@ public class Battle {
      *
      * @return the boolean
      */
+    @Override
     public boolean isPlayerTurn() {
         return state.isPlayerTurn();
     }
@@ -424,6 +463,7 @@ public class Battle {
      *
      * @param anEnemy the enemy to be added.
      */
+    @Override
     public void addEnemy(Enemy anEnemy) {
         this.getEnemies().add(anEnemy);
         this.addCharacter(anEnemy);
@@ -434,6 +474,7 @@ public class Battle {
      *
      * @param aPlayer the player
      */
+    @Override
     public void addPlayer(Player aPlayer) {
         this.getPlayers().add(aPlayer);
         this.addCharacter(aPlayer);
@@ -444,6 +485,7 @@ public class Battle {
      *
      * @param aMarcos the marcos
      */
+    @Override
     public void addMarcos(Marcos aMarcos) {
         this.addPlayer(aMarcos);
         this.marcos = aMarcos;
@@ -454,6 +496,7 @@ public class Battle {
      *
      * @param aLuigi the luigi
      */
+    @Override
     public void addLuigi(Luigi aLuigi) {
         this.addPlayer(aLuigi);
         this.luigi = aLuigi;
@@ -464,6 +507,7 @@ public class Battle {
      *
      * @param level the level of the enemy to be added.
      */
+    @Override
     public void addRandomEnemy(int level) {
         int randomNumber = random.nextInt(3);
         if (randomNumber == 0){
@@ -480,6 +524,7 @@ public class Battle {
      *
      * @return the next character
      */
+    @Override
     public Character getNextCharacter() {
         return this.NextPlayer;
     }

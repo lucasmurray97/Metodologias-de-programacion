@@ -1,6 +1,7 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMarcos;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 
 /**
  * State when Marcos is playing.
@@ -48,7 +49,7 @@ public class MarcosTurn extends PlayerTurn {
      * Marcos jump attack.
      */
     @Override
-    public void marcosJumpAttack(){
+    public void marcosJumpAttack() throws InvalidCharacterActionException {
         this.getBattle().getMarcos().jumpAttack(this.target);
         terminate();
     }
@@ -56,7 +57,7 @@ public class MarcosTurn extends PlayerTurn {
      * Marcos hammer attack.
      */
     @Override
-    public void marcosHammerAttack(){
+    public void marcosHammerAttack() throws InvalidCharacterActionException {
         this.getBattle().getMarcos().hammerAttack(this.target);
         terminate();
     }

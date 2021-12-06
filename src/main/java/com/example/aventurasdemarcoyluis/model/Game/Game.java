@@ -1,9 +1,13 @@
 package com.example.aventurasdemarcoyluis.model.Game;
 
 import com.example.aventurasdemarcoyluis.model.BagPack;
+import com.example.aventurasdemarcoyluis.model.Battle.IBattle;
+import com.example.aventurasdemarcoyluis.model.Battle.NullBattle;
 import com.example.aventurasdemarcoyluis.model.Characters.Character;
+import com.example.aventurasdemarcoyluis.model.Characters.NullCharacter;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.*;
-import com.example.aventurasdemarcoyluis.model.Battle.Battle;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.GameStates.GameState;
 import com.example.aventurasdemarcoyluis.model.Game.GameStates.PreparingBattle;
 import com.example.aventurasdemarcoyluis.model.Items.Item;
@@ -103,7 +107,11 @@ public class Game {
      * @param i is the quantity of the item to be added.
      */
     public void addRedMushroom(int i) {
-        this.state.addRedMushroom(i);
+        try {
+            this.state.addRedMushroom(i);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -112,7 +120,11 @@ public class Game {
      * @param i the is the quantity of the item to be added.
      */
     public void addHoneySyrup(int i) {
-        this.state.addHoneySyrup(i);
+        try {
+            this.state.addHoneySyrup(i);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -121,14 +133,22 @@ public class Game {
      * @param i is the number of random enemies to be created.
      */
     public void createBattle(int i) {
-        this.state.createBattle(i);
+        try {
+            this.state.createBattle(i);
+        }catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Creates an "empty battle", intended for enemies to be added manually.
      */
     public void createBattle() {
-        this.state.createBattle();
+        try {
+            this.state.createBattle();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -136,8 +156,13 @@ public class Game {
      *
      * @return the battle
      */
-    public Battle getBattle(){
-        return this.state.getBattle();
+    public IBattle getBattle(){
+        try {
+            return this.state.getBattle();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+            return new NullBattle();
+        }
     }
 
     /**
@@ -146,21 +171,33 @@ public class Game {
      * @param enemy the enemy
      */
     public void chooseTargetMarcos(AttackableByMarcos enemy) {
-        this.state.chooseTargetMarcos(enemy);
+        try {
+            this.state.chooseTargetMarcos(enemy);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Marcos jump attack.
      */
     public void marcosJumpAttack() {
-        this.state.marcosJumpAttack();
+        try {
+            this.state.marcosJumpAttack();
+        } catch (InvalidGamePlay | InvalidCharacterActionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Normal attack, performed by an enemy.
      */
     public void normalAttack() {
-        this.state.normalAttack();
+        try {
+            this.state.normalAttack();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -169,14 +206,22 @@ public class Game {
      * @param enemy the enemy
      */
     public void chooseTargetLuigi(AttackableByLuigi enemy) {
-        this.state.chooseTargetLuigi(enemy);
+        try {
+            this.state.chooseTargetLuigi(enemy);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Luigi jump attack.
      */
     public void luigiJumpAttack() {
-        this.state.luigiJumpAttack();
+        try {
+            this.state.luigiJumpAttack();
+        } catch (InvalidGamePlay | InvalidCharacterActionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -185,7 +230,12 @@ public class Game {
      * @return the array list
      */
     public ArrayList<Character> getCharacters(){
-        return this.state.getCharacters();
+        try {
+            return this.state.getCharacters();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     /**
@@ -194,7 +244,12 @@ public class Game {
      * @return the character
      */
     public Character getCurrentPlayer(){
-        return this.state.getCurrentPlayer();
+        try {
+            return this.state.getCurrentPlayer();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+            return new NullCharacter();
+        }
     }
 
     /**
@@ -203,15 +258,14 @@ public class Game {
      * @return the character
      */
     public Character getNextPlayer(){
-        return this.state.getNextCharacter();
+        try {
+            return this.state.getNextCharacter();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+            return new NullCharacter();
+        }
     }
 
-    /**
-     * Check battle state. Weather it's over or still being played.
-     */
-    public void checkBattleState(){
-        this.state.checkBattleState();
-    }
 
     /**
      * Adds a random enemy.
@@ -219,7 +273,11 @@ public class Game {
      * @param level the level of the random enemie.
      */
     public void addRandomEnemy(int level){
-        this.state.addRandomEnemy(level);
+        try {
+            this.state.addRandomEnemy(level);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -235,14 +293,22 @@ public class Game {
      * Marcos hammer attack.
      */
     public void marcosHammerAttack() {
-        this.state.marcosHammerAttack();
+        try {
+            this.state.marcosHammerAttack();
+        } catch (InvalidGamePlay | InvalidCharacterActionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Luigi hammer attack.
      */
     public void luigiHammerAttack() {
-        this.state.luigiHammerAttack();
+        try {
+            this.state.luigiHammerAttack();
+        } catch (InvalidGamePlay | InvalidCharacterActionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -251,7 +317,11 @@ public class Game {
      * @param str the str
      */
     public void chooseItem(String str) {
-        this.state.chooseItem(str);
+        try {
+            this.state.chooseItem(str);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -260,28 +330,44 @@ public class Game {
      * @param aPlayer the player
      */
     public void choosePlayer(Player aPlayer){
-        this.state.choosePlayer(aPlayer);
+        try {
+            this.state.choosePlayer(aPlayer);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Terminates current turn, if in battle.
      */
     public void terminate() {
-        this.state.terminate();
+        try {
+            this.state.terminate();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Level up, increases the players level by one.
      */
     public void levelUp() {
-        this.state.levelUp();
+        try {
+            this.state.levelUp();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Increase score. Increases the score by one.
      */
     public void increaseScore() {
-        this.state.increaseScore();
+        try {
+            this.state.increaseScore();
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
     }
 
     /**
