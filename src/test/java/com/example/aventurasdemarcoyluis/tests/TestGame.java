@@ -29,7 +29,7 @@ public class TestGame {
     private Game game;
     @BeforeEach
     public void setUp() {
-        this.game = new Game();
+        this.game = new Game("test");
     }
     @Test
     public void testGameSetUp(){

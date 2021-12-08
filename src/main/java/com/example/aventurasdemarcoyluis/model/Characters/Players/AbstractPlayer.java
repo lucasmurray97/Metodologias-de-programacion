@@ -149,14 +149,9 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      *
      * @param anEnemy the an enemy
      */
-    protected void baseHammerAttack(Enemy anEnemy) throws InvalidCharacterActionException {
-        if(this.getFp()-2>=0) {
-            int damage = (int) Math.round(1.5 * this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
-            anEnemy.hammerAttacked(damage, this);
-            this.setFp(this.getFp() - 2);
-        }else{
-            throw new InvalidCharacterActionException("Not enough fp to perform action");
-        }
+    protected void baseHammerAttack(Enemy anEnemy){
+        int damage = (int) Math.round(1.5 * this.getAtk() * (this.getLvl() / (double) anEnemy.getDef()));
+        anEnemy.hammerAttacked(damage, this);
     }
 
     /**
@@ -166,9 +161,14 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      */
     protected void hammerAttack(Enemy anEnemy) throws InvalidCharacterActionException {
         this.getState().hammerAttack();
-        int rand = this.random.nextInt(4);
-        if (rand==0){
-            baseHammerAttack(anEnemy);
+        if(this.getFp()-2>=0) {
+            this.setFp(this.getFp() - 2);
+            int rand = this.random.nextInt(4);
+            if (rand == 0) {
+                baseHammerAttack(anEnemy);
+            }
+        }else {
+            throw new InvalidCharacterActionException("Not enough fp to perform action");
         }
     }
 

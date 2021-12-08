@@ -225,7 +225,7 @@ public abstract class AbstractCharacter implements Character {
 
     @Override
     public String toString() {
-        return "" + type + ": lvl = "+this.getLvl()+", atk = "+this.getAtk()+", def = "+this.getDef()+", hp = "+this.getDef()+", isKnockedOut = "+this.isKnockedOut();
+        return "" + type + ": lvl = "+this.getLvl()+", atk = "+this.getAtk()+", def = "+this.getDef()+", hp = "+this.getHp()+", isKnockedOut = "+this.isKnockedOut();
     }
 
     @Override

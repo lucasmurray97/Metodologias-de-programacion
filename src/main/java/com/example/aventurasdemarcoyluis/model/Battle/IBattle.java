@@ -98,5 +98,7 @@ public interface IBattle {
 
     void addRandomEnemy(int level);
 
+    void addRandomEnemy(int level, int hp, int atk, int def);
+
     Character getNextCharacter();
 }

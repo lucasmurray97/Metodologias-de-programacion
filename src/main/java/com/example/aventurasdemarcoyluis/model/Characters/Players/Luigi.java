@@ -19,6 +19,10 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
         super(lvl, "Luigi", 100, 100, 100);
     }
 
+    public Luigi(int lvl, int baseHp, int baseAtk, int baseDef) {
+        super(lvl, "Luigi", baseHp, baseAtk, baseDef);
+    }
+
     /**
      * Instantiates a new Luigi, base points are settable now and includes bag binding.
      *

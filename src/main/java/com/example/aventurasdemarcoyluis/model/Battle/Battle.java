@@ -54,7 +54,7 @@ public class Battle implements IBattle {
         this.addMarcos(marcos);
         this.addLuigi(luigi);
         for(int i=0; i<randomEnemies; i++){
-            this.addRandomEnemy(level);
+            this.addRandomEnemy(level, 10, 10, 10);
         }
         this.setState(new MarcosTurn());
         this.getState().setMarcosTurn();
@@ -518,6 +518,19 @@ public class Battle implements IBattle {
             this.addEnemy(new Spiny(level));
         }
     }
+
+    @Override
+    public void addRandomEnemy(int level, int hp, int atk, int def) {
+        int randomNumber = random.nextInt(3);
+        if (randomNumber == 0){
+            this.addEnemy(new Goomba(level, hp, atk, def));
+        }else if(randomNumber == 1){
+            this.addEnemy(new Boo(level, hp, atk, def));
+        }else{
+            this.addEnemy(new Spiny(level, hp, atk, def));
+        }
+    }
+
 
     /**
      * Gets next character to play.

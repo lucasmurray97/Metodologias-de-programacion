@@ -227,6 +227,11 @@ public class NullBattle implements IBattle{
     }
 
     @Override
+    public void addRandomEnemy(int level, int hp, int atk, int def) {
+
+    }
+
+    @Override
     public Character getNextCharacter() {
         return null;
     }

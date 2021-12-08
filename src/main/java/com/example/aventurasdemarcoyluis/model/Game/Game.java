@@ -29,8 +29,18 @@ public class Game {
      */
     public Game(){
         this.score = 0;
-        this.luigi = new Luigi(1);
-        this.marcos = new Marcos(1);
+        this.luigi = new Luigi(1, 30, 100, 100);
+        this.marcos = new Marcos(1, 30, 100, 100);
+        this.bag = new BagPack();
+        this.luigi.setBag(this.bag);
+        this.marcos.setBag(this.bag);
+        this.setState(new PreparingBattle());
+    }
+
+    public Game(String test){
+        this.score = 0;
+        this.luigi = new Luigi(1, 100, 100, 100);
+        this.marcos = new Marcos(1, 100, 100, 100);
         this.bag = new BagPack();
         this.luigi.setBag(this.bag);
         this.marcos.setBag(this.bag);

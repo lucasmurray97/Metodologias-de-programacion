@@ -18,6 +18,7 @@ public class Boo extends AbstractEnemy implements AttackableByMarcos {
         super(lvl, "Boo", 100, 100, 100);
     }
 
+
     /**
      * Instantiates a new Boo, base points are settable now. Default method for testing.
      *
