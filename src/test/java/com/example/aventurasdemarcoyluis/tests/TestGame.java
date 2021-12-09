@@ -176,13 +176,13 @@ public class TestGame {
     }
     @Test
     public void testBattle(){
-        game.getLuigi().setFp(10);
-        game.getMarcos().setFp(10);
         Random random = new Random();
         random.setSeed(2);
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
         game.createBattle();
+        game.getLuigi().setFp(10);
+        game.getMarcos().setFp(10);
         assertTrue(game.isInBattle());
         game.setSeed(2);
         game.addRandomEnemy(1);
@@ -204,9 +204,9 @@ public class TestGame {
         random.setSeed(1);
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
+        game.createBattle();
         game.getLuigi().setFp(300);
         game.getMarcos().setFp(300);
-        game.createBattle();
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
         while(game.isInBattle()){
@@ -227,6 +227,8 @@ public class TestGame {
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
         game.createBattle();
+        game.getLuigi().setFp(300);
+        game.getMarcos().setFp(300);
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
         while(game.isInBattle()) {
@@ -247,6 +249,8 @@ public class TestGame {
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
         game.createBattle();
+        game.getLuigi().setFp(300);
+        game.getMarcos().setFp(300);
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
         while(game.isInBattle()) {
@@ -267,6 +271,8 @@ public class TestGame {
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
         game.createBattle();
+        game.getLuigi().setFp(300);
+        game.getMarcos().setFp(300);
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
         while(game.isInBattle()) {
@@ -287,6 +293,8 @@ public class TestGame {
         game.addRedMushroom(3);
         game.addHoneySyrup(3);
         game.createBattle();
+        game.getLuigi().setFp(300);
+        game.getMarcos().setFp(300);
         game.getBattle().setSeed(1);
         game.addRandomEnemy(1);
         while(game.isInBattle()) {

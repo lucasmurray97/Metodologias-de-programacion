@@ -27,6 +27,7 @@ public class App extends Application {
     int width = 1000;
     int height = 700;
     int gameCount = 0;
+    Group victoryLayout = new Group();
     Group gameOverLayout = new Group();
     Group marioChooseLayout = new Group();
     Group marioChooseItemLayout= new Group();
@@ -38,6 +39,7 @@ public class App extends Application {
     Group luigiChoosePlayerLayout= new Group();
     Group luigiChooseVictimLayout= new Group();
     Group luigiChooseAttackLayout= new Group();
+    Scene victoryScene = new Scene(victoryLayout);
     Scene gameOverScene = new Scene(gameOverLayout);
     Scene marioChooseScene = new Scene(marioChooseLayout);
     Scene marioChooseItemScene= new Scene(marioChooseItemLayout);
@@ -134,6 +136,12 @@ public class App extends Application {
             gameOverLayout.getChildren().addAll(background,gameover);
             primaryStage.setScene(gameOverScene);
         }else if (this.game.hasWon()){
+            System.out.println("You Won!");
+            ImageNodeBuilder backgroundBuilder = new ImageNodeBuilder(victoryScene);
+            ImageView background = backgroundBuilder.build(0, 0,width , height, RESOURCE_PATH, "background2.jpg");
+            ImageView gameover = backgroundBuilder.build(300, 220,400 , 200, RESOURCE_PATH, "victory.jpg");
+            gameOverLayout.getChildren().addAll(background,gameover);
+            primaryStage.setScene(gameOverScene);
 
         }else{
             this.gameCount++;
