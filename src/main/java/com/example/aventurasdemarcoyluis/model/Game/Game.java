@@ -29,8 +29,8 @@ public class Game {
      */
     public Game(){
         this.score = 0;
-        this.luigi = new Luigi(1, 30, 100, 100);
-        this.marcos = new Marcos(1, 30, 100, 100);
+        this.luigi = new Luigi(1, 30, 100, 50, 20);
+        this.marcos = new Marcos(1, 30, 100, 50, 20);
         this.bag = new BagPack();
         this.luigi.setBag(this.bag);
         this.marcos.setBag(this.bag);
@@ -39,8 +39,8 @@ public class Game {
 
     public Game(String test){
         this.score = 0;
-        this.luigi = new Luigi(1, 100, 100, 100);
-        this.marcos = new Marcos(1, 100, 100, 100);
+        this.luigi = new Luigi(1, 100, 100, 100, 0);
+        this.marcos = new Marcos(1, 100, 100, 100, 0);
         this.bag = new BagPack();
         this.luigi.setBag(this.bag);
         this.marcos.setBag(this.bag);

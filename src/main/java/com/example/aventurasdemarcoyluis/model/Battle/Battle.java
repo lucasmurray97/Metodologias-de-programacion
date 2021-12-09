@@ -54,7 +54,7 @@ public class Battle implements IBattle {
         this.addMarcos(marcos);
         this.addLuigi(luigi);
         for(int i=0; i<randomEnemies; i++){
-            this.addRandomEnemy(level, 10, 10, 10);
+            this.addRandomEnemy(level, 10, 50, 20);
         }
         this.setState(new MarcosTurn());
         this.getState().setMarcosTurn();
@@ -340,7 +340,6 @@ public class Battle implements IBattle {
         int n = this.getEnemies().size();
         for(int i = 0; i<n; i++){
             if (this.getEnemies().get(i).isKnockedOut()) {
-                this.getCharacters().remove(this.getEnemies().get(i));
                 this.getCharacters().remove(this.getEnemies().get(i));
                 this.getEnemies().remove(this.getEnemies().get(i));
                 i--;

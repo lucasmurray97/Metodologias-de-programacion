@@ -70,6 +70,7 @@ public class App extends Application {
         int j = 0;
         for (int i = 0; i<this.game.getCharacters().size(); i++){
             Character character = this.game.getCharacters().get(i);
+            System.out.println(character);
             if(character.equals(this.game.getLuigi())){
                 Text text = new Text(20, 95, character.toString()+", Fp: "+this.game.getLuigi().getFp());
                 text.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
@@ -146,6 +147,7 @@ public class App extends Application {
             }else{
                 this.game.createBattle(6);
             }
+            this.createPlayerInterface(primaryStage);
         }
     }
     public void createMariochoose(Stage primaryStage) throws FileNotFoundException {
@@ -376,6 +378,7 @@ public class App extends Application {
                         ex.printStackTrace();
                     }
                     primaryStage.setScene(marioChooseAttackScene);
+                    System.out.println(enemy + " was chosen");
                     this.game.chooseTargetMarcos((AttackableByMarcos) enemy);
                     Button buttonJump = new Button("Jump Attack");
                     buttonJump.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
@@ -398,6 +401,7 @@ public class App extends Application {
                     buttonHammer.setLayoutX(600);
                     buttonHammer.setLayoutY(450);
                     buttonHammer.setOnMouseClicked((MouseEvent ev) -> {
+                        System.out.println("Marcos Hammer Attacked");
                         this.game.marcosHammerAttack();
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {
@@ -437,6 +441,7 @@ public class App extends Application {
                         ex.printStackTrace();
                     }
                     primaryStage.setScene(luigiChooseAttackScene);
+                    System.out.println(enemy + " was chosen");
                     this.game.chooseTargetLuigi((AttackableByLuigi) enemy);
                     Button buttonJump = new Button("Jump Attack");
                     buttonJump.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
@@ -459,6 +464,7 @@ public class App extends Application {
                     buttonHammer.setLayoutX(600);
                     buttonHammer.setLayoutY(450);
                     buttonHammer.setOnMouseClicked((MouseEvent ev) -> {
+                        System.out.println("Luigi Hammer Attacked");
                         this.game.luigiHammerAttack();
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {

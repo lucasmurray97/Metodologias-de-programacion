@@ -16,11 +16,13 @@ import java.util.Random;
  */
 public abstract class AbstractPlayer extends AbstractCharacter implements Player {
     private int fp;
+    private int maxFp;
+    private int baseFp;
     private BagPack bag;
     private Random random;
 
     /**
-     * Instantiates a new Protagonist, setting it's fp to 0. An empty bag is instantiated with him.
+     * Instantiates a new Protagonist..
      *
      * @param lvl     the level
      * @param type    the type
@@ -28,9 +30,13 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      * @param baseAtk the base atk
      * @param baseDef the base def
      */
-    public AbstractPlayer(int lvl, String type, int baseHp, int baseAtk, int baseDef) {
+
+
+    public AbstractPlayer(int lvl, String type, int baseHp, int baseAtk, int baseDef, int baseFp) {
         super(lvl, type, baseHp, baseAtk, baseDef);
-        this.fp = 0;
+        this.maxFp = (int) Math.round(baseFp*Math.pow(1.15,this.getLvl()-1));
+        this.fp = maxFp;
+        this.baseFp=baseFp;
         this.random = new Random();
     }
 
@@ -185,5 +191,10 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
     public void normalAttacked(int damage, Enemy anEnemy){
         this.getState().normalAttacked();
         this.setHp(this.getHp()-damage);
-    };
+    }
+    @Override
+    public void setLvl(int lvl){
+        super.setLvl(lvl);
+        this.maxFp = (int) Math.round(this.baseFp*Math.pow(1.15,this.getLvl()-1));
+    }
 }

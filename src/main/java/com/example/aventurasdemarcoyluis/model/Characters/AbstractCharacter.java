@@ -110,7 +110,6 @@ public abstract class AbstractCharacter implements Character {
         this.maxHp = (int) Math.round(this.baseHp*Math.pow(1.15,this.lvl-1));
         this.maxAtk = (int) Math.round(this.baseAtk*Math.pow(1.15,this.lvl-1));
         this.maxDef = (int) Math.round(this.baseDef*Math.pow(1.15,this.lvl-1));
-        ;
     }
 
     /**

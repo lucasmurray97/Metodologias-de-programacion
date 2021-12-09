@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.aventurasdemarcoyluis.tests.TestBattle" tests="19" skipped="0" failures="0" errors="0" timestamp="2021-12-08T14:24:51" hostname="LAPTOP-DATE9JPB" time="0.018">
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestBattle" tests="19" skipped="0" failures="0" errors="0" timestamp="2021-12-09T12:30:53" hostname="LAPTOP-DATE9JPB" time="0.019">
   <properties/>
-  <testcase name="luigiStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.002"/>
+  <testcase name="luigiStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.003"/>
   <testcase name="firstTurnItemTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="firstTurnPassTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="testEnemiesDeath2()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.002"/>
-  <testcase name="generalFunctionalitiesTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="testEnemiesDeath2()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="generalFunctionalitiesTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
   <testcase name="battleStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="startOfBattleTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="testPlayerDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="thirdTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="testEnemiesDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="secondTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="firstTurnAttackTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="startOfBattleTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="testPlayerDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="thirdTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="testEnemiesDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="secondTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="firstTurnAttackTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
   <testcase name="testLuigiDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
   <testcase name="enemyTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="marcosStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="goombaStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="marcosStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="goombaStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="spinyStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
   <testcase name="booStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
   <testcase name="overStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
