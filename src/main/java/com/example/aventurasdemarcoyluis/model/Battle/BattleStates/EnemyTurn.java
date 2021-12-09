@@ -1,6 +1,7 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Enemy;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,7 +21,7 @@ public class EnemyTurn extends BattleState {
      * else if Marcos alive, sets turn to MarcosTurn, else to LuigisTurn.
      */
     @Override
-    public void terminate() {
+    public void terminate() throws InvalidGamePlay {
         if (!isLuigiAlive() && !isMarcosAlive()){
             this.changeState(new Over());
             this.getBattle().setOutcome(-1);
@@ -55,7 +56,7 @@ public class EnemyTurn extends BattleState {
      * Set's generic EnemyTurn to specific enemy turn.
      */
     @Override
-    public void setEnemyTurn(){
+    public void setEnemyTurn() throws InvalidGamePlay {
         ArrayList<Enemy> enemies = this.getBattle().getEnemies();
         Enemy attacker = enemies.get(this.getCurrent());
         int n = this.getCurrent();

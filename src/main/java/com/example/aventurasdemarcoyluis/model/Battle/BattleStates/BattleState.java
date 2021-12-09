@@ -1,12 +1,15 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.UnattackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.model.Characters.Character;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Enemy;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Player;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidArgument;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
 /**
  * A generic State of a Battle.
@@ -127,14 +130,14 @@ public class BattleState {
     /**
      * Throws an assertion error with the message "Wrong State"
      */
-    void error(){
-        throw new AssertionError("Wrong State");
+    void error() throws InvalidGamePlay {
+        throw new InvalidGamePlay("Wrong State");
     }
 
     /**
      * Terminates current turn.
      */
-    public void terminate() {
+    public void terminate() throws InvalidGamePlay {
         error();
     }
 
@@ -143,7 +146,7 @@ public class BattleState {
      *
      * @param str the item
      */
-    public void chooseItem(String str) {
+    public void chooseItem(String str) throws InvalidGamePlay {
         error();
     }
 
@@ -153,7 +156,7 @@ public class BattleState {
      *
      * @param enemy the enemy to be attacked.
      */
-    public void chooseTargetMarcos(AttackableByMarcos enemy) {
+    public void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay {
         error();
     }
 
@@ -162,7 +165,7 @@ public class BattleState {
      *
      * @param enemy the enemy to be attacked.
      */
-    public void chooseTargetLuigi(AttackableByLuigi enemy) {
+    public void chooseTargetLuigi(AttackableByLuigi enemy) throws InvalidGamePlay {
         error();
     }
 
@@ -172,7 +175,7 @@ public class BattleState {
      *
      * @param aPlayer the player
      */
-    public void choosePlayer(Player aPlayer) {
+    public void choosePlayer(Player aPlayer) throws InvalidGamePlay {
         error();
     }
 
@@ -221,42 +224,42 @@ public class BattleState {
     /**
      * Prepares an enemy turn.
      */
-    public void setEnemyTurn(){
+    public void setEnemyTurn() throws InvalidGamePlay {
         error();
     }
 
     /**
      * Normal attack performed by an enemy.
      */
-    public void normalAttack() {
+    public void normalAttack() throws InvalidGamePlay {
         error();
     }
 
     /**
      * Marcos jump attack.
      */
-    public void marcosJumpAttack() throws InvalidCharacterActionException {
+    public void marcosJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
     }
 
     /**
      * Luigi jump attack.
      */
-    public void luigiJumpAttack() throws InvalidCharacterActionException {
+    public void luigiJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
     }
 
     /**
      * Marcos hammer attack.
      */
-    public void marcosHammerAttack() throws InvalidCharacterActionException {
+    public void marcosHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
     }
 
     /**
      * Luigi hammer attack.
      */
-    public void luigiHammerAttack() throws InvalidCharacterActionException {
+    public void luigiHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
     }
 
@@ -265,7 +268,7 @@ public class BattleState {
      *
      * @param i the count
      */
-    public void setCurrent(int i) {
+    public void setCurrent(int i) throws InvalidGamePlay {
         error();
     }
 
@@ -274,7 +277,7 @@ public class BattleState {
      *
      * @return the current count.
      */
-    public int getCurrent() {
+    public int getCurrent() throws InvalidGamePlay {
         error();
         return 0;
     }
@@ -282,14 +285,18 @@ public class BattleState {
     /**
      * Prepares marcos turn.
      */
-    public void setMarcosTurn(){
+    public void setMarcosTurn() throws InvalidGamePlay {
         error();
     }
 
     /**
      * Prepares luigis turn.
      */
-    public void setLuigisTurn(){
+    public void setLuigisTurn() throws InvalidGamePlay {
+        error();
+    }
+
+    public void chooseTargetLuigi(UnattackableByLuigi enemy) throws InvalidArgument, InvalidGamePlay {
         error();
     }
 }

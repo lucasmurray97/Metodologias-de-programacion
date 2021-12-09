@@ -3,6 +3,7 @@ import com.example.aventurasdemarcoyluis.model.Characters.Character;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import com.example.aventurasdemarcoyluis.model.Items.Item;
 import javafx.application.Application;
@@ -55,11 +56,16 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public void createbasicLayoutMain(Group layout,Scene scene) throws FileNotFoundException {
+    public void createbasicLayoutMain(Group layout,Scene scene) throws FileNotFoundException, InvalidGamePlay {
         layout.getChildren().removeAll();
         ImageNodeBuilder backgroundBuilder = new ImageNodeBuilder(scene);
         ImageView background = backgroundBuilder.build(0, 0,width , height, RESOURCE_PATH, "background2.jpg");
-        Text marioText = new Text(10, 30, "It's "+ this.game.getCurrentPlayer().getType()+"'s turn!");
+        Text marioText = null;
+        try {
+            marioText = new Text(10, 30, "It's "+ this.game.getCurrentPlayer().getType()+"'s turn!");
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         marioText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 30));
         marioText.setFill(Color.WHITE);
         Text playersText = new Text(20, 70, "Players:");
@@ -116,14 +122,23 @@ public class App extends Application {
     }
     public void createPlayerInterface(Stage primaryStage) throws FileNotFoundException {
         if(this.game.isInBattle()){
-            Character currentCharacter = this.game.getCurrentPlayer();
+            Character currentCharacter = null;
+            try {
+                currentCharacter = this.game.getCurrentPlayer();
+            } catch (InvalidGamePlay e) {
+                e.printStackTrace();
+            }
             System.out.println(currentCharacter);
             if(currentCharacter.getType()=="Marcos"){
                 createMariochoose(primaryStage);
             }else if(currentCharacter.getType()=="Luigi"){
                 createLuigichoose(primaryStage);
             }else{
-                this.game.normalAttack();
+                try {
+                    this.game.normalAttack();
+                } catch (InvalidGamePlay e) {
+                    e.printStackTrace();
+                }
                 System.out.println(this.game.getMarcos());
                 System.out.println(this.game.getLuigi());
                 createPlayerInterface(primaryStage);
@@ -145,21 +160,49 @@ public class App extends Application {
 
         }else{
             this.gameCount++;
-            game.levelUp();
-            game.addRedMushroom(1);
-            game.addHoneySyrup(1);
+            try {
+                game.levelUp();
+            } catch (InvalidGamePlay e) {
+                e.printStackTrace();
+            }
+            try {
+                game.addRedMushroom(1);
+            } catch (InvalidGamePlay e) {
+                e.printStackTrace();
+            }
+            try {
+                game.addHoneySyrup(1);
+            } catch (InvalidGamePlay e) {
+                e.printStackTrace();
+            }
             if(gameCount==1){
-                this.game.createBattle(3);
+                try {
+                    this.game.createBattle(3);
+                } catch (InvalidGamePlay e) {
+                    e.printStackTrace();
+                }
             }else if(gameCount==2|gameCount==3){
-                this.game.createBattle(5);
+                try {
+                    this.game.createBattle(5);
+                } catch (InvalidGamePlay e) {
+                    e.printStackTrace();
+                }
             }else{
-                this.game.createBattle(6);
+                try {
+                    this.game.createBattle(6);
+                } catch (InvalidGamePlay e) {
+                    e.printStackTrace();
+                }
             }
             this.createPlayerInterface(primaryStage);
         }
     }
     public void createMariochoose(Stage primaryStage) throws FileNotFoundException {
-        createbasicLayoutMain(marioChooseLayout, marioChooseScene);
+        try {
+            createbasicLayoutMain(marioChooseLayout, marioChooseScene);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         primaryStage.setScene(marioChooseScene);
         this.showItems(marioChooseLayout, 375);
         Button attack = new Button("Attack");
@@ -177,7 +220,7 @@ public class App extends Application {
         attack.setOnMouseClicked((MouseEvent e) -> {
             try {
                 createMarioAttack(primaryStage);
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException | InvalidGamePlay ex) {
                 ex.printStackTrace();
             }
         });
@@ -190,7 +233,11 @@ public class App extends Application {
             }
         });
         pass.setOnMouseClicked((MouseEvent e) -> {
-            this.game.terminate();
+            try {
+                this.game.terminate();
+            } catch (InvalidGamePlay ex) {
+                ex.printStackTrace();
+            }
             try {
                 createPlayerInterface(primaryStage);
             } catch (FileNotFoundException ex) {
@@ -201,7 +248,11 @@ public class App extends Application {
     }
 
     private void createLuigichoose(Stage primaryStage) throws FileNotFoundException {
-        createbasicLayoutMain(luigiChooseLayout, luigiChooseScene);
+        try {
+            createbasicLayoutMain(luigiChooseLayout, luigiChooseScene);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         primaryStage.setScene(luigiChooseScene);
         this.showItems(luigiChooseLayout, 375);
         Button attack = new Button("Attack");
@@ -219,7 +270,7 @@ public class App extends Application {
         attack.setOnMouseClicked((MouseEvent e) -> {
             try {
                 createLuigiAttack(primaryStage);
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException | InvalidGamePlay ex) {
                 ex.printStackTrace();
             }
         });
@@ -231,7 +282,11 @@ public class App extends Application {
             }
         });
         pass.setOnMouseClicked((MouseEvent e) -> {
-            this.game.terminate();
+            try {
+                this.game.terminate();
+            } catch (InvalidGamePlay ex) {
+                ex.printStackTrace();
+            }
             try {
                 createPlayerInterface(primaryStage);
             } catch (FileNotFoundException ex) {
@@ -242,7 +297,11 @@ public class App extends Application {
     }
 
     private void createMarioUseItem(Stage primaryStage) throws FileNotFoundException {
-        createbasicLayoutMain(marioChooseItemLayout, marioChooseItemScene);
+        try {
+            createbasicLayoutMain(marioChooseItemLayout, marioChooseItemScene);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         primaryStage.setScene(marioChooseItemScene);
         Text itemsText = new Text(300, 400, "Choose one of this Items:");
         itemsText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
@@ -256,7 +315,11 @@ public class App extends Application {
             buttonItem.setLayoutY(500);
             buttonItem.setOnMouseClicked((MouseEvent e) -> {
                 try {
-                    createbasicLayoutMain(marioChoosePlayerLayout, marioChoosePlayerScene);
+                    try {
+                        createbasicLayoutMain(marioChoosePlayerLayout, marioChoosePlayerScene);
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 }
@@ -264,13 +327,21 @@ public class App extends Application {
                 playerText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
                 playerText.setFill(Color.VIOLET);
                 primaryStage.setScene(marioChoosePlayerScene);
-                this.game.chooseItem(item.getName());
+                try {
+                    this.game.chooseItem(item.getName());
+                } catch (InvalidGamePlay ex) {
+                    ex.printStackTrace();
+                }
                 Button buttonMario = new Button("Mario");
                 buttonMario.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonMario.setLayoutX(300);
                 buttonMario.setLayoutY(450);
                 buttonMario.setOnMouseClicked((MouseEvent ev) -> {
-                    this.game.choosePlayer(this.game.getMarcos());
+                    try {
+                        this.game.choosePlayer(this.game.getMarcos());
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                     if(!this.game.Lost()&&!this.game.hasWon()){
                         try {
                             createPlayerInterface(primaryStage);
@@ -286,7 +357,11 @@ public class App extends Application {
                 buttonLuigi.setLayoutX(600);
                 buttonLuigi.setLayoutY(450);
                 buttonLuigi.setOnMouseClicked((MouseEvent ev) -> {
-                    this.game.choosePlayer(this.game.getLuigi());
+                    try {
+                        this.game.choosePlayer(this.game.getLuigi());
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                     if(!this.game.Lost()&&!this.game.hasWon()){
                         try {
                             createPlayerInterface(primaryStage);
@@ -304,7 +379,11 @@ public class App extends Application {
     }
 
     private void createLuigiUseItem(Stage primaryStage) throws FileNotFoundException {
-        createbasicLayoutMain(luigiChooseItemLayout, luigiChooseItemScene);
+        try {
+            createbasicLayoutMain(luigiChooseItemLayout, luigiChooseItemScene);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         primaryStage.setScene(luigiChooseItemScene);
         Text itemsText = new Text(300, 400, "Choose one of this Items:");
         itemsText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
@@ -318,7 +397,11 @@ public class App extends Application {
             buttonItem.setLayoutY(500);
             buttonItem.setOnMouseClicked((MouseEvent e) -> {
                 try {
-                    createbasicLayoutMain(luigiChoosePlayerLayout, luigiChoosePlayerScene);
+                    try {
+                        createbasicLayoutMain(luigiChoosePlayerLayout, luigiChoosePlayerScene);
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 }
@@ -326,13 +409,21 @@ public class App extends Application {
                 playerText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
                 playerText.setFill(Color.VIOLET);
                 primaryStage.setScene(luigiChoosePlayerScene);
-                this.game.chooseItem(item.getName());
+                try {
+                    this.game.chooseItem(item.getName());
+                } catch (InvalidGamePlay ex) {
+                    ex.printStackTrace();
+                }
                 Button buttonMario = new Button("Mario");
                 buttonMario.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonMario.setLayoutX(300);
                 buttonMario.setLayoutY(450);
                 buttonMario.setOnMouseClicked((MouseEvent ev) -> {
-                    this.game.choosePlayer(this.game.getMarcos());
+                    try {
+                        this.game.choosePlayer(this.game.getMarcos());
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                     if(!this.game.Lost()&&!this.game.hasWon()){
                         try {
                             createPlayerInterface(primaryStage);
@@ -348,7 +439,11 @@ public class App extends Application {
                 buttonLuigi.setLayoutX(600);
                 buttonLuigi.setLayoutY(450);
                 buttonLuigi.setOnMouseClicked((MouseEvent ev) -> {
-                    this.game.choosePlayer(this.game.getLuigi());
+                    try {
+                        this.game.choosePlayer(this.game.getLuigi());
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                     if(!this.game.Lost()&&!this.game.hasWon()){
                         try {
                             createPlayerInterface(primaryStage);
@@ -365,8 +460,12 @@ public class App extends Application {
         }
     }
 
-    public void createMarioAttack(Stage primaryStage) throws FileNotFoundException {
-        createbasicLayoutMain(marioChooseVictimLayout, marioChooseVictimScene);
+    public void createMarioAttack(Stage primaryStage) throws FileNotFoundException, InvalidGamePlay {
+        try {
+            createbasicLayoutMain(marioChooseVictimLayout, marioChooseVictimScene);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         primaryStage.setScene(marioChooseVictimScene);
         Text victimText = new Text(320, 400, "Choose an enemy to attack:");
         victimText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
@@ -382,18 +481,28 @@ public class App extends Application {
                 buttonEnemy.setOnMouseClicked((MouseEvent e) -> {
                     try {
                         createbasicLayoutMain(marioChooseAttackLayout, marioChooseAttackScene);
-                    } catch (FileNotFoundException ex) {
+                    } catch (FileNotFoundException | InvalidGamePlay ex) {
                         ex.printStackTrace();
                     }
                     primaryStage.setScene(marioChooseAttackScene);
                     System.out.println(enemy + " was chosen");
-                    this.game.chooseTargetMarcos((AttackableByMarcos) enemy);
+                    try {
+                        this.game.chooseTargetMarcos((AttackableByMarcos) enemy);
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                     Button buttonJump = new Button("Jump Attack");
                     buttonJump.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                     buttonJump.setLayoutX(300);
                     buttonJump.setLayoutY(450);
                     buttonJump.setOnMouseClicked((MouseEvent ev) -> {
-                        this.game.marcosJumpAttack();
+                        try {
+                            this.game.marcosJumpAttack();
+                        } catch (InvalidGamePlay ex) {
+                            ex.printStackTrace();
+                        } catch (InvalidCharacterActionException ex) {
+                            ex.printStackTrace();
+                        }
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {
                                 createPlayerInterface(primaryStage);
@@ -410,7 +519,13 @@ public class App extends Application {
                     buttonHammer.setLayoutY(450);
                     buttonHammer.setOnMouseClicked((MouseEvent ev) -> {
                         System.out.println("Marcos Hammer Attacked");
-                        this.game.marcosHammerAttack();
+                        try {
+                            this.game.marcosHammerAttack();
+                        } catch (InvalidGamePlay ex) {
+                            ex.printStackTrace();
+                        } catch (InvalidCharacterActionException ex) {
+                            ex.printStackTrace();
+                        }
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {
                                 createPlayerInterface(primaryStage);
@@ -428,8 +543,12 @@ public class App extends Application {
         }
     }
 
-    public void createLuigiAttack(Stage primaryStage) throws FileNotFoundException {
-        createbasicLayoutMain(luigiChooseVictimLayout, luigiChooseVictimScene);
+    public void createLuigiAttack(Stage primaryStage) throws FileNotFoundException, InvalidGamePlay {
+        try {
+            createbasicLayoutMain(luigiChooseVictimLayout, luigiChooseVictimScene);
+        } catch (InvalidGamePlay e) {
+            e.printStackTrace();
+        }
         primaryStage.setScene(luigiChooseVictimScene);
         Text victimText = new Text(320, 400, "Choose an enemy to attack:");
         victimText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
@@ -437,7 +556,7 @@ public class App extends Application {
         luigiChooseVictimLayout.getChildren().add(victimText);
         for(int i=0; i<this.game.getCharacters().size();i++) {
             Character enemy = this.game.getCharacters().get(i);
-            if(enemy.getType()!="Luigi"&&enemy.getType()!="Marcos") {
+            if(enemy.getType()!="Luigi"&&enemy.getType()!="Marcos"&&enemy.getType()!="Boo") {
                 Button buttonEnemy = new Button(enemy.getType());
                 buttonEnemy.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonEnemy.setLayoutX(110+120*i);
@@ -445,18 +564,28 @@ public class App extends Application {
                 buttonEnemy.setOnMouseClicked((MouseEvent e) -> {
                     try {
                         createbasicLayoutMain(luigiChooseAttackLayout, luigiChooseAttackScene);
-                    } catch (FileNotFoundException ex) {
+                    } catch (FileNotFoundException | InvalidGamePlay ex) {
                         ex.printStackTrace();
                     }
                     primaryStage.setScene(luigiChooseAttackScene);
                     System.out.println(enemy + " was chosen");
-                    this.game.chooseTargetLuigi((AttackableByLuigi) enemy);
+                    try {
+                        this.game.chooseTargetLuigi((AttackableByLuigi) enemy);
+                    } catch (InvalidGamePlay ex) {
+                        ex.printStackTrace();
+                    }
                     Button buttonJump = new Button("Jump Attack");
                     buttonJump.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                     buttonJump.setLayoutX(300);
                     buttonJump.setLayoutY(450);
                     buttonJump.setOnMouseClicked((MouseEvent ev) -> {
-                        this.game.luigiJumpAttack();
+                        try {
+                            this.game.luigiJumpAttack();
+                        } catch (InvalidGamePlay ex) {
+                            ex.printStackTrace();
+                        } catch (InvalidCharacterActionException ex) {
+                            ex.printStackTrace();
+                        }
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {
                                 createPlayerInterface(primaryStage);
@@ -473,7 +602,13 @@ public class App extends Application {
                     buttonHammer.setLayoutY(450);
                     buttonHammer.setOnMouseClicked((MouseEvent ev) -> {
                         System.out.println("Luigi Hammer Attacked");
-                        this.game.luigiHammerAttack();
+                        try {
+                            this.game.luigiHammerAttack();
+                        } catch (InvalidGamePlay ex) {
+                            ex.printStackTrace();
+                        } catch (InvalidCharacterActionException ex) {
+                            ex.printStackTrace();
+                        }
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {
                                 createPlayerInterface(primaryStage);

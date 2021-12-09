@@ -4,6 +4,8 @@ import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableByBoo;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableByGoomba;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.AttackableBySpiny;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.UnattackableByLuigi;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidArgument;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 
 /**
@@ -63,6 +65,8 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
     public void jumpAttack(AttackableByLuigi anEnemy) throws InvalidCharacterActionException {
         super.jumpAttack(anEnemy);
     }
+
+
 
     @Override
     public void useItem(String anItem) {

@@ -1,7 +1,10 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.UnattackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLuigi;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidArgument;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
 /**
  * State when Luigi is playing.
@@ -19,7 +22,7 @@ public class LuigisTurn extends PlayerTurn {
      * Terminates current turn, and switches it to Over if all enemies knocked out, EnemyTurn if not.
      */
     @Override
-    public void terminate() {
+    public void terminate() throws InvalidGamePlay {
         if (this.anyEnemiesAlive()) {
             this.changeState(new EnemyTurn());
             this.getBattle().getState().setCurrent(0);
@@ -38,11 +41,16 @@ public class LuigisTurn extends PlayerTurn {
     public void chooseTargetLuigi(AttackableByLuigi enemy) {
         this.target = enemy;
     }
+
+    @Override
+    public void chooseTargetLuigi(UnattackableByLuigi enemy) throws InvalidArgument {
+        throw new InvalidArgument("Luigi cannot attack this character");
+    }
     /**
      * Luigi jump attack.
      */
     @Override
-    public void luigiJumpAttack() throws InvalidCharacterActionException {
+    public void luigiJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.getBattle().getLuigi().jumpAttack(this.target);
         this.terminate();
     }/**
@@ -50,7 +58,7 @@ public class LuigisTurn extends PlayerTurn {
      */
 
     @Override
-    public void luigiHammerAttack() throws InvalidCharacterActionException {
+    public void luigiHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.getBattle().getLuigi().hammerAttack(this.target);
         this.terminate();
     }

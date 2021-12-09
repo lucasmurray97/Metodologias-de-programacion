@@ -74,9 +74,6 @@ public class GameState {
     /**
      * Error. Throws an assertion error with the message "Wrong State"
      */
-    public void error(){
-        throw new AssertionError("Wrong State");
-    }
 
     /**
      * Creates battle.
@@ -84,7 +81,6 @@ public class GameState {
      * @param i is the number of random enemies to be added.
      */
     public void createBattle(int i) throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot create a battle now!");
     }
 
@@ -92,7 +88,6 @@ public class GameState {
      * Creates empty battle.
      */
     public void createBattle() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot create a battle now!");
     }
 
@@ -102,7 +97,6 @@ public class GameState {
      * @param level the level of the enemies to be added.
      */
     public void addRandomEnemy(int level) throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot add an enemy now!");
     }
 
@@ -112,8 +106,7 @@ public class GameState {
      * @param i the quantity of the item to be added.
      */
     public void addHoneySyrup(int i) throws InvalidGamePlay {
-        error();
-        throw new InvalidGamePlay("You cannot add an enemy now!");
+        throw new InvalidGamePlay("You cannot add an item now!");
     }
 
     /**
@@ -122,8 +115,7 @@ public class GameState {
      * @param i the quantity of the item to be added.
      */
     public void addRedMushroom(int i) throws InvalidGamePlay {
-        error();
-        throw new InvalidGamePlay("You can't add a mushoom now!");
+        throw new InvalidGamePlay("You cannot add an item now!");
     }
 
     /**
@@ -132,7 +124,6 @@ public class GameState {
      * @param battle the battle
      */
     public void setBattle(Battle battle) throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot set the battle state now!");
     }
 
@@ -142,7 +133,6 @@ public class GameState {
      * @return the battle
      */
     public Battle getBattle() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("There is no battle taking place!");
     }
 
@@ -152,7 +142,6 @@ public class GameState {
      * @param enemy the enemy to be attacked
      */
     public void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot choose a target now!");
     }
 
@@ -160,7 +149,6 @@ public class GameState {
      * Marcos jump attack.
      */
     public void marcosJumpAttack() throws InvalidGamePlay, InvalidCharacterActionException {
-        error();
         throw new InvalidGamePlay("You cannot jump attack now!");
     }
 
@@ -168,7 +156,6 @@ public class GameState {
      * Normal attacked to be performed by an enemy to a random player.
      */
     public void normalAttack() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot normal attack now!");
     }
 
@@ -178,7 +165,6 @@ public class GameState {
      * @param enemy the enemy to be attacked.
      */
     public void chooseTargetLuigi(AttackableByLuigi enemy) throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot choose a target now!");
     }
 
@@ -186,7 +172,6 @@ public class GameState {
      * Luigi jump attack.
      */
     public void luigiJumpAttack() throws InvalidGamePlay, InvalidCharacterActionException {
-        error();
         throw new InvalidGamePlay("You cannot jump attack now!");
     }
 
@@ -196,7 +181,6 @@ public class GameState {
      * @param str the str
      */
     public void chooseItem(String str) throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot choose an item now!");
     }
 
@@ -206,7 +190,6 @@ public class GameState {
      * @param aPlayer the player
      */
     public void choosePlayer(Player aPlayer) throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot choose a player now!");
     }
 
@@ -214,7 +197,6 @@ public class GameState {
      * Terminates current turn if in battle.
      */
     public void terminate() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot terminate the turn now!");
     }
 
@@ -222,7 +204,6 @@ public class GameState {
      * Level up. Increases player's level.
      */
     public void levelUp() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot increase the players levels now!");
     }
 
@@ -232,7 +213,6 @@ public class GameState {
      * @return the characters
      */
     public ArrayList<Character> getCharacters() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot get characters now!");
     }
 
@@ -242,7 +222,6 @@ public class GameState {
      * @return the current player
      */
     public Character getCurrentPlayer() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot get current player now!");
     }
 
@@ -252,7 +231,6 @@ public class GameState {
      * @return the next character
      */
     public Character getNextCharacter() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot get next player now!");
     }
 
@@ -261,7 +239,6 @@ public class GameState {
      * Increase score.
      */
     public void increaseScore() throws InvalidGamePlay {
-        error();
         throw new InvalidGamePlay("You cannot increase score now!");
     }
 
@@ -269,7 +246,6 @@ public class GameState {
      * Marcos hammer attack.
      */
     public void marcosHammerAttack() throws InvalidGamePlay, InvalidCharacterActionException {
-        error();
         throw new InvalidGamePlay("You cannot hammer attack now!");
     }
 
@@ -277,7 +253,6 @@ public class GameState {
      * Luigi hammer attack.
      */
     public void luigiHammerAttack() throws InvalidGamePlay, InvalidCharacterActionException {
-        error();
         throw new InvalidGamePlay("You cannot hammer attack now!");
     }
 }

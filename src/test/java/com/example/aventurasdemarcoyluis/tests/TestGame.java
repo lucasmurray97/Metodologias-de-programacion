@@ -10,6 +10,8 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMa
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import com.example.aventurasdemarcoyluis.model.Game.GameStates.GameState;
 import com.example.aventurasdemarcoyluis.model.Items.HoneySyrup;
@@ -42,7 +44,7 @@ public class TestGame {
         assertTrue(this.game.getState().isPreparingBattle());
     }
     @Test
-    public void generalFunctionalities(){
+    public void generalFunctionalities() throws InvalidGamePlay {
         this.game.setScore(2);
         assertEquals(2,this.game.getScore());
         game.addRedMushroom(3);
@@ -80,93 +82,93 @@ public class TestGame {
         assertTrue(!game.getState().isInBattle());
         assertTrue(!game.getState().Lost());
         assertTrue(!game.getState().hasWon());
-        AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
-            game.createBattle(1);
+        Throwable error = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().createBattle(1);
         });
-        Assertions.assertEquals("Wrong State", error.getMessage());
-        AssertionError error2 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.createBattle();
+        Assertions.assertEquals("You cannot create a battle now!", error.getMessage());
+        Throwable error2 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().createBattle();
         });
-        Assertions.assertEquals("Wrong State", error2.getMessage());
-        AssertionError error3 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.addRandomEnemy(1);
+        Assertions.assertEquals("You cannot create a battle now!", error2.getMessage());
+        Throwable error3 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().addRandomEnemy(1);
         });
-        Assertions.assertEquals("Wrong State", error3.getMessage());
-        AssertionError error4 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.addHoneySyrup(1);
+        Assertions.assertEquals("You cannot add an enemy now!", error3.getMessage());
+        Throwable error4 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().addHoneySyrup(1);
         });
-        Assertions.assertEquals("Wrong State", error4.getMessage());
-        AssertionError error5 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.addRedMushroom(1);
+        Assertions.assertEquals("You cannot add an item now!", error4.getMessage());
+        Throwable error5 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().addRedMushroom(1);
         });
-        Assertions.assertEquals("Wrong State", error5.getMessage());
-        AssertionError error6 = Assertions.assertThrows(AssertionError.class, () -> {
+        Assertions.assertEquals("You cannot add an item now!", error5.getMessage());
+        Throwable error6 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             game.getState().setBattle(new Battle());
         });
-        Assertions.assertEquals("Wrong State", error2.getMessage());
-        AssertionError error7 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.chooseTargetMarcos(new Goomba(1));
+        Assertions.assertEquals("You cannot set the battle state now!", error6.getMessage());
+        Throwable error7 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().chooseTargetMarcos(new Goomba(1));
         });
-        Assertions.assertEquals("Wrong State", error7.getMessage());
-        AssertionError error8 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.marcosJumpAttack();
+        Assertions.assertEquals("You cannot choose a target now!", error7.getMessage());
+        Throwable error8 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().marcosJumpAttack();
         });
-        Assertions.assertEquals("Wrong State", error8.getMessage());
-        AssertionError error9 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.marcosHammerAttack();
+        Assertions.assertEquals("You cannot jump attack now!", error8.getMessage());
+        Throwable error9 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().marcosHammerAttack();
         });
-        Assertions.assertEquals("Wrong State", error9.getMessage());
-        AssertionError error10 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.luigiJumpAttack();
+        Assertions.assertEquals("You cannot hammer attack now!", error9.getMessage());
+        Throwable error10 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().luigiJumpAttack();
         });
-        Assertions.assertEquals("Wrong State", error10.getMessage());
-        AssertionError error11 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.luigiHammerAttack();
+        Assertions.assertEquals("You cannot jump attack now!", error10.getMessage());
+        Throwable error11 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().luigiHammerAttack();
         });
-        Assertions.assertEquals("Wrong State", error11.getMessage());
-        AssertionError error12 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.normalAttack();
+        Assertions.assertEquals("You cannot hammer attack now!", error11.getMessage());
+        Throwable error12 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().normalAttack();
         });
-        Assertions.assertEquals("Wrong State", error12.getMessage());
-        AssertionError error13 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.chooseTargetLuigi(new Goomba(1));
+        Assertions.assertEquals("You cannot normal attack now!", error12.getMessage());
+        Throwable error13 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().chooseTargetLuigi(new Goomba(1));
         });
-        Assertions.assertEquals("Wrong State", error13.getMessage());
-        AssertionError error14 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.chooseItem("RedMushroom");
+        Assertions.assertEquals("You cannot choose a target now!", error13.getMessage());
+        Throwable error14 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().chooseItem("RedMushroom");
         });
-        Assertions.assertEquals("Wrong State", error14.getMessage());
-        AssertionError error15 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.terminate();
+        Assertions.assertEquals("You cannot choose an item now!", error14.getMessage());
+        Throwable error15 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().terminate();
         });
-        Assertions.assertEquals("Wrong State", error15.getMessage());
-        AssertionError error16 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.levelUp();
+        Assertions.assertEquals("You cannot terminate the turn now!", error15.getMessage());
+        Throwable error16 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().levelUp();
         });
-        Assertions.assertEquals("Wrong State", error16.getMessage());
-        AssertionError error17 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.getCurrentPlayer();
+        Assertions.assertEquals("You cannot increase the players levels now!", error16.getMessage());
+        Throwable error17 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().getCurrentPlayer();
         });
-        Assertions.assertEquals("Wrong State", error17.getMessage());
-        AssertionError error18 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.getNextPlayer();
+        Assertions.assertEquals("You cannot get current player now!", error17.getMessage());
+        Throwable error18 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().getNextCharacter();
         });
-        Assertions.assertEquals("Wrong State", error18.getMessage());
-        AssertionError error20 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.increaseScore();
+        Assertions.assertEquals("You cannot get next player now!", error18.getMessage());
+        Throwable error20 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().increaseScore();
         });
-        Assertions.assertEquals("Wrong State", error20.getMessage());
-        AssertionError error21 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.getBattle();
+        Assertions.assertEquals("You cannot increase score now!", error20.getMessage());
+        Throwable error21 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().getBattle();
         });
-        Assertions.assertEquals("Wrong State", error21.getMessage());
-        AssertionError error22 = Assertions.assertThrows(AssertionError.class, () -> {
-            game.getCharacters();
+        Assertions.assertEquals("There is no battle taking place!", error21.getMessage());
+        Throwable error22 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
+            game.getState().getCharacters();
         });
-        Assertions.assertEquals("Wrong State", error22.getMessage());
+        Assertions.assertEquals("You cannot get characters now!", error22.getMessage());
     }
     @Test
-    public void battleSetUp(){
+    public void battleSetUp() throws InvalidGamePlay {
         game.getLuigi().setHp(0);
         game.getMarcos().setHp(0);
         game.createBattle(3);
@@ -175,7 +177,7 @@ public class TestGame {
         assertEquals(5,game.getCharacters().size());
     }
     @Test
-    public void testBattle(){
+    public void testBattle() throws InvalidGamePlay, InvalidCharacterActionException {
         Random random = new Random();
         random.setSeed(2);
         game.addRedMushroom(3);
@@ -199,7 +201,7 @@ public class TestGame {
         game.choosePlayer(game.getLuigi());
     }
     @Test
-    public void testWin(){
+    public void testWin() throws InvalidGamePlay, InvalidCharacterActionException {
         Random random = new Random();
         random.setSeed(1);
         game.addRedMushroom(3);
@@ -312,7 +314,7 @@ public class TestGame {
         assertEquals(5,this.game.getScore());
     }
     @Test
-    public void testLoss(){
+    public void testLoss() throws InvalidGamePlay, InvalidCharacterActionException {
         Random random = new Random();
         random.setSeed(3);
         game.addRedMushroom(3);
