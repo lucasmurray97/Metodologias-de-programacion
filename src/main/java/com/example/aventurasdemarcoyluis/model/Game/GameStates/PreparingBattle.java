@@ -60,8 +60,8 @@ public class PreparingBattle extends GameState{
         } catch (InvalidGamePlay e) {
             e.printStackTrace();
         }
-        this.getGame().getLuigi().getState().revive();
-        this.getGame().getMarcos().getState().revive();
+        this.getGame().getLuigi().revive();
+        this.getGame().getMarcos().revive();
     }
     /**
      * Creates empty battle.
@@ -80,8 +80,8 @@ public class PreparingBattle extends GameState{
         } catch (InvalidGamePlay e) {
             e.printStackTrace();
         }
-        this.getGame().getLuigi().getState().revive();
-        this.getGame().getMarcos().getState().revive();
+        this.getGame().getLuigi().revive();
+        this.getGame().getMarcos().revive();
     }
     /**
      * Level up. Increases player's level.

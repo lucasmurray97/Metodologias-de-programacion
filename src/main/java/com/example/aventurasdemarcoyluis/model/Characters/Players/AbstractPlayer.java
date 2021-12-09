@@ -197,4 +197,8 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
         super.setLvl(lvl);
         this.maxFp = (int) Math.round(this.baseFp*Math.pow(1.15,this.getLvl()-1));
     }
+    public void revive(){
+        this.getState().revive();
+        this.setFp(maxFp);
+    }
 }
