@@ -51,7 +51,7 @@ public class InBattle extends GameState{
      * @param enemy the enemy to be attacked
      */
     @Override
-    public void chooseTargetMarcos(AttackableByMarcos enemy){
+    public void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay {
         this.battle.chooseTargetMarcos(enemy);
     }
     /**
@@ -60,42 +60,42 @@ public class InBattle extends GameState{
      * @param enemy the enemy to be attacked.
      */
     @Override
-    public void chooseTargetLuigi(AttackableByLuigi enemy){
+    public void chooseTargetLuigi(AttackableByLuigi enemy) throws InvalidGamePlay {
         this.battle.chooseTargetLuigi(enemy);
     }
     /**
      * Marcos jump attack.
      */
     @Override
-    public void marcosJumpAttack() throws InvalidCharacterActionException {
+    public void marcosJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.battle.marcosJumpAttack();
     }
     /**
      * Luigi jump attack.
      */
     @Override
-    public void luigiJumpAttack() throws InvalidCharacterActionException {
+    public void luigiJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.battle.luigiJumpAttack();
     }
     /**
      * Marcos hammer attack.
      */
     @Override
-    public void marcosHammerAttack() throws InvalidCharacterActionException {
+    public void marcosHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.battle.marcosHammerAttack();
     }
     /**
      * Luigi hammer attack.
      */
     @Override
-    public void luigiHammerAttack() throws InvalidCharacterActionException {
+    public void luigiHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.battle.luigiHammerAttack();
     }
     /**
      * Normal attacked to be performed by an enemy to a random player.
      */
     @Override
-    public void normalAttack(){
+    public void normalAttack() throws InvalidGamePlay {
         this.battle.getState().setEnemyTurn();
         this.battle.normalAttack();
     }
@@ -105,7 +105,7 @@ public class InBattle extends GameState{
      * @param str the str
      */
     @Override
-    public void chooseItem(String str) {
+    public void chooseItem(String str) throws InvalidGamePlay {
         this.battle.chooseItem(str);
     }
     /**
@@ -114,14 +114,14 @@ public class InBattle extends GameState{
      * @param aPlayer the player
      */
     @Override
-    public void choosePlayer(Player aPlayer){
+    public void choosePlayer(Player aPlayer) throws InvalidGamePlay {
         this.battle.choosePlayer(aPlayer);
     }
     /**
      * Terminates current turn.
      */
     @Override
-    public void terminate() {
+    public void terminate() throws InvalidGamePlay {
         this.battle.terminate();
     }
     /**

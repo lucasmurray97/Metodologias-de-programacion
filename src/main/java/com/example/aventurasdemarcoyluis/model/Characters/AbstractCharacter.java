@@ -1,7 +1,10 @@
 package com.example.aventurasdemarcoyluis.model.Characters;
+import com.example.aventurasdemarcoyluis.model.Battle.Battle;
 import com.example.aventurasdemarcoyluis.model.Characters.States.Alive;
 import com.example.aventurasdemarcoyluis.model.Characters.States.CharacterState;
+import com.example.aventurasdemarcoyluis.model.Game.Handlers.KnockedOutHandler;
 
+import java.beans.PropertyChangeSupport;
 import java.lang.Math;
 import java.util.Objects;
 
@@ -25,6 +28,7 @@ public abstract class AbstractCharacter implements Character {
     private int baseAtk;
     private int baseDef;
     private CharacterState characterState;
+    private final PropertyChangeSupport atDeath = new PropertyChangeSupport(this);
 
     /**
      * Gets state.
@@ -177,6 +181,7 @@ public abstract class AbstractCharacter implements Character {
             this.characterState.knockOut();
             this.hp = 0;
             this.atk = 0;
+            this.atDeath.firePropertyChange("Character was knocked out", 0,1);
         } else{
             if(this.characterState.isKnockedOut()){
                 this.characterState.revive();
@@ -219,7 +224,7 @@ public abstract class AbstractCharacter implements Character {
         if (this == o) return true;
         if (!(o instanceof Character)) return false;
         Character aCharacter = (Character) o;
-        return this.type.equals(aCharacter.getType());
+        return this.hashCode() == aCharacter.hashCode();
     }
 
     @Override
@@ -227,8 +232,20 @@ public abstract class AbstractCharacter implements Character {
         return "" + type + ": lvl = "+this.getLvl()+", atk = "+this.getAtk()+", def = "+this.getDef()+", hp = "+this.getHp()+", isKnockedOut = "+this.isKnockedOut();
     }
 
+
     @Override
-    public int hashCode() {
-        return Objects.hash(type);
+    public void onDeath(Battle battle, int newValue) {
+        if(newValue==1){
+            if(battle.getEnemies().contains(this)){
+                battle.getEnemies().remove(this);
+            }else if(battle.getPlayers().contains(this)){
+                battle.getPlayers().remove(this);
+            }
+            battle.getCharacters().remove(this);
+        }
+    }
+    @Override
+    public void addObserver(KnockedOutHandler resp){
+        atDeath.addPropertyChangeListener(resp);
     }
 }

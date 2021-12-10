@@ -139,7 +139,7 @@ public class App extends Application {
             System.out.println("You Won!");
             ImageNodeBuilder backgroundBuilder = new ImageNodeBuilder(victoryScene);
             ImageView background = backgroundBuilder.build(0, 0,width , height, RESOURCE_PATH, "background2.jpg");
-            ImageView gameover = backgroundBuilder.build(300, 220,400 , 200, RESOURCE_PATH, "victory.jpg");
+            ImageView gameover = backgroundBuilder.build(300, 220,400 , 250, RESOURCE_PATH, "victory.jpg");
             gameOverLayout.getChildren().addAll(background,gameover);
             primaryStage.setScene(gameOverScene);
 
@@ -197,7 +197,10 @@ public class App extends Application {
                 ex.printStackTrace();
             }
         });
-        marioChooseLayout.getChildren().addAll(attack, useItem, pass);
+        if(game.getItems().size()>0){
+            marioChooseLayout.getChildren().add(useItem);
+        }
+        marioChooseLayout.getChildren().addAll(attack, pass);
     }
 
     private void createLuigichoose(Stage primaryStage) throws FileNotFoundException {
@@ -238,7 +241,20 @@ public class App extends Application {
                 ex.printStackTrace();
             }
         });
-        luigiChooseLayout.getChildren().addAll(attack, useItem, pass);
+        if(this.game.getItems().size()>0){
+            luigiChooseLayout.getChildren().add(useItem);
+        }
+        int z = 0;
+        for(int i=0; i<this.game.getCharacters().size();i++){
+            Character character = this.game.getCharacters().get(i);
+            if(character.getType()!="Boo" &&character.getType()!="Luigi"&&character.getType()!="Marcos"){
+                z++;
+            }
+        }
+        if(z>0){
+            luigiChooseLayout.getChildren().add(attack);
+        }
+        luigiChooseLayout.getChildren().addAll(pass);
     }
 
     private void createMarioUseItem(Stage primaryStage) throws FileNotFoundException {
@@ -278,7 +294,12 @@ public class App extends Application {
                             ex.printStackTrace();
                         }
                     }else{
-                        primaryStage.close();
+                        try {
+                            createPlayerInterface(primaryStage);
+                        } catch (FileNotFoundException ex) {
+                            ex.printStackTrace();
+                        }
+                        ;
                     }
                 });
                 Button buttonLuigi = new Button("Luigi");
@@ -294,7 +315,11 @@ public class App extends Application {
                             ex.printStackTrace();
                         }
                     }else{
-                        primaryStage.close();
+                        try {
+                            createPlayerInterface(primaryStage);
+                        } catch (FileNotFoundException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 });
                 marioChoosePlayerLayout.getChildren().addAll(buttonMario, buttonLuigi,playerText);
@@ -340,7 +365,12 @@ public class App extends Application {
                             ex.printStackTrace();
                         }
                     }else{
-                        primaryStage.close();
+                        try {
+                            createPlayerInterface(primaryStage);
+                        } catch (FileNotFoundException ex) {
+                            ex.printStackTrace();
+                        }
+                        ;
                     }
                 });
                 Button buttonLuigi = new Button("Luigi");
@@ -356,7 +386,12 @@ public class App extends Application {
                             ex.printStackTrace();
                         }
                     }else{
-                        primaryStage.close();
+                        try {
+                            createPlayerInterface(primaryStage);
+                        } catch (FileNotFoundException ex) {
+                            ex.printStackTrace();
+                        }
+                        ;
                     }
                 });
                 luigiChoosePlayerLayout.getChildren().addAll(buttonMario, buttonLuigi, playerText);
@@ -401,7 +436,12 @@ public class App extends Application {
                                 ex.printStackTrace();
                             }
                         }else{
-                            primaryStage.close();
+                            try {
+                                createPlayerInterface(primaryStage);
+                            } catch (FileNotFoundException ex) {
+                                ex.printStackTrace();
+                            }
+                            ;
                         }
                     });
                     Button buttonHammer = new Button("Hammer Attack");
@@ -418,7 +458,12 @@ public class App extends Application {
                                 ex.printStackTrace();
                             }
                         }else{
-                            primaryStage.close();
+                            try {
+                                createPlayerInterface(primaryStage);
+                            } catch (FileNotFoundException ex) {
+                                ex.printStackTrace();
+                            }
+                            ;
                         }
                     });
                     marioChooseAttackLayout.getChildren().addAll(buttonJump, buttonHammer);
@@ -437,7 +482,7 @@ public class App extends Application {
         luigiChooseVictimLayout.getChildren().add(victimText);
         for(int i=0; i<this.game.getCharacters().size();i++) {
             Character enemy = this.game.getCharacters().get(i);
-            if(enemy.getType()!="Luigi"&&enemy.getType()!="Marcos") {
+            if(enemy.getType()!="Luigi"&&enemy.getType()!="Marcos"&&enemy.getType()!="Boo") {
                 Button buttonEnemy = new Button(enemy.getType());
                 buttonEnemy.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonEnemy.setLayoutX(110+120*i);
@@ -464,7 +509,12 @@ public class App extends Application {
                                 ex.printStackTrace();
                             }
                         }else{
-                            primaryStage.close();
+                            try {
+                                createPlayerInterface(primaryStage);
+                            } catch (FileNotFoundException ex) {
+                                ex.printStackTrace();
+                            }
+                            ;
                         }
                     });
                     Button buttonHammer = new Button("Hammer Attack");
@@ -481,7 +531,12 @@ public class App extends Application {
                                 ex.printStackTrace();
                             }
                         }else{
-                            primaryStage.close();
+                            try {
+                                createPlayerInterface(primaryStage);
+                            } catch (FileNotFoundException ex) {
+                                ex.printStackTrace();
+                            }
+                            ;
                         }
                     });
                     luigiChooseAttackLayout.getChildren().addAll(buttonJump, buttonHammer);

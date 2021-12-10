@@ -2,6 +2,7 @@ package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
 /**
  * State when Marcos is playing.
@@ -22,7 +23,7 @@ public class MarcosTurn extends PlayerTurn {
      * Terminates current turn, and switches it to Over if all enemies knocked out, LuigisTurn if luigi is alive and EnemyTurn if not.
      */
     @Override
-    public void terminate() {
+    public void terminate() throws InvalidGamePlay {
         if (!this.anyEnemiesAlive()){
             this.changeState(new Over());
             this.getBattle().setOutcome(1);
@@ -49,7 +50,7 @@ public class MarcosTurn extends PlayerTurn {
      * Marcos jump attack.
      */
     @Override
-    public void marcosJumpAttack() throws InvalidCharacterActionException {
+    public void marcosJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.getBattle().getMarcos().jumpAttack(this.target);
         terminate();
     }
@@ -57,7 +58,7 @@ public class MarcosTurn extends PlayerTurn {
      * Marcos hammer attack.
      */
     @Override
-    public void marcosHammerAttack() throws InvalidCharacterActionException {
+    public void marcosHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.getBattle().getMarcos().hammerAttack(this.target);
         terminate();
     }

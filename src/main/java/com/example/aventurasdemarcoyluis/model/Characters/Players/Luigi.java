@@ -64,6 +64,8 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
         super.jumpAttack(anEnemy);
     }
 
+
+
     @Override
     public void useItem(String anItem) {
         super.useItem(anItem);

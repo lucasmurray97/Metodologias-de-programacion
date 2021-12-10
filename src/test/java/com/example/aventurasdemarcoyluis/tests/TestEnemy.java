@@ -38,9 +38,9 @@ public class TestEnemy {
         Goomba testGoomba2= new Goomba(0);
         Boo testBoo2 = new Boo(0);
         Spiny testSpiny2 = new Spiny(0);
-        assertTrue(testGoomba.equals(testGoomba2));
-        assertTrue(testBoo.equals(testBoo2));
-        assertTrue(testSpiny.equals(testSpiny2));
+        assertTrue(!testGoomba.equals(testGoomba2));
+        assertTrue(!testBoo.equals(testBoo2));
+        assertTrue(!testSpiny.equals(testSpiny2));
         assertTrue(!testGoomba.equals(testBoo));
         assertTrue(!testBoo.equals(testSpiny));
     }

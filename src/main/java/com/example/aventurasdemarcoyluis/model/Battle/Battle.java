@@ -10,8 +10,10 @@ import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Battle.BattleStates.BattleState;
 import com.example.aventurasdemarcoyluis.model.Battle.BattleStates.MarcosTurn;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import com.example.aventurasdemarcoyluis.model.Game.Handlers.BattleOverHandler;
+import com.example.aventurasdemarcoyluis.model.Game.Handlers.KnockedOutHandler;
 
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ public class Battle implements IBattle {
      * @param luigi         the luigi
      * @param marcos        the marcos
      */
-    public Battle(int randomEnemies, int level, BagPack aBag, Luigi luigi, Marcos marcos) {
+    public Battle(int randomEnemies, int level, BagPack aBag, Luigi luigi, Marcos marcos) throws InvalidGamePlay {
         this.outcome = 0;
         this.bag = aBag;
         this.random = new Random();
@@ -109,6 +111,7 @@ public class Battle implements IBattle {
         atBattleOver.addPropertyChangeListener(resp);
     }
 
+
     /**
      * Sets outcome. 1 if players won, -1 if they lost, 0 when the battle starts.
      *
@@ -120,6 +123,7 @@ public class Battle implements IBattle {
         atBattleOver.firePropertyChange("BATTLE_IS_OVER", 0,outcome);
     }
 
+    /**
     /**
      * Sets state.
      *
@@ -159,6 +163,7 @@ public class Battle implements IBattle {
     @Override
     public void addCharacter(Character aCharacter){
         characters.add(aCharacter);
+        aCharacter.addObserver(new KnockedOutHandler(aCharacter, this));
     }
 
     /**
@@ -230,7 +235,7 @@ public class Battle implements IBattle {
      * @param enemy the enemy to be attacked.
      */
     @Override
-    public void chooseTargetLuigi(AttackableByLuigi enemy) {
+    public void chooseTargetLuigi(AttackableByLuigi enemy) throws InvalidGamePlay {
         this.state.chooseTargetLuigi(enemy);
     }
 
@@ -240,7 +245,7 @@ public class Battle implements IBattle {
      * @param enemy the enemy to be attacked.
      */
     @Override
-    public void chooseTargetMarcos(AttackableByMarcos enemy) {
+    public void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay {
         this.state.chooseTargetMarcos(enemy);
     }
 
@@ -250,7 +255,7 @@ public class Battle implements IBattle {
      * @param str the item
      */
     @Override
-    public void chooseItem(String str) {
+    public void chooseItem(String str) throws InvalidGamePlay {
         this.state.chooseItem(str);
     }
 
@@ -260,7 +265,7 @@ public class Battle implements IBattle {
      * @param aPlayer the player
      */
     @Override
-    public void choosePlayer(Player aPlayer) {
+    public void choosePlayer(Player aPlayer) throws InvalidGamePlay {
         this.state.choosePlayer(aPlayer);
     }
 
@@ -308,7 +313,7 @@ public class Battle implements IBattle {
      * Terinates current turn.
      */
     @Override
-    public void terminate() {
+    public void terminate() throws InvalidGamePlay {
         this.state.terminate();
     }
 
@@ -330,31 +335,6 @@ public class Battle implements IBattle {
     @Override
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
-    }
-
-    /**
-     * Check survivors. Updates characters, enemies and players currently in battle, removing knocked out ones.
-     */
-    @Override
-    public void checkSurvivors(){
-        int n = this.getEnemies().size();
-        for(int i = 0; i<n; i++){
-            if (this.getEnemies().get(i).isKnockedOut()) {
-                this.getCharacters().remove(this.getEnemies().get(i));
-                this.getEnemies().remove(this.getEnemies().get(i));
-                i--;
-                n--;
-            }
-        }
-        int m = this.getPlayers().size();
-        for (int i = 0; i<m;i++) {
-            if (this.getPlayers().get(i).isKnockedOut()) {
-                this.getCharacters().remove(this.getPlayers().get(i));
-                this.getPlayers().remove(this.getPlayers().get(i));
-                i--;
-                m--;
-            }
-        }
     }
 
     /**
@@ -381,7 +361,7 @@ public class Battle implements IBattle {
      * Marcos jump attack.
      */
     @Override
-    public void marcosJumpAttack() throws InvalidCharacterActionException {
+    public void marcosJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.state.marcosJumpAttack();
     }
 
@@ -389,7 +369,7 @@ public class Battle implements IBattle {
      * Luigi jump attack.
      */
     @Override
-    public void luigiJumpAttack() throws InvalidCharacterActionException {
+    public void luigiJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.state.luigiJumpAttack();
     }
 
@@ -397,7 +377,7 @@ public class Battle implements IBattle {
      * Normal attack.
      */
     @Override
-    public void normalAttack() {
+    public void normalAttack() throws InvalidGamePlay {
         this.state.normalAttack();
     }
 
@@ -405,7 +385,7 @@ public class Battle implements IBattle {
      * Marcos hammer attack.
      */
     @Override
-    public void marcosHammerAttack() throws InvalidCharacterActionException {
+    public void marcosHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.state.marcosHammerAttack();
     }
 
@@ -413,7 +393,7 @@ public class Battle implements IBattle {
      * Luigi hammer attack.
      */
     @Override
-    public void luigiHammerAttack() throws InvalidCharacterActionException {
+    public void luigiHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         this.state.luigiHammerAttack();
     }
 

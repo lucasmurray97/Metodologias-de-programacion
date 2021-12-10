@@ -1,6 +1,7 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Player;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
 /**
  * The type Player turn.
@@ -31,7 +32,7 @@ public class PlayerTurn extends BattleState {
      * @param aPlayer the player
      */
     @Override
-    public void choosePlayer(Player aPlayer) {
+    public void choosePlayer(Player aPlayer) throws InvalidGamePlay {
         if(aPlayer.isAlive()) {
             aPlayer.useItem(this.item);
         }

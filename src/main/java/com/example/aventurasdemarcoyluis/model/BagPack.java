@@ -52,7 +52,6 @@ public class BagPack {
             item.effect(aPlayer);
             bag.get(anItem).remove(0);
         }else{
-            error();
             throw new ItemUnavailableException("You currently don't have this item");
         }
     }
