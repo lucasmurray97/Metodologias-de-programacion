@@ -37,11 +37,11 @@ la clase BagPack y detalles en las construcciones de los personajes.
 
 - Se implementó toda la dinámica de ataques entre personajes, considerando todas las restricciones asociadas al 
 quién puede atacar a quién.
-- Se implementó un state pattern para los personajes, en donde la actividad que puede realizar un personaje está 
+- Se implementó un characterState pattern para los personajes, en donde la actividad que puede realizar un personaje está 
 restringida por el estado en el que está: Alive o Knocked Out.
 - Se implementó el sistema de turnos correspondiente a una batalla, en donde el flujo es controlado a través de un
-state design pattern design, donde cada turno es un estado de la batalla, a lo cual se añade el estado de fin de la batalla.
-- Se implementó el flujo de una partida, nuevamente a través de un state pattern, en donde una partida puede encontrarse en 4 estados:
+characterState design pattern design, donde cada turno es un estado de la batalla, a lo cual se añade el estado de fin de la batalla.
+- Se implementó el flujo de una partida, nuevamente a través de un characterState pattern, en donde una partida puede encontrarse en 4 estados:
 preparando una batalla, en batalla, GameOver y HasWon. Nuevamente, las funcionalidades de una batalla están restringidas
 al estado en batalla y la creación de batallas, aumento de nivel, agregación de items para batalla y aumento de score al estado de preparacion de 
 batallas.

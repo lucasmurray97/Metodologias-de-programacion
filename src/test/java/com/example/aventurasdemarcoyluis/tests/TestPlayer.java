@@ -1,9 +1,11 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.BagPack;
-import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
-import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
-import com.example.aventurasdemarcoyluis.Characters.States.State;
+import com.example.aventurasdemarcoyluis.model.BagPack;
+import com.example.aventurasdemarcoyluis.model.Characters.Character;
+import com.example.aventurasdemarcoyluis.model.Characters.NullCharacter;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.model.Characters.States.CharacterState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,8 +56,8 @@ public class TestPlayer {
     public void equalsTest(){
         Marcos testMarcos2= new Marcos(1);
         Luigi testLuigi2 = new Luigi(1);
-        assertTrue(testLuigi.equals(testLuigi2));
-        assertTrue(testMarcos.equals(testMarcos2));
+        assertTrue(!testLuigi.equals(testLuigi2));
+        assertTrue(!testMarcos.equals(testMarcos2));
         assertTrue(!testLuigi.equals(testMarcos));
     }
 
@@ -137,7 +139,7 @@ public class TestPlayer {
     }
     @Test
     public void state(){
-        testMarcos.setState(new State());
+        testMarcos.setState(new CharacterState());
         AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
            testMarcos.getState().error();
         });
@@ -158,5 +160,15 @@ public class TestPlayer {
             testMarcos.getState().normalAttacked();
         });
         Assertions.assertEquals("Wrong state", error6.getMessage());
+    }
+    @Test public void testNullCharacter(){
+        Character nullCharacter = new NullCharacter();
+        assertEquals(nullCharacter.getType(), null);
+        assertEquals(nullCharacter.getMaxAtk(),0);
+        assertEquals(nullCharacter.getMaxHp(),0);
+        assertTrue(!nullCharacter.isAlive());
+        assertTrue(!nullCharacter.isKnockedOut());
+        assertEquals(nullCharacter.getAtk(),0);
+        assertEquals(nullCharacter.getLvl(),0);
     }
 }

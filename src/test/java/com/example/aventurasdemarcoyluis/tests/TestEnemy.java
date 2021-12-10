@@ -1,11 +1,8 @@
 package com.example.aventurasdemarcoyluis.tests;
 
-import com.example.aventurasdemarcoyluis.BagPack;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
-import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
-import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Boo;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Goomba;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Spiny;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,9 +38,9 @@ public class TestEnemy {
         Goomba testGoomba2= new Goomba(0);
         Boo testBoo2 = new Boo(0);
         Spiny testSpiny2 = new Spiny(0);
-        assertTrue(testGoomba.equals(testGoomba2));
-        assertTrue(testBoo.equals(testBoo2));
-        assertTrue(testSpiny.equals(testSpiny2));
+        assertTrue(!testGoomba.equals(testGoomba2));
+        assertTrue(!testBoo.equals(testBoo2));
+        assertTrue(!testSpiny.equals(testSpiny2));
         assertTrue(!testGoomba.equals(testBoo));
         assertTrue(!testBoo.equals(testSpiny));
     }

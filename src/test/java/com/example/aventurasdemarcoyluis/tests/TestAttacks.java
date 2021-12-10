@@ -1,10 +1,11 @@
 package com.example.aventurasdemarcoyluis.tests;
-import com.example.aventurasdemarcoyluis.BagPack;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Boo;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Goomba;
-import com.example.aventurasdemarcoyluis.Characters.Enemies.Spiny;
-import com.example.aventurasdemarcoyluis.Characters.Players.Luigi;
-import com.example.aventurasdemarcoyluis.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.model.BagPack;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Boo;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Goomba;
+import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Spiny;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Luigi;
+import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ public class TestAttacks {
     }
 
     @Test
-    public void marcosJumpAtkTest() {
+    public void marcosJumpAtkTest() throws InvalidCharacterActionException {
         testMarcos.setFp(50);
         testLuigi.setFp(50);
         int booHp = testBoo.getHp();
@@ -53,7 +54,7 @@ public class TestAttacks {
     }
 
     @Test
-    public void luigiJumpAtkTest() {
+    public void luigiJumpAtkTest() throws InvalidCharacterActionException {
         testMarcos.setFp(50);
         testLuigi.setFp(50);
         int goombaHp = testGoomba.getHp();
@@ -70,7 +71,7 @@ public class TestAttacks {
     }
 
     @Test
-    public void marcosHammerAtkTest() {
+    public void marcosHammerAtkTest() throws InvalidCharacterActionException {
         testMarcos.setFp(50);
         testLuigi.setFp(50);
         Random random = new Random();
@@ -117,7 +118,7 @@ public class TestAttacks {
     }
 
     @Test
-    public void luigiHammerAtkTest() {
+    public void luigiHammerAtkTest() throws InvalidCharacterActionException {
         testMarcos.setFp(50);
         testLuigi.setFp(50);
         Random random = new Random();
