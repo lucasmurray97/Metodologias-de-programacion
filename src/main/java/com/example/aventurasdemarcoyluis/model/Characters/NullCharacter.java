@@ -1,6 +1,8 @@
 package com.example.aventurasdemarcoyluis.model.Characters;
 
+import com.example.aventurasdemarcoyluis.model.Battle.Battle;
 import com.example.aventurasdemarcoyluis.model.Characters.States.CharacterState;
+import com.example.aventurasdemarcoyluis.model.Game.Handlers.KnockedOutHandler;
 
 public class NullCharacter implements Character{
     @Override
@@ -51,5 +53,15 @@ public class NullCharacter implements Character{
     @Override
     public int getLvl() {
         return 0;
+    }
+
+    @Override
+    public void onDeath(Battle battle, int newValue) {
+
+    }
+
+    @Override
+    public void addObserver(KnockedOutHandler resp) {
+
     }
 }

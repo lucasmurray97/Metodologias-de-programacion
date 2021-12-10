@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.aventurasdemarcoyluis.tests.TestBattle" tests="19" skipped="0" failures="0" errors="0" timestamp="2021-12-06T14:55:10" hostname="LAPTOP-DATE9JPB" time="0.021">
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestBattle" tests="20" skipped="0" failures="0" errors="0" timestamp="2021-12-10T13:06:39" hostname="LAPTOP-DATE9JPB" time="0.027">
   <properties/>
-  <testcase name="luigiStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.003"/>
-  <testcase name="firstTurnItemTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="firstTurnPassTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="luigiStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.004"/>
+  <testcase name="firstTurnItemTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="firstTurnPassTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="testEnemiesDeath2()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="generalFunctionalitiesTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.002"/>
+  <testcase name="generalFunctionalitiesTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="battleStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="startOfBattleTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="testPlayerDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="thirdTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="thirdTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="testEnemiesDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="secondTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="firstTurnAttackTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="testLuigiDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
-  <testcase name="enemyTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="marcosStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="secondTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="firstTurnAttackTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
+  <testcase name="testNullBattle()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.003"/>
+  <testcase name="testLuigiDeath()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
+  <testcase name="enemyTurnTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.002"/>
+  <testcase name="marcosStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.002"/>
   <testcase name="goombaStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
   <testcase name="spinyStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.0"/>
   <testcase name="booStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.001"/>
-  <testcase name="overStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.002"/>
+  <testcase name="overStateTest()" classname="com.example.aventurasdemarcoyluis.tests.TestBattle" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

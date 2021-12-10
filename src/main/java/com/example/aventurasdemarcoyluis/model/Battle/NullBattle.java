@@ -4,6 +4,7 @@ import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Battle.BattleStates.BattleState;
 import com.example.aventurasdemarcoyluis.model.Characters.Character;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Enemy;
+import com.example.aventurasdemarcoyluis.model.Characters.NullCharacter;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.*;
 import com.example.aventurasdemarcoyluis.model.Game.Handlers.BattleOverHandler;
 
@@ -48,7 +49,7 @@ public class NullBattle implements IBattle{
 
     @Override
     public ArrayList<Character> getCharacters() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -78,7 +79,7 @@ public class NullBattle implements IBattle{
 
     @Override
     public Character getCurrentPlayer() {
-        return null;
+        return new NullCharacter();
     }
 
     @Override
@@ -139,11 +140,6 @@ public class NullBattle implements IBattle{
     @Override
     public ArrayList<Enemy> getEnemies() {
         return null;
-    }
-
-    @Override
-    public void checkSurvivors() {
-
     }
 
     @Override
@@ -223,6 +219,11 @@ public class NullBattle implements IBattle{
 
     @Override
     public void addRandomEnemy(int level) {
+
+    }
+
+    @Override
+    public void addRandomEnemy(int level, int hp, int atk, int def) {
 
     }
 

@@ -16,7 +16,11 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
      * @param lvl the level.
      */
     public Luigi(int lvl) {
-        super(lvl, "Luigi", 100, 100, 100);
+        super(lvl, "Luigi", 100, 100, 100, 0);
+    }
+
+    public Luigi(int lvl, int baseHp, int baseAtk, int baseDef, int baseFp) {
+        super(lvl, "Luigi", baseHp, baseAtk, baseDef, baseFp);
     }
 
     /**
@@ -59,6 +63,8 @@ public class Luigi extends AbstractPlayer implements AttackableByGoomba, Attacka
     public void jumpAttack(AttackableByLuigi anEnemy) throws InvalidCharacterActionException {
         super.jumpAttack(anEnemy);
     }
+
+
 
     @Override
     public void useItem(String anItem) {

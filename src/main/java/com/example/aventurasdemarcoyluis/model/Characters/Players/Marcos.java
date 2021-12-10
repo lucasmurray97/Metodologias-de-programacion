@@ -15,7 +15,7 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
      * @param lvl the lvl
      */
     public Marcos(int lvl) {
-        super(lvl, "Marcos", 100, 100, 100);
+        super(lvl, "Marcos", 100, 100, 100, 0);
     }
 
     /**
@@ -31,6 +31,9 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
         super(lvl, "Marcos", baseHp, baseAtk, baseDef, bag);
     }
 
+    public Marcos(int lvl, int baseHp, int baseAtk, int baseDef, int baseFp) {
+        super(lvl, "Marcos", baseHp, baseAtk, baseDef, baseFp);
+    }
     /**
      * Instantiates a new Marcos, includes bag binding.
      *

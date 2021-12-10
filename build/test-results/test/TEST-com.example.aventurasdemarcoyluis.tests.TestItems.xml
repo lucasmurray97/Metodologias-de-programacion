@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.aventurasdemarcoyluis.tests.TestItems" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-12-06T14:55:10" hostname="LAPTOP-DATE9JPB" time="0.004">
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestItems" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-12-10T13:06:39" hostname="LAPTOP-DATE9JPB" time="0.003">
   <properties/>
   <testcase name="equalsTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
   <testcase name="toStringTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
-  <testcase name="pickStarTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
-  <testcase name="pickItemHoneySyrupTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.001"/>
-  <testcase name="pickItemMushroomTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.001"/>
+  <testcase name="pickStarTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.001"/>
+  <testcase name="pickItemHoneySyrupTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
+  <testcase name="pickItemMushroomTest()" classname="com.example.aventurasdemarcoyluis.tests.TestItems" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

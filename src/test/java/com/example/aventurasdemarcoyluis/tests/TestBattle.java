@@ -1,6 +1,8 @@
 package com.example.aventurasdemarcoyluis.tests;
 
 import com.example.aventurasdemarcoyluis.model.BagPack;
+import com.example.aventurasdemarcoyluis.model.Battle.IBattle;
+import com.example.aventurasdemarcoyluis.model.Battle.NullBattle;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Boo;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Spiny;
@@ -9,6 +11,7 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
 import com.example.aventurasdemarcoyluis.model.Battle.BattleStates.*;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Items.HoneySyrup;
 import com.example.aventurasdemarcoyluis.model.Items.RedMushroom;
 import com.example.aventurasdemarcoyluis.model.Items.Star;
@@ -37,7 +40,7 @@ public class TestBattle {
     private BagPack testBag;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws InvalidGamePlay {
         testBag = new BagPack();
         testMarcos = new Marcos(1, testBag);
         testLuigi = new Luigi(1, testBag);
@@ -95,7 +98,7 @@ public class TestBattle {
         assertTrue(this.battle.getState().isMarcosAlive());
         assertTrue(this.battle.getState().isLuigiAlive());
         assertTrue(this.battle.getState().anyEnemiesAlive());
-        AssertionError error = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.getState().setCurrent(1);
         });
         Assertions.assertEquals("Wrong State", error.getMessage());
@@ -104,50 +107,50 @@ public class TestBattle {
     public void overStateTest(){
         this.battle.setState(new Over());
         assertTrue(this.battle.isOver());
-        AssertionError error1 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error1 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.terminate();
         });
         Assertions.assertEquals("Wrong State", error1.getMessage());
-        AssertionError error2 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error2 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseItem("RedMushroom");
         });
         Assertions.assertEquals("Wrong State", error2.getMessage());
-        AssertionError error3 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error3 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.choosePlayer(testMarcos);
         });
         Assertions.assertEquals("Wrong State", error3.getMessage());
-        AssertionError error4 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error4 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseTargetMarcos(testGoomba);
         });
         Assertions.assertEquals("Wrong State", error4.getMessage());
-        AssertionError error5 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error5 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseTargetLuigi(testGoomba);
         });
         Assertions.assertEquals("Wrong State", error5.getMessage());
-        AssertionError error6 = Assertions.assertThrows(AssertionError.class, () -> {
+       Throwable error6 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.normalAttack();
         });
         Assertions.assertEquals("Wrong State", error6.getMessage());
     }
     @Test
-    public void enemyTurnTest(){
+    public void enemyTurnTest() throws InvalidGamePlay {
         this.battle.setState(new EnemyTurn());
         this.battle.getState().setCurrent(0);
         this.battle.getState().setEnemyTurn();
         assertTrue(this.battle.isEnemyTurn());
-        AssertionError error2 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error2 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseItem("RedMushroom");
         });
         Assertions.assertEquals("Wrong State", error2.getMessage());
-        AssertionError error3 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error3 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.choosePlayer(testMarcos);
         });
         Assertions.assertEquals("Wrong State", error3.getMessage());
-        AssertionError error4 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error4 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseTargetMarcos(testGoomba);
         });
         Assertions.assertEquals("Wrong State", error4.getMessage());
-        AssertionError error5 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error5 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseTargetLuigi(testGoomba);
         });
         Assertions.assertEquals("Wrong State", error5.getMessage());
@@ -155,7 +158,7 @@ public class TestBattle {
         assertTrue(this.battle.isEnemyTurn());
     }
     @Test
-    public void booStateTest(){
+    public void booStateTest() throws InvalidGamePlay {
         this.battle.setState(new BooTurn());
         this.battle.setCurrentCharacter(testBoo);
         assertEquals(testBoo, this.battle.getCurrentPlayer());
@@ -165,7 +168,7 @@ public class TestBattle {
         assertTrue(this.battle.isEnemyTurn());
     }
     @Test
-    public void goombaStateTest(){
+    public void goombaStateTest() throws InvalidGamePlay {
         this.battle.setState(new GoombaTurn());
         this.battle.setCurrentCharacter(testGoomba);
         assertEquals(testGoomba, this.battle.getCurrentPlayer());
@@ -175,7 +178,7 @@ public class TestBattle {
         assertTrue(this.battle.isEnemyTurn());
     }
     @Test
-    public void spinyStateTest(){
+    public void spinyStateTest() throws InvalidGamePlay {
         this.battle.setState(new SpinyTurn());
         this.battle.setCurrentCharacter(testSpiny);
         assertEquals(testSpiny, this.battle.getCurrentPlayer());
@@ -185,26 +188,26 @@ public class TestBattle {
         assertTrue(this.battle.isEnemyTurn());
     }
     @Test
-    public void luigiStateTest() throws InvalidCharacterActionException {
+    public void luigiStateTest() throws InvalidCharacterActionException, InvalidGamePlay {
         this.battle.getLuigi().setFp(50);
         this.battle.setState(new LuigisTurn());
         this.battle.setCurrentCharacter(testLuigi);
         assertEquals(testLuigi, this.battle.getCurrentPlayer());
         assertTrue(this.battle.isLuigisTurn());
         assertTrue(this.battle.isPlayerTurn());
-        AssertionError error2 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error2 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.normalAttack();
         });
         Assertions.assertEquals("Wrong State", error2.getMessage());
-        AssertionError error3 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error3 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseTargetMarcos(testGoomba);
         });
         Assertions.assertEquals("Wrong State", error3.getMessage());
-        AssertionError error4 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error4 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.marcosJumpAttack();
         });
         Assertions.assertEquals("Wrong State", error4.getMessage());
-        AssertionError error5 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error5 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.marcosHammerAttack();
         });
         Assertions.assertEquals("Wrong State", error5.getMessage());
@@ -219,26 +222,26 @@ public class TestBattle {
         assertTrue(this.battle.isEnemyTurn());
     }
     @Test
-    public void marcosStateTest() throws InvalidCharacterActionException {
+    public void marcosStateTest() throws InvalidCharacterActionException, InvalidGamePlay {
         this.battle.getMarcos().setFp(50);
         this.battle.setState(new MarcosTurn());
         this.battle.setCurrentCharacter(testMarcos);
         assertEquals(testMarcos, this.battle.getCurrentPlayer());
         assertTrue(this.battle.isMarcosTurn());
         assertTrue(this.battle.isPlayerTurn());
-        AssertionError error2 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error2 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.normalAttack();
         });
         Assertions.assertEquals("Wrong State", error2.getMessage());
-        AssertionError error3 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error3 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.chooseTargetLuigi(testGoomba);
         });
         Assertions.assertEquals("Wrong State", error3.getMessage());
-        AssertionError error4 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error4 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.luigiJumpAttack();
         });
         Assertions.assertEquals("Wrong State", error4.getMessage());
-        AssertionError error5 = Assertions.assertThrows(AssertionError.class, () -> {
+        Throwable error5 = Assertions.assertThrows(InvalidGamePlay.class, () -> {
             this.battle.luigiHammerAttack();
         });
         Assertions.assertEquals("Wrong State", error5.getMessage());
@@ -265,13 +268,12 @@ public class TestBattle {
         assertEquals(expectedBag, currentBag);
         assertEquals(testMarcos, currentPlayer);
         assertTrue(battle.isMarcosTurn());
-        this.battle.checkSurvivors();
         assertEquals(5, this.battle.getCharacters().size());
         assertEquals(2, this.battle.getPlayers().size());
         assertEquals(3, this.battle.getEnemies().size());
     }
     @Test
-    public void firstTurnAttackTest() throws InvalidCharacterActionException {
+    public void firstTurnAttackTest() throws InvalidCharacterActionException, InvalidGamePlay {
         testMarcos.setFp(1);
         int expectedHp = testGoomba.getHp()-(int) Math.round(testMarcos.getAtk() * (testMarcos.getLvl() / (double)testGoomba.getDef()));
         battle.chooseTargetMarcos(testGoomba);
@@ -282,7 +284,7 @@ public class TestBattle {
         assertEquals(testLuigi, battle.getCurrentPlayer());
     }
     @Test
-    public void firstTurnItemTest(){
+    public void firstTurnItemTest() throws InvalidGamePlay {
         testMarcos.setHp(50);
         int expectedHp = testMarcos.getHp() + (int) (testMarcos.getMaxHp()*0.1);
         assertTrue(battle.isMarcosTurn());
@@ -295,13 +297,13 @@ public class TestBattle {
         assertTrue(battle.isLuigisTurn());
     }
     @Test
-    public void firstTurnPassTest(){
+    public void firstTurnPassTest() throws InvalidGamePlay {
         battle.terminate();
         assertEquals(testLuigi, battle.getCurrentPlayer());
         assertTrue(battle.isLuigisTurn());
     }
     @Test
-    public void secondTurnTest() throws InvalidCharacterActionException {
+    public void secondTurnTest() throws InvalidCharacterActionException, InvalidGamePlay {
         battle.terminate();
         assertEquals(testLuigi, battle.getCurrentPlayer());
         assertTrue(battle.isLuigisTurn());
@@ -314,7 +316,7 @@ public class TestBattle {
         assertTrue(battle.isEnemyTurn());
     }
     @Test
-    public void thirdTurnTest(){
+    public void thirdTurnTest() throws InvalidGamePlay {
         Random random = new Random();
         random.setSeed(2);
         battle.setSeed(2);
@@ -341,7 +343,7 @@ public class TestBattle {
         assertTrue(battle.isMarcosTurn());
     }
     @Test
-    public void testPlayerDeath(){
+    public void testPlayerDeath() throws InvalidGamePlay {
         battle.setState(new EnemyTurn());
         testLuigi.setHp(0);
         testMarcos.setHp(0);
@@ -350,30 +352,52 @@ public class TestBattle {
         assertTrue(battle.isOver());
     }
     @Test
-    public void testEnemiesDeath(){
+    public void testEnemiesDeath() throws InvalidGamePlay {
         int n = battle.getEnemies().size();
         for(int i=0; i<n; i++){
-            battle.getEnemies().get(i).setHp(0);
+            battle.getEnemies().get(0).setHp(0);
         }
         battle.terminate();
         assertEquals(0, this.battle.getEnemies().size());
         assertTrue(battle.isOver());
     }
     @Test
-    public void testEnemiesDeath2(){
+    public void testEnemiesDeath2() throws InvalidGamePlay {
         battle.terminate();
         int n = battle.getEnemies().size();
         for(int i=0; i<n; i++){
-            battle.getEnemies().get(i).setHp(0);
+            battle.getEnemies().get(0).setHp(0);
         }
         battle.terminate();
         assertEquals(0, this.battle.getEnemies().size());
         assertTrue(battle.isOver());
     }
     @Test
-    public void testLuigiDeath(){
+    public void testLuigiDeath() throws InvalidGamePlay {
         testLuigi.setHp(0);
         battle.terminate();
         assertTrue(battle.isEnemyTurn());
+    }
+    @Test
+    public void testNullBattle(){
+        IBattle nullBattle = new NullBattle();
+        assertEquals(nullBattle.getState(),null);
+        assertEquals(nullBattle.getCharacters(),new ArrayList<>());
+        assertEquals(nullBattle.getBagPack(), null);
+        assertEquals(nullBattle.isOver(),false);
+        assertEquals(nullBattle.getOutcome(), 0);
+        assertEquals(nullBattle.getCurrentPlayer().getType(), null);
+        assertEquals(nullBattle.getPlayers(), null);
+        assertTrue(!nullBattle.isLuigisTurn());
+        assertTrue(!nullBattle.isMarcosTurn());
+        assertTrue(!nullBattle.isBooTurn());
+        assertTrue(!nullBattle.isSpinyTurn());
+        assertTrue(!nullBattle.isGoombaTurn());
+        assertTrue(!nullBattle.isEnemyTurn());
+        assertTrue(!nullBattle.isPlayerTurn());
+        assertEquals(nullBattle.getEnemies(), null);
+        assertEquals(nullBattle.getLuigi(), null);
+        assertEquals(nullBattle.getMarcos(), null);
+        assertEquals(nullBattle.getNextCharacter(), null);
     }
 }

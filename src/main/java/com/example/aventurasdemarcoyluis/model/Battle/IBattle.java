@@ -6,6 +6,7 @@ import com.example.aventurasdemarcoyluis.model.Characters.Character;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Enemy;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.*;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
+import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.Handlers.BattleOverHandler;
 
 import java.util.ArrayList;
@@ -42,13 +43,13 @@ public interface IBattle {
 
     void setCurrentCharacter(Character aCharacter);
 
-    void chooseTargetLuigi(AttackableByLuigi enemy);
+    void chooseTargetLuigi(AttackableByLuigi enemy) throws InvalidGamePlay;
 
-    void chooseTargetMarcos(AttackableByMarcos enemy);
+    void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay;
 
-    void chooseItem(String str);
+    void chooseItem(String str) throws InvalidGamePlay;
 
-    void choosePlayer(Player aPlayer);
+    void choosePlayer(Player aPlayer) throws InvalidGamePlay;
 
     void setSeed(int n);
 
@@ -58,27 +59,26 @@ public interface IBattle {
 
     boolean isMarcosTurn();
 
-    void terminate();
+    void terminate() throws InvalidGamePlay;
 
     boolean isEnemyTurn();
 
     ArrayList<Enemy> getEnemies();
 
-    void checkSurvivors();
 
     Luigi getLuigi();
 
     Marcos getMarcos();
 
-    void marcosJumpAttack() throws InvalidCharacterActionException;
+    void marcosJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay;
 
-    void luigiJumpAttack() throws InvalidCharacterActionException;
+    void luigiJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay;
 
-    void normalAttack();
+    void normalAttack() throws InvalidGamePlay;
 
-    void marcosHammerAttack() throws InvalidCharacterActionException;
+    void marcosHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay;
 
-    void luigiHammerAttack() throws InvalidCharacterActionException;
+    void luigiHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay;
 
     boolean isBooTurn();
 
@@ -97,6 +97,8 @@ public interface IBattle {
     void addLuigi(Luigi aLuigi);
 
     void addRandomEnemy(int level);
+
+    void addRandomEnemy(int level, int hp, int atk, int def);
 
     Character getNextCharacter();
 }
