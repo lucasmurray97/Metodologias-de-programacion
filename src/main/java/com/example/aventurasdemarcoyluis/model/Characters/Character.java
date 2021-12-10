@@ -1,6 +1,8 @@
 package com.example.aventurasdemarcoyluis.model.Characters;
 
+import com.example.aventurasdemarcoyluis.model.Battle.Battle;
 import com.example.aventurasdemarcoyluis.model.Characters.States.CharacterState;
+import com.example.aventurasdemarcoyluis.model.Game.Handlers.KnockedOutHandler;
 
 /**
  * Interface for general characters, implemented by Luigi, Marcos, Boo, Spiny and Goomba.
@@ -75,4 +77,7 @@ public interface Character {
      * @return the lvl
      */
     int getLvl();
+
+    void onDeath(Battle battle, int newValue);
+    void addObserver(KnockedOutHandler resp);
 }

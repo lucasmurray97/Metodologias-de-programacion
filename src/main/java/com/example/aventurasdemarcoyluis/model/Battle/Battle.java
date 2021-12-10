@@ -13,6 +13,7 @@ import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterA
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import com.example.aventurasdemarcoyluis.model.Game.Handlers.BattleOverHandler;
+import com.example.aventurasdemarcoyluis.model.Game.Handlers.KnockedOutHandler;
 
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -110,6 +111,7 @@ public class Battle implements IBattle {
         atBattleOver.addPropertyChangeListener(resp);
     }
 
+
     /**
      * Sets outcome. 1 if players won, -1 if they lost, 0 when the battle starts.
      *
@@ -121,6 +123,7 @@ public class Battle implements IBattle {
         atBattleOver.firePropertyChange("BATTLE_IS_OVER", 0,outcome);
     }
 
+    /**
     /**
      * Sets state.
      *
@@ -160,6 +163,7 @@ public class Battle implements IBattle {
     @Override
     public void addCharacter(Character aCharacter){
         characters.add(aCharacter);
+        aCharacter.addObserver(new KnockedOutHandler(aCharacter, this));
     }
 
     /**
@@ -331,31 +335,6 @@ public class Battle implements IBattle {
     @Override
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
-    }
-
-    /**
-     * Check survivors. Updates characters, enemies and players currently in battle, removing knocked out ones.
-     */
-    @Override
-    public void checkSurvivors(){
-        int n = this.getEnemies().size();
-        for(int i = 0; i<n; i++){
-            if (this.getEnemies().get(i).isKnockedOut()) {
-                this.getCharacters().remove(this.getEnemies().get(i));
-                this.getEnemies().remove(this.getEnemies().get(i));
-                i--;
-                n--;
-            }
-        }
-        int m = this.getPlayers().size();
-        for (int i = 0; i<m;i++) {
-            if (this.getPlayers().get(i).isKnockedOut()) {
-                this.getCharacters().remove(this.getPlayers().get(i));
-                this.getPlayers().remove(this.getPlayers().get(i));
-                i--;
-                m--;
-            }
-        }
     }
 
     /**

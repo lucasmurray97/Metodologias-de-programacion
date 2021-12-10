@@ -1,6 +1,8 @@
 package com.example.aventurasdemarcoyluis.tests;
 
 import com.example.aventurasdemarcoyluis.model.BagPack;
+import com.example.aventurasdemarcoyluis.model.Battle.IBattle;
+import com.example.aventurasdemarcoyluis.model.Battle.NullBattle;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Boo;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Goomba;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Spiny;
@@ -266,7 +268,6 @@ public class TestBattle {
         assertEquals(expectedBag, currentBag);
         assertEquals(testMarcos, currentPlayer);
         assertTrue(battle.isMarcosTurn());
-        this.battle.checkSurvivors();
         assertEquals(5, this.battle.getCharacters().size());
         assertEquals(2, this.battle.getPlayers().size());
         assertEquals(3, this.battle.getEnemies().size());
@@ -354,7 +355,7 @@ public class TestBattle {
     public void testEnemiesDeath() throws InvalidGamePlay {
         int n = battle.getEnemies().size();
         for(int i=0; i<n; i++){
-            battle.getEnemies().get(i).setHp(0);
+            battle.getEnemies().get(0).setHp(0);
         }
         battle.terminate();
         assertEquals(0, this.battle.getEnemies().size());
@@ -365,7 +366,7 @@ public class TestBattle {
         battle.terminate();
         int n = battle.getEnemies().size();
         for(int i=0; i<n; i++){
-            battle.getEnemies().get(i).setHp(0);
+            battle.getEnemies().get(0).setHp(0);
         }
         battle.terminate();
         assertEquals(0, this.battle.getEnemies().size());
@@ -376,5 +377,27 @@ public class TestBattle {
         testLuigi.setHp(0);
         battle.terminate();
         assertTrue(battle.isEnemyTurn());
+    }
+    @Test
+    public void testNullBattle(){
+        IBattle nullBattle = new NullBattle();
+        assertEquals(nullBattle.getState(),null);
+        assertEquals(nullBattle.getCharacters(),new ArrayList<>());
+        assertEquals(nullBattle.getBagPack(), null);
+        assertEquals(nullBattle.isOver(),false);
+        assertEquals(nullBattle.getOutcome(), 0);
+        assertEquals(nullBattle.getCurrentPlayer().getType(), null);
+        assertEquals(nullBattle.getPlayers(), null);
+        assertTrue(!nullBattle.isLuigisTurn());
+        assertTrue(!nullBattle.isMarcosTurn());
+        assertTrue(!nullBattle.isBooTurn());
+        assertTrue(!nullBattle.isSpinyTurn());
+        assertTrue(!nullBattle.isGoombaTurn());
+        assertTrue(!nullBattle.isEnemyTurn());
+        assertTrue(!nullBattle.isPlayerTurn());
+        assertEquals(nullBattle.getEnemies(), null);
+        assertEquals(nullBattle.getLuigi(), null);
+        assertEquals(nullBattle.getMarcos(), null);
+        assertEquals(nullBattle.getNextCharacter(), null);
     }
 }

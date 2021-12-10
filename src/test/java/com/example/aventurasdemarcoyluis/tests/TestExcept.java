@@ -51,4 +51,33 @@ public class TestExcept {
         Throwable exception = assertThrows(ItemUnavailableException.class, () -> bag.useItem("RedMushroom", marcos));
         assertEquals("You currently don't have this item", exception.getMessage());
     }
+    @Test
+    public void testCatch1() throws InvalidGamePlay{
+        Game game = new Game();
+        game.createBattle(1);
+        game.addRedMushroom(1);
+        game.addHoneySyrup(1);
+        game.createBattle(1);
+        game.createBattle();
+        game.addRandomEnemy(1);
+        game.levelUp();
+        game.increaseScore();
+    }
+    @Test public void testCatch2() throws InvalidGamePlay {
+        Game game = new Game();
+        game.getBattle();
+        game.chooseTargetMarcos(new Goomba(1));
+        game.marcosJumpAttack();
+        game.normalAttack();
+        game.chooseTargetLuigi(new Goomba(1));
+        game.luigiJumpAttack();
+        game.luigiHammerAttack();
+        game.marcosHammerAttack();
+        game.getCharacters();
+        game.getCurrentPlayer();
+        game.getNextPlayer();
+        game.chooseItem("RedMushroom");
+        game.choosePlayer(game.getLuigi());
+        game.terminate();
+    }
 }

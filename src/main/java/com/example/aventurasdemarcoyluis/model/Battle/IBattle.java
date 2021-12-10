@@ -65,7 +65,6 @@ public interface IBattle {
 
     ArrayList<Enemy> getEnemies();
 
-    void checkSurvivors();
 
     Luigi getLuigi();
 

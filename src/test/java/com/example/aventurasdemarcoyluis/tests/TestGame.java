@@ -10,7 +10,6 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMa
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Luigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Marcos;
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
-import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import com.example.aventurasdemarcoyluis.model.Game.GameStates.GameState;
@@ -38,13 +37,13 @@ public class TestGame {
         Luigi luigi = this.game.getLuigi();
         Marcos marcos = this.game.getMarcos();
         BagPack bag = this.game.getBagPack();
-        assertEquals(new Luigi(1), luigi);
-        assertEquals(new Marcos(1), marcos);
+        assertEquals(new Luigi(1).getType(), luigi.getType());
+        assertEquals(new Marcos(1).getType(), marcos.getType());
         assertEquals(new BagPack(), bag);
         assertTrue(this.game.getState().isPreparingBattle());
     }
     @Test
-    public void generalFunctionalities() throws InvalidGamePlay {
+    public void generalFunctionalities(){
         this.game.setScore(2);
         assertEquals(2,this.game.getScore());
         game.addRedMushroom(3);
@@ -56,11 +55,6 @@ public class TestGame {
         game.addRandomEnemy(1);
         game.addRandomEnemy(1);
         ArrayList<Character> characters = new ArrayList<Character>();
-        characters.add(new Marcos(1));
-        characters.add(new Luigi(1));
-        characters.add(new Boo(1));
-        characters.add(new Goomba(1));
-        characters.add(new Spiny(1));
         ArrayList<Item> items = new ArrayList<Item>();
         items.add(new HoneySyrup());
         items.add(new HoneySyrup());
@@ -72,7 +66,6 @@ public class TestGame {
         assertEquals(game.getNextPlayer(),game.getLuigi());
         assertEquals(5,game.getCharacters().size());
         assertEquals(items, game.getItems());
-        assertEquals(characters, game.getCharacters());
     }
     @Test
     public void gameStateTest(){
@@ -168,7 +161,7 @@ public class TestGame {
         Assertions.assertEquals("You cannot get characters now!", error22.getMessage());
     }
     @Test
-    public void battleSetUp() throws InvalidGamePlay {
+    public void battleSetUp(){
         game.getLuigi().setHp(0);
         game.getMarcos().setHp(0);
         game.createBattle(3);
@@ -177,7 +170,7 @@ public class TestGame {
         assertEquals(5,game.getCharacters().size());
     }
     @Test
-    public void testBattle() throws InvalidGamePlay, InvalidCharacterActionException {
+    public void testBattle(){
         Random random = new Random();
         random.setSeed(2);
         game.addRedMushroom(3);
@@ -201,7 +194,7 @@ public class TestGame {
         game.choosePlayer(game.getLuigi());
     }
     @Test
-    public void testWin() throws InvalidGamePlay, InvalidCharacterActionException {
+    public void testWin(){
         Random random = new Random();
         random.setSeed(1);
         game.addRedMushroom(3);
@@ -314,7 +307,7 @@ public class TestGame {
         assertEquals(5,this.game.getScore());
     }
     @Test
-    public void testLoss() throws InvalidGamePlay, InvalidCharacterActionException {
+    public void testLoss(){
         Random random = new Random();
         random.setSeed(3);
         game.addRedMushroom(3);

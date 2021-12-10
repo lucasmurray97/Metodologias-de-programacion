@@ -2,7 +2,6 @@ package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.UnattackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLuigi;
-import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidArgument;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
@@ -42,10 +41,6 @@ public class LuigisTurn extends PlayerTurn {
         this.target = enemy;
     }
 
-    @Override
-    public void chooseTargetLuigi(UnattackableByLuigi enemy) throws InvalidArgument {
-        throw new InvalidArgument("Luigi cannot attack this character");
-    }
     /**
      * Luigi jump attack.
      */

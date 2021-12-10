@@ -7,7 +7,6 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMa
 import com.example.aventurasdemarcoyluis.model.Characters.Character;
 import com.example.aventurasdemarcoyluis.model.Characters.Enemies.Enemy;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.Player;
-import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidArgument;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;
 
@@ -43,7 +42,7 @@ public class BattleState {
      */
     public void changeState(BattleState aState){
         this.battle.setState(aState);
-        this.battle.checkSurvivors();
+        //this.battle.checkSurvivors();
     }
 
     /**
@@ -296,7 +295,4 @@ public class BattleState {
         error();
     }
 
-    public void chooseTargetLuigi(UnattackableByLuigi enemy) throws InvalidArgument, InvalidGamePlay {
-        error();
-    }
 }
