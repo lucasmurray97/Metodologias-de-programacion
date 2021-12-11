@@ -24,7 +24,7 @@ public class TestExcept {
 
     @Test
     public void testInvalidGamePlay() {
-        Game game = new Game();
+        Game game = new Game("test");
         Goomba goomba = new Goomba(1);
         Throwable exception = assertThrows(InvalidGamePlay.class, () -> game.getState().chooseTargetLuigi(goomba));
         assertEquals("You cannot choose a target now!", exception.getMessage());
@@ -52,19 +52,19 @@ public class TestExcept {
         assertEquals("You currently don't have this item", exception.getMessage());
     }
     @Test
-    public void testCatch1() throws InvalidGamePlay{
-        Game game = new Game();
+    public void testCatch1() {
+        Game game = new Game("test");
+        game.addRandomEnemy(1);
         game.createBattle(1);
         game.addRedMushroom(1);
         game.addHoneySyrup(1);
         game.createBattle(1);
         game.createBattle();
-        game.addRandomEnemy(1);
         game.levelUp();
         game.increaseScore();
     }
-    @Test public void testCatch2() throws InvalidGamePlay {
-        Game game = new Game();
+    @Test public void testCatch2() {
+        Game game = new Game("test");
         game.getBattle();
         game.chooseTargetMarcos(new Goomba(1));
         game.marcosJumpAttack();

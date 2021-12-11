@@ -36,15 +36,21 @@ public class BagPack {
         }
         bag.get(name).add(anItem);
     }
+
+    /**
+     * Error.
+     */
     public void error(){
         throw new AssertionError("Error in items bag");
     }
+
     /**
      * Uses item. In case there are items of anItems' type in the bag, they are used, and the corresponding arraylist
      * is reduced by one of it's items.
      *
      * @param anItem  the an item
      * @param aPlayer the a player
+     * @throws ItemUnavailableException the item unavailable exception
      */
     public void useItem(String anItem, Player aPlayer) throws ItemUnavailableException {
         if ((bag.containsKey(anItem))&&(bag.get(anItem).size()>0)) {

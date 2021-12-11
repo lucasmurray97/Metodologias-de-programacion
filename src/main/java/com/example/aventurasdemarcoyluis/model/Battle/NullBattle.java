@@ -11,6 +11,9 @@ import com.example.aventurasdemarcoyluis.model.Game.Handlers.BattleOverHandler;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * The type Null battle, all methods are empty, return null or false.
+ */
 public class NullBattle implements IBattle{
     @Override
     public void setNextCharacter(Character aCharacter) {

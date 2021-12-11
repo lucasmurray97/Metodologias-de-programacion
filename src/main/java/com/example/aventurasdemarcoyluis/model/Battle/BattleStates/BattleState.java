@@ -1,7 +1,6 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
 import com.example.aventurasdemarcoyluis.model.Battle.Battle;
-import com.example.aventurasdemarcoyluis.model.Characters.Enemies.UnattackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByMarcos;
 import com.example.aventurasdemarcoyluis.model.Characters.Character;
@@ -128,6 +127,8 @@ public class BattleState {
 
     /**
      * Throws an assertion error with the message "Wrong State"
+     *
+     * @throws InvalidGamePlay the invalid game play exception
      */
     void error() throws InvalidGamePlay {
         throw new InvalidGamePlay("Wrong State");
@@ -135,6 +136,8 @@ public class BattleState {
 
     /**
      * Terminates current turn.
+     *
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void terminate() throws InvalidGamePlay {
         error();
@@ -144,6 +147,7 @@ public class BattleState {
      * Chooses an item.
      *
      * @param str the item
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void chooseItem(String str) throws InvalidGamePlay {
         error();
@@ -154,6 +158,7 @@ public class BattleState {
      * Choose target marcos.
      *
      * @param enemy the enemy to be attacked.
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay {
         error();
@@ -163,6 +168,7 @@ public class BattleState {
      * Choose target luigi.
      *
      * @param enemy the enemy to be attacked.
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void chooseTargetLuigi(AttackableByLuigi enemy) throws InvalidGamePlay {
         error();
@@ -173,6 +179,7 @@ public class BattleState {
      * Choose a player for the item to take effect.
      *
      * @param aPlayer the player
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void choosePlayer(Player aPlayer) throws InvalidGamePlay {
         error();
@@ -222,6 +229,8 @@ public class BattleState {
 
     /**
      * Prepares an enemy turn.
+     *
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void setEnemyTurn() throws InvalidGamePlay {
         error();
@@ -229,6 +238,8 @@ public class BattleState {
 
     /**
      * Normal attack performed by an enemy.
+     *
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void normalAttack() throws InvalidGamePlay {
         error();
@@ -236,6 +247,9 @@ public class BattleState {
 
     /**
      * Marcos jump attack.
+     *
+     * @throws InvalidCharacterActionException the invalid character action exception
+     * @throws InvalidGamePlay                 the invalid game play exception
      */
     public void marcosJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
@@ -243,6 +257,9 @@ public class BattleState {
 
     /**
      * Luigi jump attack.
+     *
+     * @throws InvalidCharacterActionException the invalid character action exception
+     * @throws InvalidGamePlay                 the invalid game play exception
      */
     public void luigiJumpAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
@@ -250,6 +267,9 @@ public class BattleState {
 
     /**
      * Marcos hammer attack.
+     *
+     * @throws InvalidCharacterActionException the invalid character action exception
+     * @throws InvalidGamePlay                 the invalid game play exception
      */
     public void marcosHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
@@ -257,6 +277,9 @@ public class BattleState {
 
     /**
      * Luigi hammer attack.
+     *
+     * @throws InvalidCharacterActionException the invalid character action exception
+     * @throws InvalidGamePlay                 the invalid game play exception
      */
     public void luigiHammerAttack() throws InvalidCharacterActionException, InvalidGamePlay {
         error();
@@ -266,6 +289,7 @@ public class BattleState {
      * Sets current count for enemies turn.
      *
      * @param i the count
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void setCurrent(int i) throws InvalidGamePlay {
         error();
@@ -275,6 +299,7 @@ public class BattleState {
      * Gets current count for enemies.
      *
      * @return the current count.
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public int getCurrent() throws InvalidGamePlay {
         error();
@@ -283,6 +308,8 @@ public class BattleState {
 
     /**
      * Prepares marcos turn.
+     *
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void setMarcosTurn() throws InvalidGamePlay {
         error();
@@ -290,6 +317,8 @@ public class BattleState {
 
     /**
      * Prepares luigis turn.
+     *
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public void setLuigisTurn() throws InvalidGamePlay {
         error();

@@ -41,10 +41,11 @@ public class Battle implements IBattle {
      * Instantiates a new Battle.
      *
      * @param randomEnemies the number of random enemies
-     * @param level         the level
-     * @param aBag          the a bag
+     * @param level         the level of enemies
+     * @param aBag          a bag
      * @param luigi         the luigi
      * @param marcos        the marcos
+     * @throws InvalidGamePlay the invalid game play exception
      */
     public Battle(int randomEnemies, int level, BagPack aBag, Luigi luigi, Marcos marcos) throws InvalidGamePlay {
         this.outcome = 0;
@@ -105,7 +106,10 @@ public class Battle implements IBattle {
         this.random = random;
     }
 
-
+    /**
+     * adds a battle over observer to the battle.
+     * @param resp the resp
+     */
     @Override
     public void addObserver(BattleOverHandler resp){
         atBattleOver.addPropertyChangeListener(resp);
@@ -482,7 +486,7 @@ public class Battle implements IBattle {
     }
 
     /**
-     * Adds random enemy to the battle.
+     * Adds random enemy to the battle. Method that simplifies testing.
      *
      * @param level the level of the enemy to be added.
      */
@@ -497,7 +501,11 @@ public class Battle implements IBattle {
             this.addEnemy(new Spiny(level));
         }
     }
-
+    /**
+     * Adds random enemy to the battle. Incorporates all variables.
+     *
+     * @param level the level of the enemy to be added.
+     */
     @Override
     public void addRandomEnemy(int level, int hp, int atk, int def) {
         int randomNumber = random.nextInt(3);

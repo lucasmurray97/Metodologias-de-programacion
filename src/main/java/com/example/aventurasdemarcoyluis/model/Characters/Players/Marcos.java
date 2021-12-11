@@ -31,9 +31,19 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
         super(lvl, "Marcos", baseHp, baseAtk, baseDef, bag);
     }
 
+    /**
+     * Instantiates a new Marcos.
+     *
+     * @param lvl     the lvl
+     * @param baseHp  the base hp
+     * @param baseAtk the base atk
+     * @param baseDef the base def
+     * @param baseFp  the base fp
+     */
     public Marcos(int lvl, int baseHp, int baseAtk, int baseDef, int baseFp) {
         super(lvl, "Marcos", baseHp, baseAtk, baseDef, baseFp);
     }
+
     /**
      * Instantiates a new Marcos, includes bag binding.
      *
@@ -48,6 +58,7 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
      * Hammer attack.
      *
      * @param anEnemy the an enemy
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     public void hammerAttack(AttackableByMarcos anEnemy) throws InvalidCharacterActionException {
         super.hammerAttack(anEnemy);
@@ -57,6 +68,7 @@ public class Marcos extends AbstractPlayer implements AttackableByGoomba, Attack
      * Jump attack.
      *
      * @param anEnemy the an enemy
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     public void jumpAttack(AttackableByMarcos anEnemy) throws InvalidCharacterActionException {
         super.jumpAttack(anEnemy);

@@ -71,14 +71,12 @@ public class GameState {
         this.game = game;
     }
 
-    /**
-     * Error. Throws an assertion error with the message "Wrong State"
-     */
 
     /**
      * Creates battle.
      *
      * @param i is the number of random enemies to be added.
+     * @throws InvalidGamePlay the invalid game play
      */
     public void createBattle(int i) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot create a battle now!");
@@ -86,6 +84,8 @@ public class GameState {
 
     /**
      * Creates empty battle.
+     *
+     * @throws InvalidGamePlay the invalid game play
      */
     public void createBattle() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot create a battle now!");
@@ -95,6 +95,7 @@ public class GameState {
      * Adds random enemy.
      *
      * @param level the level of the enemies to be added.
+     * @throws InvalidGamePlay the invalid game play
      */
     public void addRandomEnemy(int level) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot add an enemy now!");
@@ -104,6 +105,7 @@ public class GameState {
      * Add honey syrup.
      *
      * @param i the quantity of the item to be added.
+     * @throws InvalidGamePlay the invalid game play
      */
     public void addHoneySyrup(int i) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot add an item now!");
@@ -113,6 +115,7 @@ public class GameState {
      * Add red mushroom.
      *
      * @param i the quantity of the item to be added.
+     * @throws InvalidGamePlay the invalid game play
      */
     public void addRedMushroom(int i) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot add an item now!");
@@ -122,6 +125,7 @@ public class GameState {
      * Sets battle.
      *
      * @param battle the battle
+     * @throws InvalidGamePlay the invalid game play
      */
     public void setBattle(Battle battle) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot set the battle state now!");
@@ -131,6 +135,7 @@ public class GameState {
      * Gets battle.
      *
      * @return the battle
+     * @throws InvalidGamePlay the invalid game play
      */
     public Battle getBattle() throws InvalidGamePlay {
         throw new InvalidGamePlay("There is no battle taking place!");
@@ -140,6 +145,7 @@ public class GameState {
      * Chooses target marcos.
      *
      * @param enemy the enemy to be attacked
+     * @throws InvalidGamePlay the invalid game play
      */
     public void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot choose a target now!");
@@ -147,6 +153,9 @@ public class GameState {
 
     /**
      * Marcos jump attack.
+     *
+     * @throws InvalidGamePlay                 the invalid game play
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     public void marcosJumpAttack() throws InvalidGamePlay, InvalidCharacterActionException {
         throw new InvalidGamePlay("You cannot jump attack now!");
@@ -154,6 +163,8 @@ public class GameState {
 
     /**
      * Normal attacked to be performed by an enemy to a random player.
+     *
+     * @throws InvalidGamePlay the invalid game play
      */
     public void normalAttack() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot normal attack now!");
@@ -163,6 +174,7 @@ public class GameState {
      * Chooses target luigi.
      *
      * @param enemy the enemy to be attacked.
+     * @throws InvalidGamePlay the invalid game play
      */
     public void chooseTargetLuigi(AttackableByLuigi enemy) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot choose a target now!");
@@ -170,6 +182,9 @@ public class GameState {
 
     /**
      * Luigi jump attack.
+     *
+     * @throws InvalidGamePlay                 the invalid game play
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     public void luigiJumpAttack() throws InvalidGamePlay, InvalidCharacterActionException {
         throw new InvalidGamePlay("You cannot jump attack now!");
@@ -179,6 +194,7 @@ public class GameState {
      * Chooses item to be used.
      *
      * @param str the str
+     * @throws InvalidGamePlay the invalid game play
      */
     public void chooseItem(String str) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot choose an item now!");
@@ -188,6 +204,7 @@ public class GameState {
      * Chooses player for the chosen item to take effect on.
      *
      * @param aPlayer the player
+     * @throws InvalidGamePlay the invalid game play
      */
     public void choosePlayer(Player aPlayer) throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot choose a player now!");
@@ -195,6 +212,8 @@ public class GameState {
 
     /**
      * Terminates current turn if in battle.
+     *
+     * @throws InvalidGamePlay the invalid game play
      */
     public void terminate() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot terminate the turn now!");
@@ -202,6 +221,8 @@ public class GameState {
 
     /**
      * Level up. Increases player's level.
+     *
+     * @throws InvalidGamePlay the invalid game play
      */
     public void levelUp() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot increase the players levels now!");
@@ -211,6 +232,7 @@ public class GameState {
      * Gets characters.
      *
      * @return the characters
+     * @throws InvalidGamePlay the invalid game play
      */
     public ArrayList<Character> getCharacters() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot get characters now!");
@@ -220,6 +242,7 @@ public class GameState {
      * Gets current player.
      *
      * @return the current player
+     * @throws InvalidGamePlay the invalid game play
      */
     public Character getCurrentPlayer() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot get current player now!");
@@ -229,6 +252,7 @@ public class GameState {
      * Gets next character.
      *
      * @return the next character
+     * @throws InvalidGamePlay the invalid game play
      */
     public Character getNextCharacter() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot get next player now!");
@@ -237,6 +261,8 @@ public class GameState {
 
     /**
      * Increase score.
+     *
+     * @throws InvalidGamePlay the invalid game play
      */
     public void increaseScore() throws InvalidGamePlay {
         throw new InvalidGamePlay("You cannot increase score now!");
@@ -244,6 +270,9 @@ public class GameState {
 
     /**
      * Marcos hammer attack.
+     *
+     * @throws InvalidGamePlay                 the invalid game play
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     public void marcosHammerAttack() throws InvalidGamePlay, InvalidCharacterActionException {
         throw new InvalidGamePlay("You cannot hammer attack now!");
@@ -251,6 +280,9 @@ public class GameState {
 
     /**
      * Luigi hammer attack.
+     *
+     * @throws InvalidGamePlay                 the invalid game play
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     public void luigiHammerAttack() throws InvalidGamePlay, InvalidCharacterActionException {
         throw new InvalidGamePlay("You cannot hammer attack now!");

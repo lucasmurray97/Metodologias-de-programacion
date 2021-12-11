@@ -29,6 +29,7 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      * @param baseHp  the base hp
      * @param baseAtk the base atk
      * @param baseDef the base def
+     * @param baseFp  the base fp
      */
 
 
@@ -137,6 +138,7 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      * Jump attack.
      *
      * @param anEnemy the an enemy
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     protected void jumpAttack(Enemy anEnemy) throws InvalidCharacterActionException {
         if(this.getFp()-1<0){
@@ -164,6 +166,7 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
      * Hammer attack.
      *
      * @param anEnemy the an enemy
+     * @throws InvalidCharacterActionException the invalid character action exception
      */
     protected void hammerAttack(Enemy anEnemy) throws InvalidCharacterActionException {
         this.getState().hammerAttack();
@@ -197,6 +200,10 @@ public abstract class AbstractPlayer extends AbstractCharacter implements Player
         super.setLvl(lvl);
         this.maxFp = (int) Math.round(this.baseFp*Math.pow(1.15,this.getLvl()-1));
     }
+
+    /**
+     * Revive.
+     */
     public void revive(){
         this.getState().revive();
         this.setFp(maxFp);

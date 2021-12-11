@@ -4,6 +4,9 @@ import com.example.aventurasdemarcoyluis.model.Battle.Battle;
 import com.example.aventurasdemarcoyluis.model.Characters.States.CharacterState;
 import com.example.aventurasdemarcoyluis.model.Game.Handlers.KnockedOutHandler;
 
+/**
+ * The type Null character, all methods are empty, return null or false.
+ */
 public class NullCharacter implements Character{
     @Override
     public String getType() {

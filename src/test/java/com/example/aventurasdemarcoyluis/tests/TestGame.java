@@ -43,6 +43,17 @@ public class TestGame {
         assertTrue(this.game.getState().isPreparingBattle());
     }
     @Test
+    public void testGameSetUp2(){
+        this.game = new Game();
+        Luigi luigi = this.game.getLuigi();
+        Marcos marcos = this.game.getMarcos();
+        BagPack bag = this.game.getBagPack();
+        assertEquals(new Luigi(1).getType(), luigi.getType());
+        assertEquals(new Marcos(1).getType(), marcos.getType());
+        assertEquals(new BagPack(), bag);
+        assertTrue(this.game.getState().isPreparingBattle());
+    }
+    @Test
     public void generalFunctionalities(){
         this.game.setScore(2);
         assertEquals(2,this.game.getScore());

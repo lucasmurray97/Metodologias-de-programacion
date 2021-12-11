@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.model.Game;
 
+import com.example.aventurasdemarcoyluis.NullOutputStream;
 import com.example.aventurasdemarcoyluis.model.BagPack;
 import com.example.aventurasdemarcoyluis.model.Battle.IBattle;
 import com.example.aventurasdemarcoyluis.model.Battle.NullBattle;
@@ -12,6 +13,8 @@ import com.example.aventurasdemarcoyluis.model.Game.GameStates.GameState;
 import com.example.aventurasdemarcoyluis.model.Game.GameStates.PreparingBattle;
 import com.example.aventurasdemarcoyluis.model.Items.Item;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 /**
@@ -23,9 +26,10 @@ public class Game {
     private Luigi luigi;
     private Marcos marcos;
     int score;
+    private PrintStream printStream;
 
     /**
-     * Instantiates a new Game. Main characters are created and linked to their bagpack, the state is set to preparing battle
+     * Instantiates a new Game. Main characters are created and linked to their bagpack, the state is set to preparing battle.
      */
     public Game(){
         this.score = 0;
@@ -35,8 +39,14 @@ public class Game {
         this.luigi.setBag(this.bag);
         this.marcos.setBag(this.bag);
         this.setState(new PreparingBattle());
+        this.printStream = System.out;
     }
 
+    /**
+     * Instantiates a new Game especificly for testing.
+     *
+     * @param test the test
+     */
     public Game(String test){
         this.score = 0;
         this.luigi = new Luigi(1, 100, 100, 100, 0);
@@ -45,6 +55,7 @@ public class Game {
         this.luigi.setBag(this.bag);
         this.marcos.setBag(this.bag);
         this.setState(new PreparingBattle());
+        this.printStream = new PrintStream(new NullOutputStream());
     }
 
     /**
@@ -112,7 +123,7 @@ public class Game {
     }
 
     /**
-     * Add red mushroom.
+     * Adds red mushroom.
      *
      * @param i is the quantity of the item to be added.
      */
@@ -120,12 +131,12 @@ public class Game {
         try {
             this.state.addRedMushroom(i);
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
     /**
-     * Add honey syrup.
+     * Adds honey syrup.
      *
      * @param i the is the quantity of the item to be added.
      */
@@ -133,7 +144,7 @@ public class Game {
         try {
             this.state.addHoneySyrup(i);
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -146,7 +157,7 @@ public class Game {
         try {
             this.state.createBattle(i);
         }catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -157,12 +168,12 @@ public class Game {
         try {
             this.state.createBattle();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
     /**
-     * Get battle battle.
+     * Gets battle.
      *
      * @return the battle
      */
@@ -170,7 +181,7 @@ public class Game {
         try {
             return this.state.getBattle();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
             return new NullBattle();
         }
     }
@@ -184,7 +195,7 @@ public class Game {
         try {
             this.state.chooseTargetMarcos(enemy);
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -195,7 +206,7 @@ public class Game {
         try {
             this.state.marcosJumpAttack();
         } catch (InvalidGamePlay | InvalidCharacterActionException e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -206,7 +217,7 @@ public class Game {
         try {
             this.state.normalAttack();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -219,7 +230,7 @@ public class Game {
         try {
             this.state.chooseTargetLuigi(enemy);
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -230,7 +241,7 @@ public class Game {
         try {
             this.state.luigiJumpAttack();
         } catch (InvalidGamePlay | InvalidCharacterActionException e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -243,7 +254,7 @@ public class Game {
         try {
             return this.state.getCharacters();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
             return new ArrayList<>();
         }
     }
@@ -257,7 +268,7 @@ public class Game {
         try {
             return this.state.getCurrentPlayer();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
             return new NullCharacter();
         }
     }
@@ -271,7 +282,7 @@ public class Game {
         try {
             return this.state.getNextCharacter();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
             return new NullCharacter();
         }
     }
@@ -280,13 +291,13 @@ public class Game {
     /**
      * Adds a random enemy.
      *
-     * @param level the level of the random enemie.
+     * @param level the level of the random enemy.
      */
     public void addRandomEnemy(int level){
         try {
             this.state.addRandomEnemy(level);
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -306,7 +317,7 @@ public class Game {
         try {
             this.state.marcosHammerAttack();
         } catch (InvalidGamePlay | InvalidCharacterActionException e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -317,7 +328,7 @@ public class Game {
         try {
             this.state.luigiHammerAttack();
         } catch (InvalidGamePlay | InvalidCharacterActionException e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -330,7 +341,7 @@ public class Game {
         try {
             this.state.chooseItem(str);
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -343,7 +354,7 @@ public class Game {
         try {
             this.state.choosePlayer(aPlayer);
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -354,7 +365,7 @@ public class Game {
         try {
             this.state.terminate();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -365,7 +376,7 @@ public class Game {
         try {
             this.state.levelUp();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -376,7 +387,7 @@ public class Game {
         try {
             this.state.increaseScore();
         } catch (InvalidGamePlay e) {
-            e.printStackTrace();
+            e.printStackTrace(this.printStream);
         }
     }
 
@@ -420,5 +431,4 @@ public class Game {
         }
         return iterable;
     }
-
 }
