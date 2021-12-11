@@ -172,7 +172,8 @@ public abstract class AbstractCharacter implements Character {
 
     /**
      * Sets hp, considering health restrictions: hp must be between 0 and maxhp. If a character's
-     * health points are set beneath or equal to zero, it's state is set to Knocked Out.
+     * health points are set beneath or equal to zero, it's state is set to Knocked Out and the property change for
+     * the observer is fired.
      *
      * @param hp the hp
      */
@@ -232,7 +233,11 @@ public abstract class AbstractCharacter implements Character {
         return "" + type + ": lvl = "+this.getLvl()+", atk = "+this.getAtk()+", def = "+this.getDef()+", hp = "+this.getHp()+", isKnockedOut = "+this.isKnockedOut();
     }
 
-
+    /**
+     * Removes a character when it's knocked out, this method takes action when the observer fires off the property change.
+     * @param battle   the battle
+     * @param newValue the new value retrieved from the property fired
+     */
     @Override
     public void onDeath(Battle battle, int newValue) {
         if(newValue==1){
@@ -244,6 +249,11 @@ public abstract class AbstractCharacter implements Character {
             battle.getCharacters().remove(this);
         }
     }
+
+    /**
+     * Adds the atDeath observer
+     * @param resp the resp
+     */
     @Override
     public void addObserver(KnockedOutHandler resp){
         atDeath.addPropertyChangeListener(resp);

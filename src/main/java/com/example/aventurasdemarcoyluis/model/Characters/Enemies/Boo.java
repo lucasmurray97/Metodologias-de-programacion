@@ -8,7 +8,7 @@ import com.example.aventurasdemarcoyluis.model.Characters.Players.Player;
 /**
  * The type Boo. It's an enemy character.
  */
-public class Boo extends AbstractEnemy implements AttackableByMarcos, UnattackableByLuigi {
+public class Boo extends AbstractEnemy implements AttackableByMarcos, Enemy {
     /**
      * Instantiates a new Boo. Base points are set to 100 arbitrarily.
      *

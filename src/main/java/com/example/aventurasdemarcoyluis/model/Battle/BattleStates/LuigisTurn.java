@@ -1,6 +1,5 @@
 package com.example.aventurasdemarcoyluis.model.Battle.BattleStates;
 
-import com.example.aventurasdemarcoyluis.model.Characters.Enemies.UnattackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Characters.Players.AttackableByLuigi;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterActionException;
 import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidGamePlay;

@@ -78,6 +78,18 @@ public interface Character {
      */
     int getLvl();
 
+    /**
+     * Method fired by the observer.
+     *
+     * @param battle   the battle
+     * @param newValue the new value
+     */
     void onDeath(Battle battle, int newValue);
+
+    /**
+     * Adds Knockout observer.
+     *
+     * @param resp the resp
+     */
     void addObserver(KnockedOutHandler resp);
 }

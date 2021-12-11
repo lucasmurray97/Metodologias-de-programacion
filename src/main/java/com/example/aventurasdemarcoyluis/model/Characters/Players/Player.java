@@ -67,15 +67,15 @@ public interface Player extends Character {
      * Normal attacked.
      *
      * @param damage  the damage
-     * @param anEnemy the an enemy
+     * @param anEnemy the enemy
      */
     void normalAttacked(int damage, Enemy anEnemy);
 
 
     /**
-     * Use item.
+     * Uses item.
      *
-     * @param anItem the an item
+     * @param anItem the item used
      */
     void useItem(String anItem);
 }

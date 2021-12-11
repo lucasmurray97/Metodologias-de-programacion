@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.aventurasdemarcoyluis.tests.TestExcept" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-12-10T13:06:39" hostname="LAPTOP-DATE9JPB" time="0.008">
+<testsuite name="com.example.aventurasdemarcoyluis.tests.TestExcept" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-12-11T12:14:49" hostname="LAPTOP-DATE9JPB" time="0.031">
   <properties/>
-  <testcase name="testInvalidCharacterAction()" classname="com.example.aventurasdemarcoyluis.tests.TestExcept" time="0.001"/>
-  <testcase name="testInvalidGamePlay()" classname="com.example.aventurasdemarcoyluis.tests.TestExcept" time="0.004"/>
+  <testcase name="testInvalidCharacterAction()" classname="com.example.aventurasdemarcoyluis.tests.TestExcept" time="0.002"/>
+  <testcase name="testInvalidGamePlay()" classname="com.example.aventurasdemarcoyluis.tests.TestExcept" time="0.005"/>
   <testcase name="testItemUnavailableException()" classname="com.example.aventurasdemarcoyluis.tests.TestExcept" time="0.001"/>
+  <testcase name="testCatch1()" classname="com.example.aventurasdemarcoyluis.tests.TestExcept" time="0.012"/>
+  <testcase name="testCatch2()" classname="com.example.aventurasdemarcoyluis.tests.TestExcept" time="0.01"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

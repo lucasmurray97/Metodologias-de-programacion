@@ -48,23 +48,19 @@ public class PreparingBattle extends GameState{
     /**
      * Creates battle.
      *
-     * @param i is the number of random enemies to be added.
+     * @param i is the number of random enemies to be added. Adds the battle over observer.
      */
     @Override
     public void createBattle(int i) throws InvalidGamePlay {
         Battle battle = new Battle(i, 1, this.getGame().getBagPack(), this.getGame().getLuigi(), this.getGame().getMarcos());
         this.getGame().setState(new InBattle());
         battle.addObserver(new BattleOverHandler((InBattle) this.getGame().getState()));
-        try {
-            this.getGame().getState().setBattle(battle);
-        } catch (InvalidGamePlay e) {
-            e.printStackTrace();
-        }
+        this.getGame().getState().setBattle(battle);
         this.getGame().getLuigi().revive();
         this.getGame().getMarcos().revive();
     }
     /**
-     * Creates empty battle.
+     * Creates empty battle. Adds the battle over observer.
      */
     @Override
     public void createBattle() throws InvalidGamePlay {
@@ -75,11 +71,7 @@ public class PreparingBattle extends GameState{
         battle.getState().setMarcosTurn();
         this.getGame().setState(new InBattle());
         battle.addObserver(new BattleOverHandler((InBattle) this.getGame().getState()));
-        try {
-            this.getGame().getState().setBattle(battle);
-        } catch (InvalidGamePlay e) {
-            e.printStackTrace();
-        }
+        this.getGame().getState().setBattle(battle);
         this.getGame().getLuigi().revive();
         this.getGame().getMarcos().revive();
     }

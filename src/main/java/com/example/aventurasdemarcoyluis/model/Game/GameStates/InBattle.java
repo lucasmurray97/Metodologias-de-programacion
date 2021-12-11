@@ -54,6 +54,7 @@ public class InBattle extends GameState{
     public void chooseTargetMarcos(AttackableByMarcos enemy) throws InvalidGamePlay {
         this.battle.chooseTargetMarcos(enemy);
     }
+
     /**
      * Chooses target luigi.
      *
@@ -161,14 +162,15 @@ public class InBattle extends GameState{
         this.battle.addRandomEnemy(level);
     }
 
+    /**
+     * On battle over.
+     *
+     * @param newValue the new value
+     */
     public void onBattleOver(int newValue) {
         if(newValue==1){
             this.getGame().setState(new PreparingBattle());
-            try {
-                this.getGame().getState().increaseScore();
-            } catch (InvalidGamePlay e) {
-                e.printStackTrace();
-            }
+            this.getGame().increaseScore();
         }else if(newValue==-1){
             this.getGame().setState(new GameOver());
         }
