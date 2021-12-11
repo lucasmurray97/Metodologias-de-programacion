@@ -6,11 +6,14 @@ import com.example.aventurasdemarcoyluis.model.Game.Exceptions.InvalidCharacterA
 import com.example.aventurasdemarcoyluis.model.Game.Game;
 import com.example.aventurasdemarcoyluis.model.Items.Item;
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -72,7 +75,6 @@ public class App extends Application {
         int j = 0;
         for (int i = 0; i<this.game.getCharacters().size(); i++){
             Character character = this.game.getCharacters().get(i);
-            System.out.println(character);
             if(character.equals(this.game.getLuigi())){
                 Text text = new Text(20, 95, character.toString()+", Fp: "+this.game.getLuigi().getFp());
                 text.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
@@ -117,26 +119,21 @@ public class App extends Application {
     public void createPlayerInterface(Stage primaryStage) throws FileNotFoundException {
         if(this.game.isInBattle()){
             Character currentCharacter = this.game.getCurrentPlayer();
-            System.out.println(currentCharacter);
             if(currentCharacter.getType()=="Marcos"){
                 createMariochoose(primaryStage);
             }else if(currentCharacter.getType()=="Luigi"){
                 createLuigichoose(primaryStage);
             }else{
                 this.game.normalAttack();
-                System.out.println(this.game.getMarcos());
-                System.out.println(this.game.getLuigi());
                 createPlayerInterface(primaryStage);
             }
         }else if(this.game.Lost()){
-            System.out.println("You Lost!");
             ImageNodeBuilder backgroundBuilder = new ImageNodeBuilder(gameOverScene);
             ImageView background = backgroundBuilder.build(0, 0,width , height, RESOURCE_PATH, "background2.jpg");
             ImageView gameover = backgroundBuilder.build(300, 220,400 , 200, RESOURCE_PATH, "gameover.png");
             gameOverLayout.getChildren().addAll(background,gameover);
             primaryStage.setScene(gameOverScene);
         }else if (this.game.hasWon()){
-            System.out.println("You Won!");
             ImageNodeBuilder backgroundBuilder = new ImageNodeBuilder(victoryScene);
             ImageView background = backgroundBuilder.build(0, 0,width , height, RESOURCE_PATH, "background2.jpg");
             ImageView gameover = backgroundBuilder.build(300, 220,400 , 250, RESOURCE_PATH, "victory.jpg");
@@ -162,18 +159,29 @@ public class App extends Application {
         createbasicLayoutMain(marioChooseLayout, marioChooseScene);
         primaryStage.setScene(marioChooseScene);
         this.showItems(marioChooseLayout, 375);
+        HBox buttons = new HBox(80);
+        buttons.setPrefWidth(1000);
         Button attack = new Button("Attack");
         Button useItem = new Button("Use Item");
         Button pass = new Button("Pass");
+        attack.setPrefWidth(150);
+        useItem.setPrefWidth(150);
+        pass.setPrefWidth(150);
         attack.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
         useItem.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
         pass.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
+        /**
         attack.setLayoutX(150);
         attack.setLayoutY(600);
         useItem.setLayoutX(450);
         useItem.setLayoutY(600);
         pass.setLayoutX(800);
         pass.setLayoutY(600);
+         */
+        buttons.setLayoutY(600);
+        buttons.setAlignment(Pos.CENTER);
+        buttons.getChildren().addAll(pass,attack);
+
         attack.setOnMouseClicked((MouseEvent e) -> {
             try {
                 createMarioAttack(primaryStage);
@@ -183,7 +191,6 @@ public class App extends Application {
         });
         useItem.setOnMouseClicked((MouseEvent e) -> {
             try {
-                System.out.println("Chose an item");
                 createMarioUseItem(primaryStage);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
@@ -198,18 +205,25 @@ public class App extends Application {
             }
         });
         if(game.getItems().size()>0){
-            marioChooseLayout.getChildren().add(useItem);
+            buttons.getChildren().add(useItem);
         }
-        marioChooseLayout.getChildren().addAll(attack, pass);
+        marioChooseLayout.getChildren().add(buttons);
     }
 
     private void createLuigichoose(Stage primaryStage) throws FileNotFoundException {
         createbasicLayoutMain(luigiChooseLayout, luigiChooseScene);
         primaryStage.setScene(luigiChooseScene);
         this.showItems(luigiChooseLayout, 375);
+        HBox buttons = new HBox(80);
+        buttons.setLayoutY(600);
+        buttons.setPrefWidth(1000);
+        buttons.setAlignment(Pos.CENTER);
         Button attack = new Button("Attack");
         Button useItem = new Button("Use Item");
         Button pass = new Button("Pass");
+        attack.setPrefWidth(150);
+        useItem.setPrefWidth(150);
+        pass.setPrefWidth(150);
         attack.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
         useItem.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
         pass.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 18));
@@ -219,6 +233,7 @@ public class App extends Application {
         useItem.setLayoutY(600);
         pass.setLayoutX(800);
         pass.setLayoutY(600);
+        buttons.getChildren().add(pass);
         attack.setOnMouseClicked((MouseEvent e) -> {
             try {
                 createLuigiAttack(primaryStage);
@@ -241,9 +256,6 @@ public class App extends Application {
                 ex.printStackTrace();
             }
         });
-        if(this.game.getItems().size()>0){
-            luigiChooseLayout.getChildren().add(useItem);
-        }
         int z = 0;
         for(int i=0; i<this.game.getCharacters().size();i++){
             Character character = this.game.getCharacters().get(i);
@@ -252,9 +264,12 @@ public class App extends Application {
             }
         }
         if(z>0){
-            luigiChooseLayout.getChildren().add(attack);
+            buttons.getChildren().add(attack);
         }
-        luigiChooseLayout.getChildren().addAll(pass);
+        if(this.game.getItems().size()>0){
+            buttons.getChildren().add(useItem);
+        }
+        luigiChooseLayout.getChildren().add(buttons);
     }
 
     private void createMarioUseItem(Stage primaryStage) throws FileNotFoundException {
@@ -264,6 +279,7 @@ public class App extends Application {
         itemsText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
         itemsText.setFill(Color.VIOLET);
         marioChooseItemLayout.getChildren().add(itemsText);
+
         for(int i=0; i<this.game.getItems().size();i++) {
             Item item = this.game.getItems().get(i);
             Button buttonItem = new Button(item.toString());
@@ -285,6 +301,7 @@ public class App extends Application {
                 buttonMario.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonMario.setLayoutX(300);
                 buttonMario.setLayoutY(450);
+                buttonMario.setPrefWidth(100);
                 buttonMario.setOnMouseClicked((MouseEvent ev) -> {
                     this.game.choosePlayer(this.game.getMarcos());
                     if(!this.game.Lost()&&!this.game.hasWon()){
@@ -306,6 +323,7 @@ public class App extends Application {
                 buttonLuigi.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonLuigi.setLayoutX(600);
                 buttonLuigi.setLayoutY(450);
+                buttonLuigi.setPrefWidth(100);
                 buttonLuigi.setOnMouseClicked((MouseEvent ev) -> {
                     this.game.choosePlayer(this.game.getLuigi());
                     if(!this.game.Lost()&&!this.game.hasWon()){
@@ -353,6 +371,7 @@ public class App extends Application {
                 primaryStage.setScene(luigiChoosePlayerScene);
                 this.game.chooseItem(item.getName());
                 Button buttonMario = new Button("Mario");
+                buttonMario.setPrefWidth(100);
                 buttonMario.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonMario.setLayoutX(300);
                 buttonMario.setLayoutY(450);
@@ -377,6 +396,7 @@ public class App extends Application {
                 buttonLuigi.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                 buttonLuigi.setLayoutX(600);
                 buttonLuigi.setLayoutY(450);
+                buttonLuigi.setPrefWidth(100);
                 buttonLuigi.setOnMouseClicked((MouseEvent ev) -> {
                     this.game.choosePlayer(this.game.getLuigi());
                     if(!this.game.Lost()&&!this.game.hasWon()){
@@ -407,13 +427,13 @@ public class App extends Application {
         victimText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
         victimText.setFill(Color.VIOLET);
         marioChooseVictimLayout.getChildren().add(victimText);
+        HBox enemies = new HBox(20);
         for(int i=0; i<this.game.getCharacters().size();i++) {
             Character enemy = this.game.getCharacters().get(i);
             if(enemy.getType()!="Luigi"&&enemy.getType()!="Marcos") {
                 Button buttonEnemy = new Button(enemy.getType());
                 buttonEnemy.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
-                buttonEnemy.setLayoutX(110+120*i);
-                buttonEnemy.setLayoutY(460);
+                buttonEnemy.setPrefWidth(120);
                 buttonEnemy.setOnMouseClicked((MouseEvent e) -> {
                     try {
                         createbasicLayoutMain(marioChooseAttackLayout, marioChooseAttackScene);
@@ -421,12 +441,12 @@ public class App extends Application {
                         ex.printStackTrace();
                     }
                     primaryStage.setScene(marioChooseAttackScene);
-                    System.out.println(enemy + " was chosen");
                     this.game.chooseTargetMarcos((AttackableByMarcos) enemy);
                     Button buttonJump = new Button("Jump Attack");
                     buttonJump.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
-                    buttonJump.setLayoutX(300);
+                    buttonJump.setLayoutX(220);
                     buttonJump.setLayoutY(450);
+                    buttonJump.setPrefWidth(200);
                     buttonJump.setOnMouseClicked((MouseEvent ev) -> {
                         this.game.marcosJumpAttack();
                         if(!this.game.Lost()&&!this.game.hasWon()){
@@ -448,8 +468,8 @@ public class App extends Application {
                     buttonHammer.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                     buttonHammer.setLayoutX(600);
                     buttonHammer.setLayoutY(450);
+                    buttonHammer.setPrefWidth(200);
                     buttonHammer.setOnMouseClicked((MouseEvent ev) -> {
-                        System.out.println("Marcos Hammer Attacked");
                         this.game.marcosHammerAttack();
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {
@@ -468,9 +488,13 @@ public class App extends Application {
                     });
                     marioChooseAttackLayout.getChildren().addAll(buttonJump, buttonHammer);
                 });
-                marioChooseVictimLayout.getChildren().add(buttonEnemy);
+                enemies.getChildren().add(buttonEnemy);
             }
         }
+        enemies.setLayoutY(460);
+        enemies.setPrefWidth(1000);
+        enemies.setAlignment(Pos.CENTER);
+        marioChooseVictimLayout.getChildren().add(enemies);
     }
 
     public void createLuigiAttack(Stage primaryStage) throws FileNotFoundException {
@@ -480,13 +504,13 @@ public class App extends Application {
         victimText.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 25));
         victimText.setFill(Color.VIOLET);
         luigiChooseVictimLayout.getChildren().add(victimText);
+        HBox enemies = new HBox(20);
         for(int i=0; i<this.game.getCharacters().size();i++) {
             Character enemy = this.game.getCharacters().get(i);
             if(enemy.getType()!="Luigi"&&enemy.getType()!="Marcos"&&enemy.getType()!="Boo") {
                 Button buttonEnemy = new Button(enemy.getType());
                 buttonEnemy.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
-                buttonEnemy.setLayoutX(110+120*i);
-                buttonEnemy.setLayoutY(460);
+                buttonEnemy.setPrefWidth(120);
                 buttonEnemy.setOnMouseClicked((MouseEvent e) -> {
                     try {
                         createbasicLayoutMain(luigiChooseAttackLayout, luigiChooseAttackScene);
@@ -494,12 +518,12 @@ public class App extends Application {
                         ex.printStackTrace();
                     }
                     primaryStage.setScene(luigiChooseAttackScene);
-                    System.out.println(enemy + " was chosen");
                     this.game.chooseTargetLuigi((AttackableByLuigi) enemy);
                     Button buttonJump = new Button("Jump Attack");
                     buttonJump.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
-                    buttonJump.setLayoutX(300);
+                    buttonJump.setLayoutX(220);
                     buttonJump.setLayoutY(450);
+                    buttonJump.setPrefWidth(200);
                     buttonJump.setOnMouseClicked((MouseEvent ev) -> {
                         this.game.luigiJumpAttack();
                         if(!this.game.Lost()&&!this.game.hasWon()){
@@ -521,8 +545,8 @@ public class App extends Application {
                     buttonHammer.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 20));
                     buttonHammer.setLayoutX(600);
                     buttonHammer.setLayoutY(450);
+                    buttonHammer.setPrefWidth(200);
                     buttonHammer.setOnMouseClicked((MouseEvent ev) -> {
-                        System.out.println("Luigi Hammer Attacked");
                         this.game.luigiHammerAttack();
                         if(!this.game.Lost()&&!this.game.hasWon()){
                             try {
@@ -541,9 +565,13 @@ public class App extends Application {
                     });
                     luigiChooseAttackLayout.getChildren().addAll(buttonJump, buttonHammer);
                 });
-                luigiChooseVictimLayout.getChildren().add(buttonEnemy);
+                enemies.getChildren().add(buttonEnemy);
             }
         }
+        enemies.setLayoutY(460);
+        enemies.setPrefWidth(1000);
+        enemies.setAlignment(Pos.CENTER);
+        luigiChooseVictimLayout.getChildren().add(enemies);
     }
 
     public void start(Stage primaryStage) throws Exception {
