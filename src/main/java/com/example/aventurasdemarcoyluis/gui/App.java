@@ -675,7 +675,6 @@ public class App extends Application {
                             } catch (FileNotFoundException ex) {
                                 ex.printStackTrace();
                             }
-                            ;
                         }
                     });
                     Button buttonHammer = new Button("Hammer Attack");
